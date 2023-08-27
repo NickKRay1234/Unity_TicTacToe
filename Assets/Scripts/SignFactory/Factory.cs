@@ -5,6 +5,6 @@ namespace SignFactory
 {
     public abstract class Factory : MonoBehaviour
     {
-        public abstract IProduct GetProduct(Vector3 position);
+        public abstract IProduct GetProduct(Vector3 position, Transform parent);
     }
 }

@@ -1,11 +1,13 @@
 ﻿using SignFactory;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MVP.Model
 {
     public class CellView : TicTacToeView.View
     {
-        private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Button _button;
+        private Image _image;
         private X_Factory _xFactory;
         private O_Factory _oFactory;
         public readonly CellPresenter Presenter = new();
@@ -13,24 +15,25 @@ namespace MVP.Model
         // TODO: Add VContainer right there!
         private void Start()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _button.onClick.AddListener(PlaceCurrentPlayerMark);
+            _image = GetComponent<Image>();
             _xFactory = FindObjectOfType<X_Factory>();
             _oFactory = FindObjectOfType<O_Factory>();
         }
 
-        private void OnMouseDown()
+        public void PlaceCurrentPlayerMark()
         {
             if (!Presenter.Model.IsOccupied)
             {
                 string currentPlayer = Presenter.GetCurrentPlayer();
                 if (currentPlayer == "X")
-                    _xFactory.GetProduct(Presenter.GetCurrentCellPosition());
+                    _xFactory.GetProduct(transform.position, transform);
                 else if (currentPlayer == "O")
-                    _oFactory.GetProduct(Presenter.GetCurrentCellPosition());
+                    _oFactory.GetProduct(transform.position, transform);
 #if UNITY_EDITOR
                 Debug.Log($"<color=green>x: {Presenter.Model.X}, y: {Presenter.Model.Y}</color>");
 #endif
-                _spriteRenderer.color = Color.green;
+                _image.color = Color.green;
                 Presenter.OccupyCell(currentPlayer);
             }
             else
