@@ -11,9 +11,8 @@ namespace MVP.Model
         private X_Factory _xFactory;
         private O_Factory _oFactory;
         public readonly CellPresenter Presenter = new();
-
         public CellModel cell;
-        // TODO: Add VContainer right there!
+
         private void Start()
         {
             _button.onClick.AddListener(PlaceCurrentPlayerMark);
@@ -26,16 +25,23 @@ namespace MVP.Model
         {
             if (!Presenter.Model.IsOccupied)
             {
-                string currentPlayer = Presenter.GetCurrentPlayer();
-                if (currentPlayer == "X")
-                    _xFactory.GetProduct(transform);
-                else if (currentPlayer == "O")
-                    _oFactory.GetProduct(transform);
+                PlayerMark currentPlayerMark = Presenter.GetCurrentPlayer();
+
+                switch (currentPlayerMark)
+                {
+                    case PlayerMark.X:
+                        _xFactory.GetProduct(transform);
+                        break;
+                    case PlayerMark.O:
+                        _oFactory.GetProduct(transform);
+                        break;
+                }
+
 #if UNITY_EDITOR
                 Debug.Log($"<color=green>x: {cell.X}, y: {cell.Y}</color>");
 #endif
                 _image.color = Color.green;
-                Presenter.OccupyCell(currentPlayer);
+                Presenter.OccupyCell(currentPlayerMark);
             }
             else
 #if UNITY_EDITOR

@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 567277721}
   - component: {fileID: 567277724}
   - component: {fileID: 567277725}
+  - component: {fileID: 567277726}
   m_Layer: 5
   m_Name: Background TicTacToe
   m_TagString: Untagged
@@ -678,6 +679,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 8175752551645465159, guid: 649240648a320af4ca1d9c4c3f1095e5, type: 3}
+--- !u!114 &567277726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567277719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588c36f376ec4a47a73540759bf132d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _productPrefab: {fileID: 3185881277686191735, guid: 649240648a320af4ca1d9c4c3f1095e5, type: 3}
 --- !u!1 &577062752
 GameObject:
   m_ObjectHideFlags: 0

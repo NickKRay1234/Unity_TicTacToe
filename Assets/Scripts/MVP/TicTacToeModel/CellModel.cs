@@ -1,23 +1,24 @@
-﻿using UnityEngine;
+﻿using SignFactory;
+using UnityEngine;
 
 namespace MVP.Model
 {
     public class CellModel : Model
     {
-        public GameObject Cell;
+        public IProduct Cell;
+        public GameObject CellBody;
         private bool _isOccupied;
-        private string _player;
+        private PlayerMark _player;
 
         public int X { get; }
 
         public int Y { get; }
 
         public bool IsOccupied => _isOccupied;
-        public string Player => _player;
+        public PlayerMark Player => _player;
 
         public CellModel()
         {
-            _player = "";
             _isOccupied = false;
         }
         
@@ -25,11 +26,10 @@ namespace MVP.Model
         {
             X = x;
             Y = y;
-            _player = "";
             _isOccupied = false;
         }
 
-        public void OccupyCell(string player)
+        public void OccupyCell(PlayerMark player)
         {
             if(!_isOccupied)
             {

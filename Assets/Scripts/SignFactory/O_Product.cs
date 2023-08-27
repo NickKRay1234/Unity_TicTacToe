@@ -12,5 +12,6 @@ namespace SignFactory
             Debug.Log($"<color=yellow>{ProductName} is created</color>");
 #endif
         }
+        public GameObject GetGameObject() => gameObject;
     }
 }
