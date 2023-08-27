@@ -1,21 +1,17 @@
-﻿using SignFactory;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace MVP.Model
 {
     public class CellModel : Model
     {
-        public IProduct Cell;
         public GameObject CellBody;
         private bool _isOccupied;
         private PlayerMark _player;
 
         public int X { get; }
-
         public int Y { get; }
 
         public bool IsOccupied => _isOccupied;
-        public PlayerMark Player => _player;
 
         public CellModel()
         {

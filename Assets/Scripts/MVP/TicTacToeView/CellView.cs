@@ -13,6 +13,7 @@ namespace MVP.Model
         public readonly CellPresenter Presenter = new();
         public CellModel cell;
 
+        // TODO: VContainer
         private void Start()
         {
             _button.onClick.AddListener(PlaceCurrentPlayerMark);
