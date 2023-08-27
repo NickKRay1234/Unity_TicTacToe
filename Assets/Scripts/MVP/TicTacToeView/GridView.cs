@@ -1,4 +1,5 @@
 ﻿using System;
+using MVP.Model;
 using MVP.TicTacToePresenter;
 using UnityEngine;
 
@@ -7,14 +8,15 @@ namespace MVP.TicTacToeView
     public class GridView : View, IDisposable
     {
         [SerializeField] private GameObject cellPrefab;
-        private GridPresenter presenter;
+        private new GridPresenter _presenter;
+        private CellPresenter _cellPresenter;
 
         private void Start()
         {
-            if (presenter == null) 
+            if (_presenter == null) 
             {
-                presenter = new GridPresenter();
-                presenter.SetView(this);
+                _presenter = new GridPresenter();
+                _presenter.SetView(this);
             }
             InitializeGrid();
         }
@@ -22,21 +24,27 @@ namespace MVP.TicTacToeView
         // TODO: Add Factory
         private void InitializeGrid()
         {
-            presenter.Model.GridCells = new GameObject[presenter.Model.GridSize, presenter.Model.GridSize];
-            for (int i = 0; i < presenter.Model.GridSize; i++)
-                for (int j = 0; j < presenter.Model.GridSize; j++)
+            for (int i = 0; i < GridModel.GridSize; i++)
+                for (int j = 0; j < GridModel.GridSize; j++)
                 {
-                    presenter.Model.GridCells[i, j] = 
-                        Instantiate(cellPrefab, new Vector2(i,j), Quaternion.identity, transform);
+                    _presenter.Model.GridCells[i, j] = new CellModel(i,j);
+#if UNITY_EDITOR
+                    Debug.Log($"<color=orange>x: {_presenter.Model.GridCells[i, j].X}, y: {_presenter.Model.GridCells[i, j].Y}</color>");
+#endif
+                    _presenter.Model.GridCells[i, j].Cell = Instantiate(cellPrefab, new Vector3(0,0,0), Quaternion.identity, transform);
+                    _presenter.Model.GridCells[i, j].Cell.GetComponent<CellView>().cell = _presenter.Model.GridCells[i, j];
                 }
+#if UNITY_EDITOR
+            Debug.Log($"<color=orange>Initialization ended</color>");
+#endif
         }
 
         public void Dispose()
         {
-            for (int i = 0; i < presenter.Model.GridSize; i++)
-            for (int j = 0; j < presenter.Model.GridSize; j++)
-                if(presenter.Model.GridCells[i, j])
-                    Destroy(presenter.Model.GridCells[i, j]);
+            for (int i = 0; i < GridModel.GridSize; i++)
+            for (int j = 0; j < GridModel.GridSize; j++)
+                if(_presenter.Model.GridCells[i, j].Cell)
+                    Destroy(_presenter.Model.GridCells[i, j].Cell);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace MVP.Model
         private O_Factory _oFactory;
         public readonly CellPresenter Presenter = new();
 
+        public CellModel cell;
         // TODO: Add VContainer right there!
         private void Start()
         {
@@ -27,18 +28,18 @@ namespace MVP.Model
             {
                 string currentPlayer = Presenter.GetCurrentPlayer();
                 if (currentPlayer == "X")
-                    _xFactory.GetProduct(transform.position, transform);
+                    _xFactory.GetProduct(transform);
                 else if (currentPlayer == "O")
-                    _oFactory.GetProduct(transform.position, transform);
+                    _oFactory.GetProduct(transform);
 #if UNITY_EDITOR
-                Debug.Log($"<color=green>x: {Presenter.Model.X}, y: {Presenter.Model.Y}</color>");
+                Debug.Log($"<color=green>x: {cell.X}, y: {cell.Y}</color>");
 #endif
                 _image.color = Color.green;
                 Presenter.OccupyCell(currentPlayer);
             }
             else
 #if UNITY_EDITOR
-                Debug.Log($"<color=red>Cell ({Presenter.Model.X};{Presenter.Model.Y}) is occupied</color>");
+                Debug.Log($"<color=red>Cell ({cell.X};{cell.Y}) is occupied</color>");
 #endif
         }
     }

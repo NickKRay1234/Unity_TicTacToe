@@ -1,9 +1,12 @@
-﻿namespace MVP.Model
+﻿using UnityEngine;
+
+namespace MVP.Model
 {
     public class CellModel : Model
     {
+        public GameObject Cell;
         private bool _isOccupied;
-        private string _player; // "X", "O" или ""
+        private string _player;
 
         public int X { get; }
 

@@ -4,7 +4,7 @@ namespace MVP.Model
 {
     public class GridModel : Model
     {
-        public readonly int GridSize = 3;
-        public GameObject[,] GridCells;
+        public const int GridSize = 3;
+        public readonly CellModel[,] GridCells = new CellModel[GridSize,GridSize];
     }
 }
