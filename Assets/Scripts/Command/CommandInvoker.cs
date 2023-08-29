@@ -3,21 +3,27 @@ using UnityEngine;
 
 public class CommandInvoker : MonoBehaviour, IService
 {
-    private Stack<ICommand> undoStack = new();
+    private Stack<ICommand> _undoStack = new();
 
     public void Execute(ICommand command)
     {
         command.Execute();
-        undoStack.Push(command);
+        _undoStack.Push(command);
     }
 
 
     public void Undo()
     {
-        if (undoStack.Count > 0)
+        if (_undoStack.Count > 0)
         {
-            ICommand activeCommand = undoStack.Pop();
+            ICommand activeCommand = _undoStack.Pop();
             activeCommand.Undo();
+            return;
         }
+        
+        if(_undoStack.Count == 0)
+#if UNITY_EDITOR
+            Debug.Log($"<color=red>Stack is empty</color>");
+#endif
     }
 }

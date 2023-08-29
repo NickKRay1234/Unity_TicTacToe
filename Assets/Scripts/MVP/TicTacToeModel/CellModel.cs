@@ -11,7 +11,11 @@ namespace MVP.Model
         public int X { get; }
         public int Y { get; }
 
-        public bool IsOccupied => _isOccupied;
+        public bool IsOccupied
+        {
+            get => _isOccupied;
+            set => _isOccupied = value;
+        }
 
         public CellModel()
         {
@@ -31,6 +35,15 @@ namespace MVP.Model
             {
                 _player = player;
                 _isOccupied = true;
+            }
+        }
+        
+        public void DeoccupyCell(PlayerMark player)
+        {
+            if(_isOccupied)
+            {
+                _player = player;
+                _isOccupied = false;
             }
         }
     }

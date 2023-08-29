@@ -15,7 +15,14 @@ namespace MVP.Model
         public void PlaceCurrentPlayerMark()
         {
             CommandInvoker invoker = ServiceLocator.Current.Get<CommandInvoker>();
-            invoker.Execute(new PlaceMarkCommand(Presenter, transform, _image, cell));
+            if(!Presenter.Model.IsOccupied)
+                invoker.Execute(new PlaceMarkCommand(Presenter, transform, _image, cell));
+            else
+            {
+#if UNITY_EDITOR
+                Debug.Log($"<color=red>Cell is occupied</color>");
+#endif
+            }
         }
     }
 }

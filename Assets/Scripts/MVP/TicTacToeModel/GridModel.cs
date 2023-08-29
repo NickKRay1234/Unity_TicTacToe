@@ -1,10 +1,8 @@
-﻿using UnityEngine;
-
-namespace MVP.Model
+﻿namespace MVP.Model
 {
     public class GridModel : Model
     {
-        public const int GridSize = 3;
-        public readonly CellModel[,] GridCells = new CellModel[GridSize,GridSize];
+        public const int GRID_SIZE = 3;
+        public readonly CellModel[,] GridCells = new CellModel[GRID_SIZE,GRID_SIZE];
     }
 }

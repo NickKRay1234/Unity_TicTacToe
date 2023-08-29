@@ -29,8 +29,8 @@ namespace MVP.TicTacToeView
         
         private void InitializeGrid()
         {
-            for (int i = 0; i < GridModel.GridSize; i++)
-                for (int j = 0; j < GridModel.GridSize; j++)
+            for (int i = 0; i < GridModel.GRID_SIZE; i++)
+                for (int j = 0; j < GridModel.GRID_SIZE; j++)
                     InitializeGridCell(i, j);
         
 #if UNITY_EDITOR
@@ -57,8 +57,8 @@ namespace MVP.TicTacToeView
 
         public void Dispose()
         {
-            for (int i = 0; i < GridModel.GridSize; i++)
-            for (int j = 0; j < GridModel.GridSize; j++)
+            for (int i = 0; i < GridModel.GRID_SIZE; i++)
+            for (int j = 0; j < GridModel.GRID_SIZE; j++)
             {
                 GameObject cellBody = _gridPresenter.Model.GridCells[i, j].CellBody;
                 if (cellBody) Destroy(cellBody);
