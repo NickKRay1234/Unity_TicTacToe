@@ -31,9 +31,11 @@ public class PlaceMarkCommand : ICommand
         switch (currentPlayerMark)
         {
             case PlayerMark.X:
+                _cell.Player = PlayerMark.X;
                 xFactory.GetProduct(_parent);
                 break;
             case PlayerMark.O:
+                _cell.Player = PlayerMark.O;
                 oFactory.GetProduct(_parent);
                 break;
         }

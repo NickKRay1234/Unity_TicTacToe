@@ -2,7 +2,7 @@
 {
     public class CellPresenter : Presenter.Presenter
     {
-        public readonly CellModel model = new();
+        public readonly CellModel model = new(PlayerMark.None);
         public CellModel Model => model;
         private static PlayerMark _currentPlayer;
 
