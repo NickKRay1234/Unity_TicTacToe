@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 4982085738091583520}
+  _image: {fileID: 6117778796425062411}
 --- !u!222 &461247720117870179
 CanvasRenderer:
   m_ObjectHideFlags: 0

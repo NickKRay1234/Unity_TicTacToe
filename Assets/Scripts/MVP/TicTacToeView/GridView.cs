@@ -6,26 +6,24 @@ using UnityEngine;
 
 namespace MVP.TicTacToeView
 {
-    public class GridView : View, IDisposable
+    public sealed class GridView : View, IDisposable
     {
         private GridPresenter _gridPresenter;
         private Cell_Factory _cellFactoryInstance;
 
-        public GridView(GridPresenter presenter, Cell_Factory cellFactory)
+        public GridView(GridPresenter presenter)
         {
             _gridPresenter = presenter;
-            _cellFactoryInstance = cellFactory;
         }
-        
-        // TODO: VContainer
+
         private void Start()
         {
-            if (_presenter == null) 
+            _cellFactoryInstance = GetComponent<Cell_Factory>();
+            if (_presenter == null)
             {
                 _gridPresenter = new GridPresenter();
                 _gridPresenter.SetView(this);
             }
-            _cellFactoryInstance = _cellFactoryInstance ?? FindObjectOfType<Cell_Factory>();
             InitializeGrid();
         }
         

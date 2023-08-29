@@ -2,7 +2,7 @@
 
 namespace SignFactory
 {
-    public class X_Factory : Factory
+    public class X_Factory : Factory, IService
     {
         [SerializeField] private X_Product _productPrefab;
         public override IProduct GetProduct(Transform parent)

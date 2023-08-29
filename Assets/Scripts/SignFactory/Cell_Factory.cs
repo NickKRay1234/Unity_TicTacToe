@@ -2,10 +2,10 @@
 
 namespace SignFactory
 {
-    public class Cell_Factory : Factory
+    public sealed class Cell_Factory : Factory
     {
         [SerializeField] private Cell_Product _productPrefab;
-        
+
         public override IProduct GetProduct(Transform parent)
         {
             GameObject instance = Instantiate(_productPrefab.gameObject, parent.position, Quaternion.identity, parent);
