@@ -28,8 +28,9 @@ namespace MVP.TicTacToeView
             InitializeGrid();
         }
         
-        private void InitializeGrid()
+        public void InitializeGrid()
         {
+            CellPresenter.CurrentPlayer = PlayerMark.X;
             for (int i = 0; i < GridModel.GRID_SIZE; i++)
                 for (int j = 0; j < GridModel.GRID_SIZE; j++)
                     InitializeGridCell(i, j);

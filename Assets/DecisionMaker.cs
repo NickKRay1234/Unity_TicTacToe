@@ -1,33 +1,21 @@
+using System;
 using MVP.Model;
 using MVP.TicTacToePresenter;
 using MVP.TicTacToeView;
 using UnityEngine;
 
-public class DecisionMaker : MonoBehaviour
+public class DecisionMaker : MonoBehaviour, IService
 {
-    [SerializeField] private GameObject _win;
+    [SerializeField] private GameObject _firstPlayerWinScreen;
+    [SerializeField] private GameObject _secondPlayerWinScreen;
     [SerializeField] private GameObject _game;
     [SerializeField] private GameObject _lose;
     [SerializeField] private GameObject _draw;
     private GridView _grid;
 
 
-    private void Start()
-    {
-        _grid = ServiceLocator.Current.Get<GridView>();
-    }
-    
-    private void Update()
-    {
+    private void Start() => _grid = ServiceLocator.Current.Get<GridView>();
 
-        if (IsWin(PlayerMark.O) || IsWin(PlayerMark.X))
-        {
-            _win.SetActive(true);
-            _game.SetActive(false);
-            _grid.Dispose();
-        }
-    }
-    
     private bool IsHorizontalWin(GridPresenter presenter, PlayerMark player)
     {
         for (int i = 0; i < 3; i++)
@@ -83,13 +71,24 @@ public class DecisionMaker : MonoBehaviour
         }
         return false;
     }
-    
+
+    private void ShowWinScreen(PlayerMark player)
+    {
+        if (player == PlayerMark.X)
+            _firstPlayerWinScreen.SetActive(true);
+        _game.SetActive(false);
+        _grid.Dispose();
+    }
     
 
 
-    public bool IsWin(PlayerMark player)
+    public void CheckWin(PlayerMark player)
     {
         GridPresenter presenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
-        return IsHorizontalWin(presenter, player) || IsVerticalWin(presenter, player) || IsDiagonalWin(presenter, player);
+        if (presenter == null) return;
+
+        if (IsHorizontalWin(presenter, player) || IsVerticalWin(presenter, player) || IsDiagonalWin(presenter, player))
+            ShowWinScreen(player);
     }
+    
 }

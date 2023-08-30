@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using MVP.Model;
 using UnityEngine;
 
 public class CommandInvoker : MonoBehaviour, IService
 {
     private const int MAX_NUMBER_OF_MOVES = 9;
-    public const int START_NUMBER_FOR_VICTORY_CHECK = 5;
     public Stack<ICommand> UndoStack { get; } = new(MAX_NUMBER_OF_MOVES);
 
 
@@ -20,8 +20,10 @@ public class CommandInvoker : MonoBehaviour, IService
 
     public void Execute(ICommand command)
     {
+        DecisionMaker decision = ServiceLocator.Current.Get<DecisionMaker>();
         command.Execute();
         UndoStack.Push(command);
+        decision.CheckWin(PlayerMark.X);
     }
 
 
@@ -39,4 +41,6 @@ public class CommandInvoker : MonoBehaviour, IService
             Debug.Log($"<color=red>Stack is empty</color>");
 #endif
     }
+
+    public void ClearStack() => UndoStack.Clear();
 }

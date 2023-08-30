@@ -4,7 +4,7 @@
     {
         public readonly CellModel model = new(PlayerMark.None);
         public CellModel Model => model;
-        private static PlayerMark _currentPlayer;
+        public static PlayerMark CurrentPlayer;
 
         public void OccupyCell(PlayerMark player)
         {
@@ -18,8 +18,8 @@
             SwitchPlayer();
         }
 
-        public PlayerMark GetCurrentPlayer() => _currentPlayer;
-        private void SwitchPlayer() => _currentPlayer = _currentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
+        public PlayerMark GetCurrentPlayer() => CurrentPlayer;
+        private void SwitchPlayer() => CurrentPlayer = CurrentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
     }
 
 }
