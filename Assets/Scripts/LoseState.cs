@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 
-public class LoseState : State
+public class LoseState : IState
 {
-    public override void Enter()
+    public void Enter()
     {
-        base.Enter();
 #if UNITY_EDITOR
         Debug.Log("I entered in Start state");
 #endif
     }
 
-    public override void Exit()
+    public void Exit()
     {
-        base.Exit();
 #if UNITY_EDITOR
         Debug.Log("I came out of my Start state");
 #endif
+    }
+
+    public void Update()
+    {
+        throw new System.NotImplementedException();
     }
 }

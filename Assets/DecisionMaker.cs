@@ -8,20 +8,28 @@ public class DecisionMaker : MonoBehaviour, IService
 {
     [SerializeField] private GameObject _firstPlayerWinScreen;
     [SerializeField] private GameObject _secondPlayerWinScreen;
-    [SerializeField] private GameObject _game;
     [SerializeField] private GameObject _lose;
-    [SerializeField] private GameObject _draw;
+    [HideInInspector] public bool IsWin;
+    [HideInInspector] public bool IsDraw;
+    private GridPresenter _presenter;
     private GridView _grid;
+    private StateMachine _stateMachine;
 
 
-    private void Start() => _grid = ServiceLocator.Current.Get<GridView>();
-
-    private bool IsHorizontalWin(GridPresenter presenter, PlayerMark player)
+    private void Start()
     {
+        _grid = ServiceLocator.Current.Get<GridView>();
+        _stateMachine = ServiceLocator.Current.Get<StateMachine>();
+        _stateMachine.Initialize(_stateMachine.Start);
+    }
+
+    private bool IsHorizontalWin(PlayerMark player)
+    {
+        _presenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
         for (int i = 0; i < 3; i++)
-            if (presenter.Model.GridCells[i, 0].Player == player &&
-                presenter.Model.GridCells[i, 1].Player == player &&
-                presenter.Model.GridCells[i, 2].Player == player)
+            if (_presenter.Model.GridCells[i, 0].Player == player &&
+                _presenter.Model.GridCells[i, 1].Player == player &&
+                _presenter.Model.GridCells[i, 2].Player == player)
             {
 #if UNITY_EDITOR
                 Debug.Log($"<color=green>{player} won. Horizontal win.</color>");
@@ -29,15 +37,15 @@ public class DecisionMaker : MonoBehaviour, IService
                 return true;
             }
         return false;
-
     }
     
-    private bool IsVerticalWin(GridPresenter presenter, PlayerMark player)
+    private bool IsVerticalWin(PlayerMark player)
     {
+        _presenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
         for (int j = 0; j < 3; j++)
-            if (presenter.Model.GridCells[0, j].Player == player &&
-                presenter.Model.GridCells[1, j].Player == player &&
-                presenter.Model.GridCells[2, j].Player == player)
+            if (_presenter.Model.GridCells[0, j].Player == player &&
+                _presenter.Model.GridCells[1, j].Player == player &&
+                _presenter.Model.GridCells[2, j].Player == player)
             {
 #if UNITY_EDITOR
                 Debug.Log($"<color=green>{player} won. Vertical win.</color>");
@@ -48,11 +56,12 @@ public class DecisionMaker : MonoBehaviour, IService
         return false;
     }
     
-    private bool IsDiagonalWin(GridPresenter presenter, PlayerMark player)
+    private bool IsDiagonalWin(PlayerMark player)
     {
-        if (presenter.Model.GridCells[0, 0].Player == player &&
-            presenter.Model.GridCells[1, 1].Player == player &&
-            presenter.Model.GridCells[2, 2].Player == player)
+        _presenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
+        if (_presenter.Model.GridCells[0, 0].Player == player &&
+            _presenter.Model.GridCells[1, 1].Player == player &&
+            _presenter.Model.GridCells[2, 2].Player == player)
         {
 #if UNITY_EDITOR
             Debug.Log($"<color=green>{player} won. Diagonal win.</color>");
@@ -60,9 +69,9 @@ public class DecisionMaker : MonoBehaviour, IService
             return true;
         }
         
-        if (presenter.Model.GridCells[0, 2].Player == player && 
-            presenter.Model.GridCells[1, 1].Player == player && 
-            presenter.Model.GridCells[2, 0].Player == player)
+        if (_presenter.Model.GridCells[0, 2].Player == player && 
+            _presenter.Model.GridCells[1, 1].Player == player && 
+            _presenter.Model.GridCells[2, 0].Player == player)
         {
 #if UNITY_EDITOR
             Debug.Log($"<color=green>{player} won. Diagonal win.</color>");
@@ -74,21 +83,46 @@ public class DecisionMaker : MonoBehaviour, IService
 
     private void ShowWinScreen(PlayerMark player)
     {
-        if (player == PlayerMark.X)
-            _firstPlayerWinScreen.SetActive(true);
-        _game.SetActive(false);
-        _grid.Dispose();
-    }
-    
+        switch (player)
+        {
+            case PlayerMark.X:
+                _firstPlayerWinScreen.SetActive(true);
+                break;
+            case PlayerMark.O:
+                _secondPlayerWinScreen.SetActive(true);
+                break;
+            case PlayerMark.None:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(player), player, null);
+        }
 
+        ClearGrid();
+    }
 
     public void CheckWin(PlayerMark player)
     {
-        GridPresenter presenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
-        if (presenter == null) return;
-
-        if (IsHorizontalWin(presenter, player) || IsVerticalWin(presenter, player) || IsDiagonalWin(presenter, player))
+        if (IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player))
+        {
+            IsWin = true;
             ShowWinScreen(player);
+        }
+    }
+
+    public void CheckDraw()
+    {
+        _presenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
+        for (int i = 0; i < GridModel.GRID_SIZE; i++)
+            for (int j = 0; j < GridModel.GRID_SIZE; j++)
+                if (_presenter.Model.GridCells[i, j].Player == PlayerMark.None)
+                    return;
+        IsDraw = true;
+        _stateMachine.ChangeState(_stateMachine.Draw);
+    }
+    
+    private void ClearGrid()
+    {
+        _grid.Dispose();
     }
     
 }

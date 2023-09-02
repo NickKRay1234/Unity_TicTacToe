@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 
-public class StartState : State
+public class StartState : MonoBehaviour, IState
 {
-    public override void Enter()
+    public void Enter()
     {
-        base.Enter();
+        gameObject.SetActive(true);
 #if UNITY_EDITOR
         Debug.Log("I entered in Start state");
 #endif
     }
 
-    public override void Exit()
+    public void Exit()
     {
-        base.Exit();
+        gameObject.SetActive(false);
 #if UNITY_EDITOR
         Debug.Log("I came out of my Start state");
 #endif

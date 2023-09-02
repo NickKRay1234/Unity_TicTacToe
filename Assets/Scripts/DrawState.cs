@@ -1,20 +1,25 @@
 ﻿using UnityEngine;
 
-public class DrawState : State
+public class DrawState : MonoBehaviour, IState, IService
 {
-    public override void Enter()
+    public void Enter()
     {
-        base.Enter();
+        gameObject.SetActive(true);
 #if UNITY_EDITOR
-        Debug.Log("I entered in Start state");
+        Debug.Log("I entered in Draw state");
 #endif
     }
 
-    public override void Exit()
+    public void Exit()
     {
-        base.Exit();
+        gameObject.SetActive(false);
 #if UNITY_EDITOR
-        Debug.Log("I came out of my Start state");
+        Debug.Log("I came out of my Draw state");
 #endif
+    }
+
+    public void Update()
+    {
+        
     }
 }

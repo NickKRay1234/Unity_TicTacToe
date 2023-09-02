@@ -11,21 +11,17 @@ namespace MVP.TicTacToeView
         private Cell_Factory _cellFactoryInstance;
         
         public GridPresenter GridPresenter { get; private set; }
-
-        public GridView(GridPresenter presenter)
-        {
-            GridPresenter = presenter;
-        }
+        public GridView(GridPresenter presenter) => GridPresenter = presenter;
 
         private void Start()
         {
-            _cellFactoryInstance = GetComponent<Cell_Factory>();
+            if(_cellFactoryInstance == null)
+                _cellFactoryInstance = GetComponent<Cell_Factory>();
             if (_presenter == null)
             {
                 GridPresenter = new GridPresenter();
                 GridPresenter.SetView(this);
             }
-            InitializeGrid();
         }
         
         public void InitializeGrid()
@@ -42,6 +38,14 @@ namespace MVP.TicTacToeView
         
         private void InitializeGridCell(int i, int j)
         {
+            if(_cellFactoryInstance == null)
+                _cellFactoryInstance = GetComponent<Cell_Factory>();
+            if (_presenter == null)
+            {
+                GridPresenter = new GridPresenter();
+                GridPresenter.SetView(this);
+            }
+            
             var cellModel = new CellModel(i, j, PlayerMark.None);
             GridPresenter.Model.GridCells[i, j] = cellModel;
         
