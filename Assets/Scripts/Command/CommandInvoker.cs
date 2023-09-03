@@ -32,11 +32,12 @@ public class CommandInvoker : MonoBehaviour, IService
 
         if (decision.IsWin || decision.IsDraw)
         {
-            ClearStack();
             decision.IsWin = false;
             decision.IsDraw = false;
         }
     }
+
+    public bool IsNotEmpty() => UndoStack.Count > 0;
 
 
     public void Undo()

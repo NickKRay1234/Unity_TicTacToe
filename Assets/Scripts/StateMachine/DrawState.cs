@@ -6,20 +6,14 @@ public class DrawState : MonoBehaviour, IState, IService
     {
         gameObject.SetActive(true);
 #if UNITY_EDITOR
-        Debug.Log("I entered in Draw state");
+        Debug.Log("<color=cyan>I entered in Draw state</color>");
 #endif
     }
-
     public void Exit()
     {
         gameObject.SetActive(false);
 #if UNITY_EDITOR
-        Debug.Log("I came out of my Draw state");
+        Debug.Log("<color=cyan>I came out of my Draw state</color>");
 #endif
-    }
-
-    public void Update()
-    {
-        
     }
 }

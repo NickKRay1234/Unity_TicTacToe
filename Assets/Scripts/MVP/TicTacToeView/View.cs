@@ -5,10 +5,6 @@
     public abstract class View : MonoBehaviour
     {
         protected Presenter.Presenter _presenter;
-        
-        public void Init(Presenter.Presenter presenter)
-        {
-            _presenter = presenter;
-        }
+        protected void Init(Presenter.Presenter presenter) => _presenter = presenter;
     }
 }

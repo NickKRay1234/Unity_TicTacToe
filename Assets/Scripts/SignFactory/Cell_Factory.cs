@@ -2,7 +2,7 @@
 
 namespace SignFactory
 {
-    public sealed class Cell_Factory : Factory
+    public sealed class Cell_Factory : Factory, IService
     {
         [SerializeField] private Cell_Product _productPrefab;
 

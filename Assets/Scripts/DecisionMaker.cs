@@ -11,6 +11,7 @@ public class DecisionMaker : MonoBehaviour, IService
     [SerializeField] private GameObject _lose;
     [HideInInspector] public bool IsWin;
     [HideInInspector] public bool IsDraw;
+    [HideInInspector] public PlayerMark Winner;
     private GridPresenter _presenter;
     private GridView _grid;
     private StateMachine _stateMachine;
@@ -21,6 +22,7 @@ public class DecisionMaker : MonoBehaviour, IService
         _grid = ServiceLocator.Current.Get<GridView>();
         _stateMachine = ServiceLocator.Current.Get<StateMachine>();
         _stateMachine.Initialize(_stateMachine.Start);
+        Winner = PlayerMark.None;
     }
 
     private bool IsHorizontalWin(PlayerMark player)
@@ -86,18 +88,18 @@ public class DecisionMaker : MonoBehaviour, IService
         switch (player)
         {
             case PlayerMark.X:
-                _firstPlayerWinScreen.SetActive(true);
+                Winner = PlayerMark.X;
+                _stateMachine.ChangeState(_stateMachine.Win);
                 break;
             case PlayerMark.O:
-                _secondPlayerWinScreen.SetActive(true);
+                Winner = PlayerMark.O;
+                _stateMachine.ChangeState(_stateMachine.Win);
                 break;
             case PlayerMark.None:
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(player), player, null);
         }
-
-        ClearGrid();
     }
 
     public void CheckWin(PlayerMark player)
@@ -118,11 +120,6 @@ public class DecisionMaker : MonoBehaviour, IService
                     return;
         IsDraw = true;
         _stateMachine.ChangeState(_stateMachine.Draw);
-    }
-    
-    private void ClearGrid()
-    {
-        _grid.Dispose();
     }
     
 }

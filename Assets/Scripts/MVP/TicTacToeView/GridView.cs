@@ -9,19 +9,17 @@ namespace MVP.TicTacToeView
     public sealed class GridView : View, IDisposable, IService
     {
         private Cell_Factory _cellFactoryInstance;
-        
-        public GridPresenter GridPresenter { get; private set; }
-        public GridView(GridPresenter presenter) => GridPresenter = presenter;
+
+        public GridPresenter GridPresenter
+        {
+            get => _presenter as GridPresenter;
+            private set => _presenter = value;
+        }
 
         private void Start()
         {
-            if(_cellFactoryInstance == null)
-                _cellFactoryInstance = GetComponent<Cell_Factory>();
-            if (_presenter == null)
-            {
-                GridPresenter = new GridPresenter();
-                GridPresenter.SetView(this);
-            }
+            Init(_presenter);
+            _cellFactoryInstance = ServiceLocator.Current.Get<Cell_Factory>();
         }
         
         public void InitializeGrid()
@@ -30,7 +28,6 @@ namespace MVP.TicTacToeView
             for (int i = 0; i < GridModel.GRID_SIZE; i++)
                 for (int j = 0; j < GridModel.GRID_SIZE; j++)
                     InitializeGridCell(i, j);
-        
 #if UNITY_EDITOR
             Debug.Log($"<color=orange>Initialization ended</color>");
 #endif
