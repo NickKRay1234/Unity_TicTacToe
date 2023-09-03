@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using MVP.Model;
+using MVP.TicTacToeView;
 using UnityEngine;
 
 public class CommandInvoker : MonoBehaviour, IService
 {
     private const int MAX_NUMBER_OF_MOVES = 9;
     private const int STACK_COUNT_FOR_CHECKS = 5;
+    private IGridCleanable _gridCleanable;
+    private IReferee _referee;
     public Stack<ICommand> UndoStack { get; } = new(MAX_NUMBER_OF_MOVES);
-
 
     private void Update()
     {
@@ -17,28 +19,20 @@ public class CommandInvoker : MonoBehaviour, IService
 #endif
     }
     
-
     public void Execute(ICommand command)
     {
-        DecisionMaker decision = ServiceLocator.Current.Get<DecisionMaker>();
+        _referee = ServiceLocator.Current.Get<Referee>();
         command.Execute();
         UndoStack.Push(command);
-        if (UndoStack.Count is >= STACK_COUNT_FOR_CHECKS and <= MAX_NUMBER_OF_MOVES)
-        {
-            decision.CheckWin(PlayerMark.X);
-            decision.CheckWin(PlayerMark.O);
-            decision.CheckDraw();
-        }
-
-        if (decision.IsWin || decision.IsDraw)
-        {
-            decision.IsWin = false;
-            decision.IsDraw = false;
-        }
+        CheckGameStatusAndClearIfNecessary();
     }
 
-    public bool IsNotEmpty() => UndoStack.Count > 0;
-
+    private void CheckGameStatusAndClearIfNecessary()
+    {
+        if (UndoStack.Count is >= STACK_COUNT_FOR_CHECKS and <= MAX_NUMBER_OF_MOVES)
+            if(_referee.CheckWin(PlayerMark.X) || _referee.CheckWin(PlayerMark.O) || _referee.CheckDraw(PlayerMark.None))
+                ClearStack();
+    }
 
     public void Undo()
     {
@@ -55,5 +49,10 @@ public class CommandInvoker : MonoBehaviour, IService
 #endif
     }
 
-    public void ClearStack() => UndoStack.Clear();
+    public void ClearStack()
+    {
+        _gridCleanable = ServiceLocator.Current.Get<GridView>();
+        _gridCleanable.Clear();
+        UndoStack.Clear();
+    }
 }

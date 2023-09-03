@@ -4177,6 +4177,7 @@ GameObject:
   - component: {fileID: 1352871345}
   - component: {fileID: 1352871347}
   - component: {fileID: 1352871346}
+  - component: {fileID: 1352871348}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -4245,6 +4246,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352871344}
   m_CullTransparentMesh: 1
+--- !u!114 &1352871348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352871344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e12c93beeb74e5f9ad93937884735fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player1: {fileID: 308234426}
+  _player2: {fileID: 2097068355}
 --- !u!1 &1371462763
 GameObject:
   m_ObjectHideFlags: 0
@@ -4561,7 +4576,7 @@ GameObject:
   - component: {fileID: 1510305143}
   - component: {fileID: 1510305142}
   m_Layer: 0
-  m_Name: DecisionMaker
+  m_Name: Referee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4579,11 +4594,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fea7e4985e8e264081c239e2e941821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firstPlayerWinScreen: {fileID: 1040979077}
-  _secondPlayerWinScreen: {fileID: 0}
+  _win: {fileID: 1040979077}
   _lose: {fileID: 1371462763}
-  IsWin: 0
-  IsDraw: 0
+  _scorekeeper: {fileID: 0}
   Winner: 0
 --- !u!4 &1510305143
 Transform:
@@ -5784,7 +5797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _commandInvoker: {fileID: 297992696}
   _cellFactory: {fileID: 567277726}
-  _decisionMaker: {fileID: 1510305142}
+  _referee: {fileID: 1510305142}
   _gridView: {fileID: 567277725}
   _xFactory: {fileID: 1602093329}
   _oFactory: {fileID: 1602093328}

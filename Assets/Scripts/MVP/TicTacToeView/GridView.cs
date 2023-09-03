@@ -1,12 +1,11 @@
-﻿using System;
-using MVP.Model;
+﻿using MVP.Model;
 using MVP.TicTacToePresenter;
 using SignFactory;
 using UnityEngine;
 
 namespace MVP.TicTacToeView
 {
-    public sealed class GridView : View, IDisposable, IService
+    public sealed class GridView : View, IService, IGridCleanable
     {
         private Cell_Factory _cellFactoryInstance;
 
@@ -58,7 +57,7 @@ namespace MVP.TicTacToeView
                 cellViewComponent.cell = cellModel;
         }
 
-        public void Dispose()
+        public void Clear()
         {
             for (int i = 0; i < GridModel.GRID_SIZE; i++)
             for (int j = 0; j < GridModel.GRID_SIZE; j++)
