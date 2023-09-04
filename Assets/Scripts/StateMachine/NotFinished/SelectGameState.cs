@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
-public class SelectGameState : IState
+public class SelectGameState : MonoBehaviour, IState
 {
     public void Enter()
     {
+        gameObject.SetActive(true);
 #if UNITY_EDITOR
         Debug.Log("I entered in Start state");
 #endif
@@ -11,13 +12,9 @@ public class SelectGameState : IState
 
     public void Exit()
     {
+        gameObject.SetActive(false);
 #if UNITY_EDITOR
         Debug.Log("I came out of my Start state");
 #endif
-    }
-
-    public void Update()
-    {
-        throw new System.NotImplementedException();
     }
 }
