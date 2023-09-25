@@ -5,6 +5,7 @@ public class GameState : MonoBehaviour, IState
 {
     [SerializeField] private GameObject _headHUD;
     private GridView _grid;
+    private CommandInvoker _invoker;
     public void Enter()
     {
         _grid = ServiceLocator.Current.Get<GridView>();
@@ -18,6 +19,8 @@ public class GameState : MonoBehaviour, IState
 
     public void Exit()
     {
+        _invoker = ServiceLocator.Current.Get<CommandInvoker>();
+        _invoker.ClearStack();
         gameObject.SetActive(false);
         _headHUD.SetActive(false);
 #if UNITY_EDITOR

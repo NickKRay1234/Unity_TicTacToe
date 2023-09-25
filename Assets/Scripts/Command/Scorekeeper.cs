@@ -41,6 +41,14 @@ namespace MVP.Model
             return playerScore;
         }
 
+        public void Reset()
+        {
+            _player1Score = 0;
+            _player2Score = 0;
+            _player1.text = _player1Score.ToString();
+            _player2.text = _player2Score.ToString();
+        }
+
         private void OnDisable() => _referee.ScoreChanged -= ChangeScoreVisual;
     }
 }

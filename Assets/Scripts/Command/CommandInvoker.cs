@@ -10,6 +10,7 @@ public class CommandInvoker : MonoBehaviour, IService
     private IGridCleanable _gridCleanable;
     private IReferee _referee;
     public Stack<ICommand> UndoStack { get; } = new(MAX_NUMBER_OF_MOVES);
+    private int _oldCount;
 
     private void Update()
     {

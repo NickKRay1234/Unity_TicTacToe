@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using MVP.TicTacToeView;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace MVP.Model
 {
-    public class CellView : TicTacToeView.View, IService
+    public class CellView : View, IService
     {
         [SerializeField] private Button _button;
         [SerializeField] private Image _image;
@@ -15,7 +16,7 @@ namespace MVP.Model
         public void PlaceCurrentPlayerMark()
         {
             CommandInvoker invoker = ServiceLocator.Current.Get<CommandInvoker>();
-            if(!Presenter.Model.IsOccupied)
+            if (!Presenter.Model.IsOccupied)
                 invoker.Execute(new PlaceMarkCommand(Presenter, transform, _image, cell));
             else
             {
