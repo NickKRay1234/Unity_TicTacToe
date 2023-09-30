@@ -20,10 +20,19 @@ namespace Architecture.Infrastructure
             _coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
 
         // Приватная корутина для загрузки сцены с возможностью выполнять код после загрузки.
-        private IEnumerator LoadScene(string name, Action onLoaded = null)
+        private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
         {
+            if (SceneManager.GetActiveScene().name == nextScene)
+            {
+                // Если был передан делегат для вызова после загрузки сцены,
+                // вызываем его здесь.
+                onLoaded?.Invoke();
+                yield break;
+            }
+            
+            
             // Запускаем асинхронную загрузку сцены по имени.
-            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(name);
+            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
             
             // Ждём завершения загрузки сцены. Если загрузка ещё не завершена,
             // то возвращаем null, и корутина будет продолжена на следующем кадре.
