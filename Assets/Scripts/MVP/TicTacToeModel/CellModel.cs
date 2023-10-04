@@ -4,20 +4,18 @@ namespace MVP.Model
 {
     public class CellModel : Model
     {
-        public GameObject CellBody;
-        private bool _isOccupied;
-        private PlayerMark _player;
+        public GameObject CellGameObject;
+        public PlayerMark Player;
         
-        public PlayerMark Player { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
 
-        public bool IsOccupied => _isOccupied;
+        public bool IsOccupied { get; set; }
 
-        public CellModel(PlayerMark player)
+        public CellModel()
         {
-            Player = player;
-            _isOccupied = false;
+            Player = PlayerMark.None;
+            IsOccupied = false;
         }
         
         public CellModel(int x, int y, PlayerMark player)
@@ -25,24 +23,24 @@ namespace MVP.Model
             X = x;
             Y = y;
             Player = player;
-            _isOccupied = false;
+            IsOccupied = false;
         }
 
         public void OccupyCell(PlayerMark player)
         {
-            if(!_isOccupied)
+            if(!IsOccupied)
             {
-                _player = player;
-                _isOccupied = true;
+                Player = player;
+                IsOccupied = true;
             }
         }
         
         public void DeoccupyCell(PlayerMark player)
         {
-            if(_isOccupied)
+            if(IsOccupied)
             {
-                _player = player;
-                _isOccupied = false;
+                Player = player;
+                IsOccupied = false;
             }
         }
     }

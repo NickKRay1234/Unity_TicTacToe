@@ -26,7 +26,6 @@ namespace Architecture.Infrastructure
 
         private void RegisterServices()
         {
-            Game.InputService = RegisterInputService();
         }
 
         public void Exit()

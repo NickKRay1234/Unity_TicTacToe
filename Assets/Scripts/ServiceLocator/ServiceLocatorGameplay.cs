@@ -6,7 +6,6 @@ using UnityEngine;
 public class ServiceLocatorGameplay : MonoBehaviour
 {
     [SerializeField] private CommandInvoker _commandInvoker;
-    [SerializeField] private MiniMax _miniMax;
     [SerializeField] private Cell_Factory _cellFactory;
     [SerializeField] private Referee _referee;
     [SerializeField] private GridView _gridView;
@@ -21,7 +20,6 @@ public class ServiceLocatorGameplay : MonoBehaviour
         ServiceLocator.Initialize();
         ServiceLocator.Current.Register(_commandInvoker);
         ServiceLocator.Current.Register(_scorekeeper);
-        ServiceLocator.Current.Register(_miniMax);
         ServiceLocator.Current.Register(_cellFactory);
         ServiceLocator.Current.Register(_gridView);
         ServiceLocator.Current.Register(_xFactory);
@@ -34,7 +32,6 @@ public class ServiceLocatorGameplay : MonoBehaviour
     {
         ServiceLocator.Current.Unregister<CommandInvoker>();
         ServiceLocator.Current.Unregister<Scorekeeper>();
-        ServiceLocator.Current.Unregister<MiniMax>();
         ServiceLocator.Current.Unregister<Referee>();
         ServiceLocator.Current.Unregister<Cell_Factory>();
         ServiceLocator.Current.Unregister<StateMachine>();

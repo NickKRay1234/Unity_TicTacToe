@@ -24,7 +24,9 @@
             _stateMachine.Enter<GameLoopState>();
         }
 
-        public void Exit() =>
-            _curtain.Hide();
+        public void Exit()
+        {
+            //_curtain.Hide();
+        }
     }
 }

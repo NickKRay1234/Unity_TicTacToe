@@ -5,43 +5,65 @@ using UnityEngine.SceneManagement;
 
 namespace Architecture.Infrastructure
 {
-    // Корутина для асинхронной загрузки сцены в Unity.
     public class SceneLoader
     {
-        // Интерфейс, представляющий собой обёртку для работы с корутинами в Unity.
         private readonly ICoroutineRunner _coroutineRunner;
-        
-        // В конструкторе получаем ссылку на сервис для работы с корутинами.
-        public SceneLoader(ICoroutineRunner coroutineRunner) =>
+        private readonly LoadingCurtain _loadingCurtain;
+
+        public SceneLoader(ICoroutineRunner coroutineRunner, LoadingCurtain loadingCurtain)
+        {
             _coroutineRunner = coroutineRunner;
+            _loadingCurtain = loadingCurtain;
+        }
 
-        // Метод для начала загрузки сцены. Запускает корутину LoadScene.
-        public void Load(string name, Action onLoaded = null) =>
+        public void Load(string name, Action onLoaded = null)
+        {
+            _loadingCurtain.Show();
             _coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
+        }
 
-        // Приватная корутина для загрузки сцены с возможностью выполнять код после загрузки.
         private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
         {
             if (SceneManager.GetActiveScene().name == nextScene)
             {
-                // Если был передан делегат для вызова после загрузки сцены,
-                // вызываем его здесь.
+                _loadingCurtain.SetProgress(1);
                 onLoaded?.Invoke();
                 yield break;
             }
             
-            
-            // Запускаем асинхронную загрузку сцены по имени.
-            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
-            
-            // Ждём завершения загрузки сцены. Если загрузка ещё не завершена,
-            // то возвращаем null, и корутина будет продолжена на следующем кадре.
-            while (waitNextScene.isDone)
-                yield return null;
-            
-            // Если был передан делегат для вызова после загрузки сцены,
-            // вызываем его здесь.
+            yield return FakeLoading(SceneManager.LoadSceneAsync(nextScene));
             onLoaded?.Invoke();
         }
+
+        private IEnumerator FakeLoading(AsyncOperation nextScene)
+        {
+            float fakeProgress = 0;
+            while (fakeProgress < 1.0f)
+            {
+                fakeProgress += 0.01f;
+                _loadingCurtain.SetProgress(fakeProgress);
+#if UNITY_EDITOR
+                Debug.Log($"<color=green>Loading progress: {(int)(fakeProgress * 100)}%</color>");
+#endif
+                yield return new WaitForSeconds(0.025f);
+            }
+            _loadingCurtain.Hide();
+            if (nextScene.isDone) yield return null;
+        }
+
+        private IEnumerator Loading(AsyncOperation nextScene)
+        {
+            while (!nextScene.isDone)
+            {
+                float progressValue = Mathf.Clamp01(nextScene.progress / 0.9f);
+#if UNITY_EDITOR
+                Debug.Log($"Loading progress: {progressValue * 100}%");
+#endif
+                _loadingCurtain.SetProgress(progressValue);
+                yield return null;
+            }
+            _loadingCurtain.Hide();
+        }
+        
     }
 }

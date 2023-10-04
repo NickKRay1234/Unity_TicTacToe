@@ -50,7 +50,7 @@ namespace MVP.TicTacToeView
 #endif
 
             GameObject cellBody = _cellFactoryInstance.GetProduct(transform).GetGameObject();
-            cellModel.CellBody = cellBody;
+            cellModel.CellGameObject = cellBody;
 
             CellView cellViewComponent = cellBody.GetComponent<CellView>();
             if (cellViewComponent != null)
@@ -62,7 +62,7 @@ namespace MVP.TicTacToeView
             for (int i = 0; i < GridModel.GRID_SIZE; i++)
             for (int j = 0; j < GridModel.GRID_SIZE; j++)
             {
-                GameObject cellBody = GridPresenter.Model.GridCells[i, j].CellBody;
+                GameObject cellBody = GridPresenter.Model.GridCells[i, j].CellGameObject;
                 if (cellBody) Destroy(cellBody);
             }
         }

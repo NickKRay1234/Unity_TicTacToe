@@ -14,7 +14,7 @@ public class DrawState : MonoBehaviour, IState, IService
     public void Exit()
     {
         gameObject.SetActive(false);
-        _headHUD.SetActive(true);
+        _headHUD.SetActive(false);
 #if UNITY_EDITOR
         Debug.Log("<color=cyan>I came out of my Draw state</color>");
 #endif

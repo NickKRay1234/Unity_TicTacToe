@@ -4,7 +4,7 @@ using MVP.TicTacToePresenter;
 using MVP.TicTacToeView;
 using UnityEngine;
 
-public class Referee : MonoBehaviour, IReferee
+public class Referee : MonoBehaviour, IReferee, IWinScreenDisplay
 {
     [SerializeField] private GameObject _win;
     [SerializeField] private GameObject _lose;
@@ -78,17 +78,38 @@ public class Referee : MonoBehaviour, IReferee
         return false;
     }
     
-    public bool CheckWin(PlayerMark player)
+    public bool CheckWinAndShowWin(PlayerMark player)
     {
-        if (IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player))
+        if (IsWin(player))
         {
             ShowWinScreen(player);
             return true;
         }
         return false;
     }
+    
+    public bool ShowLoseScreen(PlayerMark player, bool IsAI)
+    {
+        if (IsAIWin(player, IsAI))
+        {
+            SetResult(PlayerMark.X, _stateMachine.Lose);
+            return true;
+        }
+        return false;
+    }
+    
+    public bool IsWin(PlayerMark player) =>
+        IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player);
 
-    private void ShowWinScreen(PlayerMark player)
+    public bool IsAIWin(PlayerMark player, bool IsAI)
+    {
+        if (IsAI)
+            return IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player);
+        return false;
+    }
+
+
+    public void ShowWinScreen(PlayerMark player)
     {
         switch (player)
         {

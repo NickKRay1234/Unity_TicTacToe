@@ -9,8 +9,10 @@ public class CommandInvoker : MonoBehaviour, IService
     private const int STACK_COUNT_FOR_CHECKS = 5;
     private IGridCleanable _gridCleanable;
     private IReferee _referee;
+    private IWinScreenDisplay _winScreen;
     public Stack<ICommand> UndoStack { get; } = new(MAX_NUMBER_OF_MOVES);
     private int _oldCount;
+    public bool IsGameWithAI;
 
     private void Update()
     {
@@ -23,6 +25,7 @@ public class CommandInvoker : MonoBehaviour, IService
     public void Execute(ICommand command)
     {
         _referee = ServiceLocator.Current.Get<Referee>();
+        _winScreen = ServiceLocator.Current.Get<Referee>();
         command.Execute();
         UndoStack.Push(command);
         CheckGameStatusAndClearIfNecessary();
@@ -30,8 +33,8 @@ public class CommandInvoker : MonoBehaviour, IService
 
     private void CheckGameStatusAndClearIfNecessary()
     {
-        if (UndoStack.Count is >= STACK_COUNT_FOR_CHECKS and <= MAX_NUMBER_OF_MOVES)
-            if(_referee.CheckWin(PlayerMark.X) || _referee.CheckWin(PlayerMark.O) || _referee.CheckDraw(PlayerMark.None))
+        _referee.ShowLoseScreen(PlayerMark.X, IsGameWithAI);
+            if(_referee.CheckWinAndShowWin(PlayerMark.X) || _referee.CheckWinAndShowWin(PlayerMark.O) || _referee.CheckDraw(PlayerMark.None))
                 ClearStack();
     }
 

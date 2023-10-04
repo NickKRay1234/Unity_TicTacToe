@@ -29,8 +29,5 @@ namespace GRID
         }
 
         private Vector2 GetPosition(int x, int y) => new Vector2(x, y) * _cellSize;
-
-
-
     }
 }

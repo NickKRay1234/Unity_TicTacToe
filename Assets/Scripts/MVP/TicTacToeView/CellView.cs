@@ -17,7 +17,12 @@ namespace MVP.Model
         {
             CommandInvoker invoker = ServiceLocator.Current.Get<CommandInvoker>();
             if (!Presenter.Model.IsOccupied)
-                invoker.Execute(new PlaceMarkCommand(Presenter, transform, _image, cell));
+            {
+                if(invoker.IsGameWithAI)
+                    invoker.Execute(new PlayerAndAIMarkCommand(Presenter, transform, _image, cell));
+                else 
+                    invoker.Execute(new PlayerMarkCommand(Presenter, transform, _image, cell));
+            }
             else
             {
 #if UNITY_EDITOR
