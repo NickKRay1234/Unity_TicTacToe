@@ -7,25 +7,25 @@ namespace MVP.TicTacToeView
 {
     public sealed class GridView : View, IService, IGridCleanable
     {
-        private Cell_Factory _cellFactoryInstance;
+        private Cell_Factory _cellFactory;
 
-        public GridPresenter GridPresenter
+        public GridPresenter GridBasePresenter
         {
-            get => _presenter as GridPresenter;
-            private set => _presenter = value;
+            get => BasePresenter as GridPresenter;
+            private set => BasePresenter = value;
         }
 
         private void Start()
         {
-            Init(_presenter);
-            _cellFactoryInstance = ServiceLocator.Current.Get<Cell_Factory>();
+            Init(BasePresenter);
+            _cellFactory = ServiceLocator.Current.Get<Cell_Factory>();
         }
         
         public void InitializeGrid()
         {
-            CellPresenter.CurrentPlayer = PlayerMark.X;
-            for (int i = 0; i < GridModel.GRID_SIZE; i++)
-                for (int j = 0; j < GridModel.GRID_SIZE; j++)
+            DesignDataContainer.CurrentPlayer = PlayerMark.X;
+            for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
+                for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
                     InitializeGridCell(i, j);
 #if UNITY_EDITOR
             Debug.Log($"<color=orange>Initialization ended</color>");
@@ -34,22 +34,22 @@ namespace MVP.TicTacToeView
         
         private void InitializeGridCell(int i, int j)
         {
-            if(_cellFactoryInstance == null)
-                _cellFactoryInstance = GetComponent<Cell_Factory>();
-            if (_presenter == null)
+            if(_cellFactory == null)
+                _cellFactory = GetComponent<Cell_Factory>();
+            if (BasePresenter == null)
             {
-                GridPresenter = new GridPresenter();
-                GridPresenter.SetView(this);
+                GridBasePresenter = new GridPresenter();
+                GridBasePresenter.SetView(this);
             }
             
             var cellModel = new CellModel(i, j, PlayerMark.None);
-            GridPresenter.Model.GridCells[i, j] = cellModel;
+            GridBasePresenter.Model.GridCells[i, j] = cellModel;
         
 #if UNITY_EDITOR
             Debug.Log($"<color=orange>x: {cellModel.X}, y: {cellModel.Y}</color>");
 #endif
 
-            GameObject cellBody = _cellFactoryInstance.GetProduct(transform).GetGameObject();
+            GameObject cellBody = _cellFactory.GetProduct(transform).GetGameObject();
             cellModel.CellGameObject = cellBody;
 
             CellView cellViewComponent = cellBody.GetComponent<CellView>();
@@ -59,10 +59,10 @@ namespace MVP.TicTacToeView
 
         public void Clear()
         {
-            for (int i = 0; i < GridModel.GRID_SIZE; i++)
-            for (int j = 0; j < GridModel.GRID_SIZE; j++)
+            for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
+            for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
             {
-                GameObject cellBody = GridPresenter.Model.GridCells[i, j].CellGameObject;
+                GameObject cellBody = GridBasePresenter.Model.GridCells[i, j].CellGameObject;
                 if (cellBody) Destroy(cellBody);
             }
         }

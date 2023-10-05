@@ -11,7 +11,7 @@ public class Referee : MonoBehaviour, IReferee, IWinScreenDisplay
     [SerializeField] private Scorekeeper _scorekeeper;
     [HideInInspector] public PlayerMark Winner;
     
-    private GridPresenter _presenter;
+    private GridPresenter _basePresenter;
     private GridView _grid;
     private StateMachine _stateMachine;
     public Action ScoreChanged;
@@ -27,11 +27,11 @@ public class Referee : MonoBehaviour, IReferee, IWinScreenDisplay
 
     private bool IsHorizontalWin(PlayerMark player)
     {
-        _presenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
+        _basePresenter = ServiceLocator.Current.Get<GridView>().GridBasePresenter;
         for (int i = 0; i < 3; i++)
-            if (_presenter.Model.GridCells[i, 0].Player == player &&
-                _presenter.Model.GridCells[i, 1].Player == player &&
-                _presenter.Model.GridCells[i, 2].Player == player){
+            if (_basePresenter.Model.GridCells[i, 0].Player == player &&
+                _basePresenter.Model.GridCells[i, 1].Player == player &&
+                _basePresenter.Model.GridCells[i, 2].Player == player){
 #if UNITY_EDITOR
                 Debug.Log($"<color=green>{player} won. Horizontal win.</color>");
 #endif
@@ -42,11 +42,11 @@ public class Referee : MonoBehaviour, IReferee, IWinScreenDisplay
     
     private bool IsVerticalWin(PlayerMark player)
     {
-        _presenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
+        _basePresenter = ServiceLocator.Current.Get<GridView>().GridBasePresenter;
         for (int j = 0; j < 3; j++)
-            if (_presenter.Model.GridCells[0, j].Player == player &&
-                _presenter.Model.GridCells[1, j].Player == player &&
-                _presenter.Model.GridCells[2, j].Player == player){
+            if (_basePresenter.Model.GridCells[0, j].Player == player &&
+                _basePresenter.Model.GridCells[1, j].Player == player &&
+                _basePresenter.Model.GridCells[2, j].Player == player){
 #if UNITY_EDITOR
                 Debug.Log($"<color=green>{player} won. Vertical win.</color>");
 #endif
@@ -57,19 +57,19 @@ public class Referee : MonoBehaviour, IReferee, IWinScreenDisplay
     
     private bool IsDiagonalWin(PlayerMark player)
     {
-        _presenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
-        if (_presenter.Model.GridCells[0, 0].Player == player &&
-            _presenter.Model.GridCells[1, 1].Player == player &&
-            _presenter.Model.GridCells[2, 2].Player == player){
+        _basePresenter = ServiceLocator.Current.Get<GridView>().GridBasePresenter;
+        if (_basePresenter.Model.GridCells[0, 0].Player == player &&
+            _basePresenter.Model.GridCells[1, 1].Player == player &&
+            _basePresenter.Model.GridCells[2, 2].Player == player){
 #if UNITY_EDITOR
             Debug.Log($"<color=green>{player} won. Diagonal win.</color>");
 #endif
             return true;
         }
         
-        if (_presenter.Model.GridCells[0, 2].Player == player && 
-            _presenter.Model.GridCells[1, 1].Player == player && 
-            _presenter.Model.GridCells[2, 0].Player == player){
+        if (_basePresenter.Model.GridCells[0, 2].Player == player && 
+            _basePresenter.Model.GridCells[1, 1].Player == player && 
+            _basePresenter.Model.GridCells[2, 0].Player == player){
 #if UNITY_EDITOR
             Debug.Log($"<color=green>{player} won. Diagonal win.</color>");
 #endif
@@ -124,10 +124,10 @@ public class Referee : MonoBehaviour, IReferee, IWinScreenDisplay
 
     public bool CheckDraw(PlayerMark player)
     {
-        _presenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
-        for (int i = 0; i < GridModel.GRID_SIZE; i++)
-            for (int j = 0; j < GridModel.GRID_SIZE; j++)
-                if (_presenter.Model.GridCells[i, j].Player == player)
+        _basePresenter = ServiceLocator.Current.Get<GridView>().GridBasePresenter;
+        for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
+            for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
+                if (_basePresenter.Model.GridCells[i, j].Player == player)
                     return false;
         SetResult(player, _stateMachine.Draw);
         return true;

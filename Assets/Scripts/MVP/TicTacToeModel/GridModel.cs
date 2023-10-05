@@ -2,7 +2,6 @@
 {
     public class GridModel : Model
     {
-        public const int GRID_SIZE = 3;
-        public readonly CellModel[,] GridCells = new CellModel[GRID_SIZE,GRID_SIZE];
+        public readonly CellModel[,] GridCells = new CellModel[DesignDataContainer.GRID_SIZE,DesignDataContainer.GRID_SIZE];
     }
 }

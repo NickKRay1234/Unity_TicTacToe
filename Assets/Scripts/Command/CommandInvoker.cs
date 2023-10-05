@@ -5,19 +5,17 @@ using UnityEngine;
 
 public class CommandInvoker : MonoBehaviour, IService
 {
-    private const int MAX_NUMBER_OF_MOVES = 9;
-    private const int STACK_COUNT_FOR_CHECKS = 5;
     private IGridCleanable _gridCleanable;
     private IReferee _referee;
     private IWinScreenDisplay _winScreen;
-    public Stack<ICommand> UndoStack { get; } = new(MAX_NUMBER_OF_MOVES);
+    public Stack<ICommand> UndoStack { get; } = new(DesignDataContainer.MAX_NUMBER_OF_MOVES);
     private int _oldCount;
     public bool IsGameWithAI;
 
     private void Update()
     {
 #if UNITY_EDITOR
-        if (UndoStack.Count == MAX_NUMBER_OF_MOVES)
+        if (UndoStack.Count == DesignDataContainer.MAX_NUMBER_OF_MOVES)
             Debug.Log($"<color=red>Stack is full. Game is over.</color>");
 #endif
     }

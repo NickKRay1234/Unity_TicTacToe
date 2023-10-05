@@ -1,6 +1,5 @@
 ﻿namespace Architecture.Infrastructure
 {
-    // Класс Game представляет основной объект игры.
     public class Game
     {
         public readonly GameStateMachine StateMachine;

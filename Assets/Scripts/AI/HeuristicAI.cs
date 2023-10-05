@@ -8,9 +8,9 @@ public class HeuristicAI
     public CellModel GetBestMove(CellModel[,] gridModels, PlayerMark currentPlayer)
     {
         // 1. Check if the AI can win in the next move.
-        for (int i = 0; i < GridModel.GRID_SIZE; i++)
+        for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
         {
-            for (int j = 0; j < GridModel.GRID_SIZE; j++)
+            for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
             {
                 if (gridModels[i, j].Player == PlayerMark.None)
                 {
@@ -27,9 +27,9 @@ public class HeuristicAI
         
         // 2. Check if the opponent can win in the next move.
         PlayerMark opponent = (currentPlayer == PlayerMark.X) ? PlayerMark.O : PlayerMark.X;
-        for (int i = 0; i < GridModel.GRID_SIZE; i++)
+        for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
         {
-            for (int j = 0; j < GridModel.GRID_SIZE; j++)
+            for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
             {
                 if (gridModels[i, j].Player == PlayerMark.None)
                 {
@@ -61,9 +61,9 @@ public class HeuristicAI
         }
 
         // 5. Occupy any available cell.
-        for (int i = 0; i < GridModel.GRID_SIZE; i++)
+        for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
         {
-            for (int j = 0; j < GridModel.GRID_SIZE; j++)
+            for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
             {
                 if (gridModels[i, j].Player == PlayerMark.None)
                 {
@@ -81,8 +81,8 @@ public class HeuristicAI
         const int MaxAttempts = 10;
         int numberOfAttempts = 0;
         
-        GridPresenter gridPresenter = ServiceLocator.Current.Get<GridView>().GridPresenter;
-        CellModel[,] gridModels = gridPresenter.Model.GridCells;
+        GridPresenter gridBasePresenter = ServiceLocator.Current.Get<GridView>().GridBasePresenter;
+        CellModel[,] gridModels = gridBasePresenter.Model.GridCells;
 
         CellModel bestMove = GetBestMove(gridModels, currentPlayerMark);
         while (bestMove is { IsOccupied: true } && numberOfAttempts < MaxAttempts)

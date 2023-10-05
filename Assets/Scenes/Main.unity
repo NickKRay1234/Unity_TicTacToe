@@ -2128,7 +2128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588c36f376ec4a47a73540759bf132d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _productPrefab: {fileID: 3185881277686191735, guid: 649240648a320af4ca1d9c4c3f1095e5, type: 3}
+  _product: {fileID: 3185881277686191735, guid: 649240648a320af4ca1d9c4c3f1095e5, type: 3}
 --- !u!1 &589084536
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,7 +2761,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c8da292437f1eb14fb92876d92101526, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a74bbd2d84393e42a95023e8b179a54, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5410,7 +5410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423624592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 317.80017, y: 785.1564, z: -7.464985}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5861,7 +5861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92fbf20d675d4eec838fa694de363b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _productPrefab: {fileID: 3446892457772561366, guid: e6c7cee6858f6ad448b24e3135ac5359, type: 3}
 --- !u!4 &1602093330
 Transform:
   m_ObjectHideFlags: 0

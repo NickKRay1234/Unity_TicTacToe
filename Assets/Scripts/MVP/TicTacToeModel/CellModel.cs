@@ -2,47 +2,18 @@
 
 namespace MVP.Model
 {
-    public class CellModel : Model
+    public class CellModel : ICellModel
     {
-        public GameObject CellGameObject;
-        public PlayerMark Player;
-        
-        public int X { get; set; }
-        public int Y { get; set; }
+        public GameObject CellGameObject { get; set; }
+        public PlayerMark Player { get; set; } = PlayerMark.None;
+        public bool IsOccupied { get; set; } = false;
+        public int X { get; }
+        public int Y { get; }
 
-        public bool IsOccupied { get; set; }
-
-        public CellModel()
-        {
-            Player = PlayerMark.None;
-            IsOccupied = false;
-        }
-        
-        public CellModel(int x, int y, PlayerMark player)
+        public CellModel(int x, int y, PlayerMark playerMark = PlayerMark.None)
         {
             X = x;
             Y = y;
-            Player = player;
-            IsOccupied = false;
-        }
-
-        public void OccupyCell(PlayerMark player)
-        {
-            if(!IsOccupied)
-            {
-                Player = player;
-                IsOccupied = true;
-            }
-        }
-        
-        public void DeoccupyCell(PlayerMark player)
-        {
-            if(IsOccupied)
-            {
-                Player = player;
-                IsOccupied = false;
-            }
         }
     }
-
 }

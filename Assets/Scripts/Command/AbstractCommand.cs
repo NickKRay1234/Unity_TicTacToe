@@ -22,30 +22,28 @@ public abstract class AbstractCommand
         _cell = cell;
     }
     
-    protected void PlaceMark(PlayerMark mark)
+    protected void PlaceMark(PlayerMark mark, CellModel cellModel)
     {
         _cell.Player = mark;
-        
+        _cellPresenter.OccupyCell(mark, _cell);
         if (mark == PlayerMark.X)
             _xFactory.GetProduct(_parent);
         else if (mark == PlayerMark.O)
             _oFactory.GetProduct(_parent);
-        
-        _image.color = Color.green;
-        _cellPresenter.OccupyCell(mark);
+#if UNITY_EDITOR
+        Debug.Log($"<color=green>[X,Y]: [{_cell.X}, {_cell.Y}]</color>");
+#endif
     }
     
-    protected void PlaceMark(CellModel cell, PlayerMark mark, Transform parent, Image cellBackground)
+    protected void PlaceMark(CellModel cell, PlayerMark mark, Transform parent)
     {
+        _cellPresenter.OccupyCell(cell, mark);
         if (mark != PlayerMark.X)
             _oFactory.GetProduct(parent);
         else
             _xFactory.GetProduct(parent);
-        
-        cellBackground.color = Color.green;
-        cell.OccupyCell(mark);
 #if UNITY_EDITOR
-        Debug.Log($"<color=green>Xx,Y]: [{_cell.X}, {_cell.Y}]</color>");
+        Debug.Log($"<color=green>X,Y]: [{_cell.X}, {_cell.Y}]</color>");
 #endif
     }
 }

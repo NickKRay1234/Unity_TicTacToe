@@ -18,15 +18,8 @@
             _curtain.Show();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
-
-        private void OnLoaded()
-        {
-            _stateMachine.Enter<GameLoopState>();
-        }
-
-        public void Exit()
-        {
-            //_curtain.Hide();
-        }
+        
+        private void OnLoaded() { }
+        public void Exit() { }
     }
 }

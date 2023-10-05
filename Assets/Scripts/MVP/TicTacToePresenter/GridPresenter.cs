@@ -1,14 +1,13 @@
 ﻿using MVP.Model;
+using MVP.Presenter;
 using MVP.TicTacToeView;
 
 namespace MVP.TicTacToePresenter
 {
-    public class GridPresenter : Presenter.Presenter
+    public class GridPresenter : BasePresenter
     {
-        public GridModel Model { get; private set; } = new();
+        public GridModel Model { get; } = new GridModel();
         public GridView View { get; set; }
-        
-        public CellModel GetGridModel(int x, int y) => Model.GridCells[x,y];
 
         public void SetView(GridView gridView) => View = gridView;
     }

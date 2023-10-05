@@ -4,7 +4,7 @@
 
     public abstract class View : MonoBehaviour
     {
-        protected Presenter.Presenter _presenter;
-        protected void Init(Presenter.Presenter presenter) => _presenter = presenter;
+        protected Presenter.BasePresenter BasePresenter;
+        protected void Init(Presenter.BasePresenter basePresenter) => BasePresenter = basePresenter;
     }
 }

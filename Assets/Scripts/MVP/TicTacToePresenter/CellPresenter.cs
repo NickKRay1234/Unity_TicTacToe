@@ -1,25 +1,53 @@
-﻿namespace MVP.Model
+﻿using MVP.Presenter;
+using UnityEngine;
+
+namespace MVP.Model
 {
-    public class CellPresenter : Presenter.Presenter
+    public class CellPresenter : BasePresenter
     {
-        public readonly CellModel model = new();
-        public CellModel Model => model;
-        public static PlayerMark CurrentPlayer;
+        public ICellModel Model { get; } = new CellModel(0, 0);
 
-        public void OccupyCell(PlayerMark player)
+        public void OccupyCell(PlayerMark player, CellModel cell)
         {
-            model.OccupyCell(player);
-            SwitchPlayer();
+            if (!Model.IsOccupied)
+            {
+                cell.Player = player;
+                cell.IsOccupied = true;
+                SwitchPlayer();
+            }
+        }
+        
+        public void OccupyCell(CellModel model, PlayerMark player)
+        {
+            if (!model.IsOccupied)
+            {
+                model.Player = player;
+                model.IsOccupied = true;
+                SwitchPlayer();
+            }
         }
 
-        public void DeoccupyCell(PlayerMark player)
+        public void DeoccupyCell()
         {
-            model.DeoccupyCell(player);
-            SwitchPlayer();
+            if (Model.IsOccupied)
+            {
+                Model.Player = PlayerMark.None;
+                Model.IsOccupied = false;
+                SwitchPlayer();
+            }
+        }
+        
+        public void DeoccupyCell(CellModel model)
+        {
+            if (model.IsOccupied)
+            {
+                model.Player = PlayerMark.None;
+                model.IsOccupied = false;
+                SwitchPlayer();
+            }
         }
 
-        public PlayerMark GetCurrentPlayer() => CurrentPlayer;
-        private void SwitchPlayer() => CurrentPlayer = CurrentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
+        private void SwitchPlayer() => 
+            DesignDataContainer.CurrentPlayer = DesignDataContainer.CurrentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
     }
-
 }

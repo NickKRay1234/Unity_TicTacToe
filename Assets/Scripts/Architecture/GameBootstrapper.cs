@@ -2,8 +2,6 @@
 
 namespace Architecture.Infrastructure
 {
-    // GameBootstrapper — компонент MonoBehaviour, предназначенный
-    // для инициализации игры. Этот класс должен быть присоединен к объекту в сцене Unity.
     public class GameBootstrapper : MonoBehaviour, ICoroutineRunner
     {
         public LoadingCurtain Curtain;
