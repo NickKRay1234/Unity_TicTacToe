@@ -42,7 +42,7 @@ namespace MVP.TicTacToeView
                 GridBasePresenter.SetView(this);
             }
             
-            var cellModel = new CellModel(i, j, PlayerMark.None);
+            var cellModel = new CellModel(i, j);
             GridBasePresenter.Model.GridCells[i, j] = cellModel;
         
 #if UNITY_EDITOR

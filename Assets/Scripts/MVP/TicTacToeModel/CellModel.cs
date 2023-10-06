@@ -2,7 +2,7 @@
 
 namespace MVP.Model
 {
-    public class CellModel : ICellModel
+    public class CellModel 
     {
         public GameObject CellGameObject { get; set; }
         public PlayerMark Player { get; set; } = PlayerMark.None;
@@ -10,7 +10,7 @@ namespace MVP.Model
         public int X { get; }
         public int Y { get; }
 
-        public CellModel(int x, int y, PlayerMark playerMark = PlayerMark.None)
+        public CellModel(int x, int y)
         {
             X = x;
             Y = y;

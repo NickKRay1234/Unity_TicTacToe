@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad064d88407ccc459335896c31ac43b, type: 3}
   m_Name: Data
   m_EditorClassIdentifier: 
+  _XFactory: {fileID: 2811994991577266131, guid: 8f671ee439116cc40b0e9f148e2097a5, type: 3}
+  _OFactory: {fileID: 1078973789734892278, guid: 8f671ee439116cc40b0e9f148e2097a5, type: 3}

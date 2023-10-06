@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ServiceLocator : IService
 {
-    private readonly Dictionary<string, IService> _services = new Dictionary<string, IService>();
+    private readonly Dictionary<string, IService> _services = new();
     public static ServiceLocator Current { get; private set; }
     private ServiceLocator() {}
     

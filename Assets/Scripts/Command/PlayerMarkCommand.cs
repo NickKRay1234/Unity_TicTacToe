@@ -18,6 +18,6 @@ public sealed class PlayerMarkCommand : AbstractCommand, ICommand
     public void Undo()
     {
         Object.Destroy(_parent.GetChild(DesignDataContainer.MARK_INDEX_IN_CELL).gameObject);
-        _cellPresenter.DeoccupyCell();
+        _cellPresenter.DeoccupyCell(_cell);
     }
 }

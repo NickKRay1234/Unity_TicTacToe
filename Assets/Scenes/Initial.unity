@@ -250,12 +250,52 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 850730233571857042, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850730233571857042, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850730233571857042, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850730233571857042, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
       propertyPath: m_HandleRect
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 850730233571857042, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850730233571857042, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850730233571857042, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
       propertyPath: m_TargetGraphic
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261440374773507067, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261440374773507067, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357574589614432492, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357574589614432492, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049551739446346494, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3359212559566271780, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
       propertyPath: m_Pivot.x
@@ -354,7 +394,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 915743815}
     - target: {fileID: 6889937859093405220, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889937859093405220, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6953218619027670728, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6953218619027670728, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8183293835791971029, guid: d9b09b450837b124297d30b7246e69a9, type: 3}
@@ -463,8 +515,8 @@ MonoBehaviour:
   m_text: 'You don''t have to say a word, because your actions speak volumes for
     you '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

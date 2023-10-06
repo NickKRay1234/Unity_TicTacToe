@@ -16,7 +16,7 @@ namespace MVP.Model
         public void PlaceCurrentPlayerMark()
         {
             CommandInvoker invoker = ServiceLocator.Current.Get<CommandInvoker>();
-            if (!Presenter.Model.IsOccupied)
+            if (!cell.IsOccupied)
             {
                 if(invoker.IsGameWithAI)
                     invoker.Execute(new PlayerAndAIMarkCommand(Presenter, transform, _image, cell));

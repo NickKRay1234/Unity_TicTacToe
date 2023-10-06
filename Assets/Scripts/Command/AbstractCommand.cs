@@ -24,8 +24,7 @@ public abstract class AbstractCommand
     
     protected void PlaceMark(PlayerMark mark, CellModel cellModel)
     {
-        _cell.Player = mark;
-        _cellPresenter.OccupyCell(mark, _cell);
+        _cellPresenter.OccupyCell(mark, cellModel);
         if (mark == PlayerMark.X)
             _xFactory.GetProduct(_parent);
         else if (mark == PlayerMark.O)

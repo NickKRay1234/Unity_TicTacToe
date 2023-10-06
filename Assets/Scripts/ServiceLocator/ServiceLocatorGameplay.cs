@@ -9,10 +9,9 @@ public class ServiceLocatorGameplay : MonoBehaviour
     [SerializeField] private Cell_Factory _cellFactory;
     [SerializeField] private Referee _referee;
     [SerializeField] private GridView _gridView;
-    [SerializeField] private X_Factory _xFactory;
-    [SerializeField] private O_Factory _oFactory;
     [SerializeField] private StateMachine _state;
     [SerializeField] private Scorekeeper _scorekeeper;
+    
     private void Awake() => RegisterServices();
     
     private void RegisterServices()
@@ -22,8 +21,8 @@ public class ServiceLocatorGameplay : MonoBehaviour
         ServiceLocator.Current.Register(_scorekeeper);
         ServiceLocator.Current.Register(_cellFactory);
         ServiceLocator.Current.Register(_gridView);
-        ServiceLocator.Current.Register(_xFactory);
-        ServiceLocator.Current.Register(_oFactory);
+        ServiceLocator.Current.Register(DesignDataContainer.GlobalXFactory);
+        ServiceLocator.Current.Register(DesignDataContainer.GlobalOFactory);
         ServiceLocator.Current.Register(_state);
         ServiceLocator.Current.Register(_referee);
     }

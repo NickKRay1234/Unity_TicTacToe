@@ -31,7 +31,7 @@ public class CommandInvoker : MonoBehaviour, IService
 
     private void CheckGameStatusAndClearIfNecessary()
     {
-        _referee.ShowLoseScreen(PlayerMark.X, IsGameWithAI);
+        //_referee.ShowLoseScreen(PlayerMark.X, IsGameWithAI);
             if(_referee.CheckWinAndShowWin(PlayerMark.X) || _referee.CheckWinAndShowWin(PlayerMark.O) || _referee.CheckDraw(PlayerMark.None))
                 ClearStack();
     }
