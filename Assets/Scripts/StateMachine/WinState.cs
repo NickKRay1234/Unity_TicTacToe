@@ -11,7 +11,7 @@ public class WinState : MonoBehaviour, IState
     {
         // TODO: Change Names in the future;
         Referee _decision = ServiceLocator.Current.Get<Referee>();
-        _winnerText.text = "Player " + _decision.Winner + " Win!";
+        _winnerText.text = "Player " + _decision.PlayerMarkResult + " Win!";
         gameObject.SetActive(true);
         _headHUD.SetActive(true);
 #if UNITY_EDITOR
@@ -22,7 +22,7 @@ public class WinState : MonoBehaviour, IState
     public void Exit()
     {
         Referee _decision = ServiceLocator.Current.Get<Referee>();
-        _decision.Winner = PlayerMark.None;
+        _decision.PlayerMarkResult = PlayerMark.None;
         gameObject.SetActive(false);
         _headHUD.SetActive(false);
 #if UNITY_EDITOR

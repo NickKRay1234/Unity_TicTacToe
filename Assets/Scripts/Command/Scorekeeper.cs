@@ -19,7 +19,7 @@ namespace MVP.Model
 
         private void ChangeScoreVisual()
         {
-            switch (_referee.Winner)
+            switch (_referee.PlayerMarkResult)
             {
                 case PlayerMark.X:
                     _player1Score = Result(_player1Score, _player1);

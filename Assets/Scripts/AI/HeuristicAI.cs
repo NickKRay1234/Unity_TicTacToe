@@ -15,7 +15,7 @@ public class HeuristicAI
                 if (gridModels[i, j].Player == PlayerMark.None)
                 {
                     gridModels[i, j].Player = currentPlayer;
-                    if (ServiceLocator.Current.Get<Referee>().IsWin(currentPlayer))
+                    if (ServiceLocator.Current.Get<Referee>().CanBeWin(currentPlayer))
                     {
                         gridModels[i, j].Player = PlayerMark.None;
                         return gridModels[i, j];
@@ -34,7 +34,7 @@ public class HeuristicAI
                 if (gridModels[i, j].Player == PlayerMark.None)
                 {
                     gridModels[i, j].Player = opponent;
-                    if (ServiceLocator.Current.Get<Referee>().IsWin(opponent))
+                    if (ServiceLocator.Current.Get<Referee>().CanBeWin(opponent))
                     {
                         gridModels[i, j].Player = PlayerMark.None;
                         return gridModels[i, j];

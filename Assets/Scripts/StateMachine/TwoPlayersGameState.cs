@@ -1,6 +1,5 @@
 ﻿using MVP.TicTacToeView;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TwoPlayersGameState : MonoBehaviour, IState
 {

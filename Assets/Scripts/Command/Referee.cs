@@ -4,13 +4,15 @@ using MVP.TicTacToePresenter;
 using MVP.TicTacToeView;
 using UnityEngine;
 
-public class Referee : MonoBehaviour, IReferee, IWinScreenDisplay
+public class Referee : MonoBehaviour, IReferee
 {
     [SerializeField] private GameObject _win;
     [SerializeField] private GameObject _lose;
     [SerializeField] private Scorekeeper _scorekeeper;
-    [HideInInspector] public PlayerMark Winner;
-    
+    [HideInInspector] public PlayerMark PlayerMarkResult;
+    private ResultDemonstrator _demonstrator;
+
+    public IState StateResult { get; private set; }
     private GridPresenter _basePresenter;
     private GridView _grid;
     private StateMachine _stateMachine;
@@ -19,10 +21,11 @@ public class Referee : MonoBehaviour, IReferee, IWinScreenDisplay
 
     private void Start()
     {
+        _demonstrator = new ResultDemonstrator();
         _grid = ServiceLocator.Current.Get<GridView>();
         _stateMachine = ServiceLocator.Current.Get<StateMachine>();
         _stateMachine.Initialize(_stateMachine.Start);
-        Winner = PlayerMark.None;
+        PlayerMarkResult = PlayerMark.None;
     }
 
     private bool IsHorizontalWin(PlayerMark player)
@@ -78,48 +81,16 @@ public class Referee : MonoBehaviour, IReferee, IWinScreenDisplay
         return false;
     }
     
-    public bool CheckWinAndShowWin(PlayerMark player)
+    public bool CanBeWin(PlayerMark player) => IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player);
+    
+    public bool CheckWin(PlayerMark player)
     {
-        if (IsWin(player))
+        if (IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player))
         {
-            ShowWinScreen(player);
+            DeclareResult(player, _stateMachine.Win);
             return true;
         }
         return false;
-    }
-    
-    public bool ShowLoseScreen(PlayerMark player, bool IsAI)
-    {
-        if (IsAIWin(player, IsAI))
-        {
-            SetResult(PlayerMark.X, _stateMachine.Lose);
-            return true;
-        }
-        return false;
-    }
-    
-    public bool IsWin(PlayerMark player) =>
-        IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player);
-
-    public bool IsAIWin(PlayerMark player, bool IsAI)
-    {
-        if (IsAI)
-            return IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player);
-        return false;
-    }
-
-
-    public void ShowWinScreen(PlayerMark player)
-    {
-        switch (player)
-        {
-            case PlayerMark.X:
-                SetResult(PlayerMark.X, _stateMachine.Win);
-                break;
-            case PlayerMark.O:
-                SetResult(PlayerMark.O, _stateMachine.Win);
-                break;
-        }
     }
 
     public bool CheckDraw(PlayerMark player)
@@ -129,15 +100,16 @@ public class Referee : MonoBehaviour, IReferee, IWinScreenDisplay
             for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
                 if (_basePresenter.Model.GridCells[i, j].Player == player)
                     return false;
-        SetResult(player, _stateMachine.Draw);
+        DeclareResult(player, _stateMachine.Draw);
         return true;
     }
 
-    private void SetResult(PlayerMark player, IState state)
+    private void DeclareResult(PlayerMark player, IState state)
     {
-        Winner = player;
+        PlayerMarkResult = player;
         ScoreChanged?.Invoke();
-        _stateMachine.ChangeState(state);
-        Winner = PlayerMark.None;
+        StateResult = state;
+        _demonstrator.ShowResult(StateResult);
+        PlayerMarkResult = PlayerMark.None;
     }
 }
