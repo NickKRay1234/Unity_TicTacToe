@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class TwoPlayersGameState : MonoBehaviour, IState
 {
     [SerializeField] private GameObject _headHUD;
-    [SerializeField] private Button _playAgain;
     private GridView _grid;
     private CommandInvoker _invoker;
     public void Enter()
@@ -27,8 +26,6 @@ public class TwoPlayersGameState : MonoBehaviour, IState
         _invoker.ClearStack();
         gameObject.SetActive(false);
         _headHUD.SetActive(false);
-        _playAgain.onClick.RemoveAllListeners();
-        _playAgain.onClick.AddListener(ServiceLocator.Current.Get<StateMachine>().SwitchOnTwoPlayersGame);
 #if UNITY_EDITOR
         Debug.Log("<color=cyan>I came out of my Game state</color>");
 #endif

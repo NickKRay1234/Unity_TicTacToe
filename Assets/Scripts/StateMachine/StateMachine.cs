@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class StateMachine : MonoBehaviour, IService
 {
@@ -11,6 +10,8 @@ public class StateMachine : MonoBehaviour, IService
     [SerializeField] private LoseState _lose;
     [SerializeField] private BackState _back;
     [SerializeField] private SelectGameState _select;
+
+    public IState PreviousState { get; private set; }
 
     public BackState Back => _back;
     public DrawState Draw => _draw;
@@ -36,6 +37,7 @@ public class StateMachine : MonoBehaviour, IService
 
     public void ChangeState(IState newState)
     {
+        PreviousState = CurrentState;
         CurrentState.Exit();
         CurrentState = newState;
         CurrentState.Enter();
