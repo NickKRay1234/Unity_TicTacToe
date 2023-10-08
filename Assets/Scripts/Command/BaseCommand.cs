@@ -3,7 +3,7 @@ using SignFactory;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class BaseCommand
+public abstract class BaseCommand : ICommand
 {
     protected readonly CellPresenter _cellPresenter;
     protected readonly X_Factory _xFactory;
@@ -11,7 +11,10 @@ public abstract class BaseCommand
     protected readonly Transform _parent;
     protected readonly CellModel _cell;
     protected readonly Image _image;
-    private ICommand _commandImplementation;
+    
+    protected Transform _lastMoveTransform;
+    protected Image _lastMoveImage;
+    protected CellModel _lastMoveCell;
 
     protected BaseCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell)
     {
@@ -22,28 +25,34 @@ public abstract class BaseCommand
         _image = image;
         _cell = cell;
     }
-
-    protected void PlaceMark(PlayerMark mark, CellModel cellModel)
+    
+    public virtual void Execute()
     {
-        _cellPresenter.OccupyCell(mark, cellModel);
-        if (mark == PlayerMark.X)
-            _xFactory.GetProduct(_parent);
-        else if (mark == PlayerMark.O)
-            _oFactory.GetProduct(_parent);
-#if UNITY_EDITOR
-        Debug.Log($"<color=green>[X,Y]: [{_cell.X}, {_cell.Y}]</color>");
-#endif
+        PlaceMark(_cell, GetPlayerMark());
+        _lastMoveTransform = _parent;
+        _lastMoveImage = _image;
+        _lastMoveCell = _cell;
     }
     
-    protected void PlaceMark(CellModel cell, PlayerMark mark, Transform parent)
+    public virtual void Undo() => UndoMove(_lastMoveTransform, _lastMoveCell);
+
+    protected abstract PlayerMark GetPlayerMark();
+
+    protected void PlaceMark(CellModel cell, PlayerMark mark, Transform parent = null)
     {
         _cellPresenter.OccupyCell(cell, mark);
+        if (parent == null)
+            parent = _parent;
+
         if (mark != PlayerMark.X)
             _oFactory.GetProduct(parent);
         else
             _xFactory.GetProduct(parent);
-#if UNITY_EDITOR
-        Debug.Log($"<color=green>X,Y]: [{_cell.X}, {_cell.Y}]</color>");
-#endif
+    }
+    
+    protected void UndoMove(Transform moveTransform, CellModel moveCell)
+    {
+        Object.Destroy(moveTransform.GetChild(0).gameObject);
+        _cellPresenter.DeoccupyCell(moveCell);
     }
 }

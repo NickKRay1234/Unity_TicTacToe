@@ -5,35 +5,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 
-public class CommandInvoker : MonoBehaviour
+public sealed class CommandInvoker : MonoBehaviour
 {
     [Header("Buttons")] 
     [SerializeField] private Button _undoButton;
-    public bool IsGameWithAI { get; set; }
     [Inject] private IGridCleanable _gridCleanable;
     [Inject] private IReferee _referee;
 
-    public static Stack<ICommand> UndoStack { get; } = new(DesignDataContainer.MAX_NUMBER_OF_MOVES);
-    private void Start() => _undoButton.onClick.AddListener(Undo);
+    public bool IsGameWithAI { get; set; }
 
-    private void Update()
-    {
-#if UNITY_EDITOR
-        if (UndoStack.Count == DesignDataContainer.MAX_NUMBER_OF_MOVES)
-            Debug.Log($"<color=red>Stack is full. Game is over.</color>");
-#endif
-    }
+    private static readonly Stack<ICommand> UndoStack = new(DesignDataContainer.MAX_NUMBER_OF_MOVES);
+    
+    private void Start() => _undoButton.onClick.AddListener(Undo);
 
     public void Execute(ICommand command)
     {
         command.Execute();
-        UndoStack.Push(command);
-        CheckGameStatusAndClearIfNecessary();
+        UndoStack.Push(command); // Store command for potential undo action.
+        ClearIfGameEnded();
     }
 
-    private void CheckGameStatusAndClearIfNecessary()
+    private bool CheckGameStatus() =>
+        _referee.CheckWin(PlayerMark.X) || _referee.CheckWin(PlayerMark.O) || _referee.CheckDraw(PlayerMark.None);
+
+    public void ClearIfGameEnded()
     {
-        if (_referee.CheckWin(PlayerMark.X) || _referee.CheckWin(PlayerMark.O) || _referee.CheckDraw(PlayerMark.None))
+        if (CheckGameStatus()) 
             ClearStack();
     }
 
@@ -43,14 +40,6 @@ public class CommandInvoker : MonoBehaviour
         {
             ICommand activeCommand = UndoStack.Pop();
             activeCommand.Undo();
-            return;
-        }
-
-        if (UndoStack.Count == 0)
-        {
-#if UNITY_EDITOR
-            Debug.Log($"<color=red>Stack is empty</color>");
-#endif
         }
     }
 

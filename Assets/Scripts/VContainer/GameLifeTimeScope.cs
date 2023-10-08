@@ -18,7 +18,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<WinState>(Lifetime.Singleton);
         builder.Register<StateMachine>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         builder.Register<CellView>(Lifetime.Singleton).AsSelf();
-        builder.Register<CommandInvoker>(Lifetime.Singleton).AsSelf();
+        builder.Register<CommandInvoker>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         builder.Register<GameWithAIState>(Lifetime.Singleton).AsSelf();
         builder.RegisterComponent(_gridView).AsImplementedInterfaces().AsSelf();
         builder.RegisterComponent(_referee).AsImplementedInterfaces().AsSelf();

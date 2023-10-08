@@ -20,8 +20,8 @@ namespace MVP.Model
         {
             if (!Cell.IsOccupied)
             {
-                if(_invoker.IsGameWithAI)
-                    _invoker.Execute(new PlayerAndAIMarkCommand(Presenter, transform, _image, Cell));
+                if (_invoker.IsGameWithAI)
+                    _invoker.Execute(new CompositeCommand(new PlayerMoveCommand(Presenter, transform, _image, Cell), new AIMoveCommand(Presenter, transform, _image, Cell)));
                 else 
                     _invoker.Execute(new PlayerMarkCommand(Presenter, transform, _image, Cell));
             }
