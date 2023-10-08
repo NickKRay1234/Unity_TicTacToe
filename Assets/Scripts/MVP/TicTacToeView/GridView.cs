@@ -5,22 +5,16 @@ using UnityEngine;
 
 namespace MVP.TicTacToeView
 {
-    public sealed class GridView : View, IService, IGridCleanable
+    public sealed class GridView : View, IGridCleanable
     {
-        private Cell_Factory _cellFactory;
-
         public GridPresenter GridBasePresenter
         {
             get => BasePresenter as GridPresenter;
             private set => BasePresenter = value;
         }
 
-        private void Start()
-        {
-            Init(BasePresenter);
-            _cellFactory = ServiceLocator.Current.Get<Cell_Factory>();
-        }
-        
+        private void Start() => Init(BasePresenter);
+
         public void InitializeGrid()
         {
             DesignDataContainer.CurrentPlayer = PlayerMark.X;
@@ -34,8 +28,6 @@ namespace MVP.TicTacToeView
         
         private void InitializeGridCell(int i, int j)
         {
-            if(_cellFactory == null)
-                _cellFactory = GetComponent<Cell_Factory>();
             if (BasePresenter == null)
             {
                 GridBasePresenter = new GridPresenter();
@@ -48,13 +40,13 @@ namespace MVP.TicTacToeView
 #if UNITY_EDITOR
             Debug.Log($"<color=orange>x: {cellModel.X}, y: {cellModel.Y}</color>");
 #endif
-
-            GameObject cellBody = _cellFactory.GetProduct(transform).GetGameObject();
+            IProduct product = DesignDataContainer.GlobalCellFactory.GetProduct(transform);
+            GameObject cellBody = product.GetGameObject();
             cellModel.CellGameObject = cellBody;
 
             CellView cellViewComponent = cellBody.GetComponent<CellView>();
             if (cellViewComponent != null)
-                cellViewComponent.cell = cellModel;
+                cellViewComponent.Cell = cellModel;
         }
 
         public void Clear()

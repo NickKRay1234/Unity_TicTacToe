@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using MVP.TicTacToeView;
+using UnityEngine;
+using VContainer;
 
 namespace SignFactory
 {
     public class Cell_Product : MonoBehaviour, IProduct
     {
-        private GameObject cell;
+        [Inject] private CommandInvoker _invoker;
+        [Inject] private GridView _gridView;
+        [Inject] private Referee _referee;
         public string ProductName { get; set; }
 
         public void Initialize()

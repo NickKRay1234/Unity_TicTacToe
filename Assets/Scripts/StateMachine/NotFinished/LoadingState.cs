@@ -18,6 +18,5 @@ public class LoadingState : IState
 
     public void Update()
     {
-        throw new System.NotImplementedException();
     }
 }

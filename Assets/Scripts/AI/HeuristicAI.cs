@@ -1,9 +1,13 @@
 using MVP.Model;
 using MVP.TicTacToePresenter;
 using MVP.TicTacToeView;
+using UnityEngine;
 
-public class HeuristicAI
+public class HeuristicAI : MonoBehaviour
 {
+    [SerializeField] private GridView _gridView;
+    [SerializeField] private Referee _referee;
+    
     // Returns the best move for the given player based on a heuristic approach.
     public CellModel GetBestMove(CellModel[,] gridModels, PlayerMark currentPlayer)
     {
@@ -15,7 +19,7 @@ public class HeuristicAI
                 if (gridModels[i, j].Player == PlayerMark.None)
                 {
                     gridModels[i, j].Player = currentPlayer;
-                    if (ServiceLocator.Current.Get<Referee>().CanBeWin(currentPlayer))
+                    if (_referee.CanBeWin(currentPlayer))
                     {
                         gridModels[i, j].Player = PlayerMark.None;
                         return gridModels[i, j];
@@ -34,7 +38,7 @@ public class HeuristicAI
                 if (gridModels[i, j].Player == PlayerMark.None)
                 {
                     gridModels[i, j].Player = opponent;
-                    if (ServiceLocator.Current.Get<Referee>().CanBeWin(opponent))
+                    if (_referee.CanBeWin(opponent))
                     {
                         gridModels[i, j].Player = PlayerMark.None;
                         return gridModels[i, j];
@@ -81,7 +85,8 @@ public class HeuristicAI
         const int MaxAttempts = 10;
         int numberOfAttempts = 0;
         
-        GridPresenter gridBasePresenter = ServiceLocator.Current.Get<GridView>().GridBasePresenter;
+
+        GridPresenter gridBasePresenter = _gridView.GridBasePresenter;
         CellModel[,] gridModels = gridBasePresenter.Model.GridCells;
 
         CellModel bestMove = GetBestMove(gridModels, currentPlayerMark);

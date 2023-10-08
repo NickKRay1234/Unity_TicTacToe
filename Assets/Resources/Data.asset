@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _XFactory: {fileID: 2811994991577266131, guid: 8f671ee439116cc40b0e9f148e2097a5, type: 3}
   _OFactory: {fileID: 1078973789734892278, guid: 8f671ee439116cc40b0e9f148e2097a5, type: 3}
+  _cellFactory: {fileID: 1800010116097561412, guid: 8f671ee439116cc40b0e9f148e2097a5, type: 3}

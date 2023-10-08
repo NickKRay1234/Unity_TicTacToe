@@ -1,21 +1,18 @@
 ﻿using TMPro;
 using UnityEngine;
+using VContainer;
 
 namespace MVP.Model
 {
-    public class Scorekeeper : MonoBehaviour, IService
+    public class Scorekeeper : MonoBehaviour
     {
-        private Referee _referee;
+        [Inject] private Referee _referee;
         [SerializeField] private TextMeshProUGUI _player1;
         [SerializeField] private TextMeshProUGUI _player2;
         private int _player1Score;
         private int _player2Score;
 
-        private void OnEnable()
-        {
-            _referee = ServiceLocator.Current.Get<Referee>();
-            _referee.ScoreChanged += ChangeScoreVisual;
-        }
+        private void OnEnable() => _referee.ScoreChanged += ChangeScoreVisual;
 
         private void ChangeScoreVisual()
         {

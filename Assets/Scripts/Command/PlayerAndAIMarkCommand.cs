@@ -10,18 +10,18 @@ public sealed class PlayerAndAIMarkCommand : AbstractCommand, ICommand
     // Player's last move details
     private Transform _aiLastMoveTransform;
     private Image _aiLastMoveImage;
-    private PlayerMark _aiLastMoveMark;
     private CellModel _aiLastMoveCell;
 
     // AI's last move details
     private Transform _playerLastMoveTransform;
     private Image _playerLastMoveImage;
-    private PlayerMark _playerLastMoveMark;
     private CellModel _playerLastMoveCell;
 
-    public PlayerAndAIMarkCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell) : base(
-        cellPresenter, parent, image, cell) =>
-        _heuristicAI = new HeuristicAI();
+    // TODO: Replace FindObjectOfType with VContainer. I have been trying for 2 hours, but it doesn't work yet. 
+    public PlayerAndAIMarkCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell) : base(cellPresenter, parent, image, cell)
+    {
+        _heuristicAI = Object.FindObjectOfType<HeuristicAI>();
+    }
 
     public void Execute()
     {
@@ -34,7 +34,6 @@ public sealed class PlayerAndAIMarkCommand : AbstractCommand, ICommand
         PlaceMark(PlayerMark.X, _cell);
         _playerLastMoveTransform = _parent;
         _playerLastMoveImage = _image;
-        _playerLastMoveMark = PlayerMark.X;
         _playerLastMoveCell = _cell;
     }
 
@@ -48,7 +47,6 @@ public sealed class PlayerAndAIMarkCommand : AbstractCommand, ICommand
         PlaceMark(bestMove, PlayerMark.O, parent);
         _aiLastMoveTransform = parent;
         _aiLastMoveImage = cellBackground;
-        _aiLastMoveMark = PlayerMark.O;
         _aiLastMoveCell = bestMove;
     }
 

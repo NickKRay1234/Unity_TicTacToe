@@ -4,10 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "UIDesignDataContainer", order = 2)]
 public class UIDesignDataContainer : ScriptableObject
 {
-    [SerializeField] public O_Product _o;
-    [SerializeField] public X_Product _x;
+    [SerializeField] private O_Product _o;
+    [SerializeField] private X_Product _x;
+    [SerializeField] private Cell_Product _cell;
     public X_Product X_Prefab => _x;
     public O_Product O_Prefab => _o;
+    public Cell_Product Cell_Prefab => _cell;
     
     private static UIDesignDataContainer _instance;
     public static UIDesignDataContainer Instance

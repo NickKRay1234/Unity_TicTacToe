@@ -24,11 +24,12 @@ public class DesignDataContainer : ScriptableObject
         }
     }
     
-    
     [SerializeField] private X_Factory _XFactory;
     [SerializeField] private O_Factory _OFactory;
+    [SerializeField] private Cell_Factory _cellFactory;
     public static X_Factory GlobalXFactory => Instance._XFactory;
     public static O_Factory GlobalOFactory => Instance._OFactory;
+    public static Cell_Factory GlobalCellFactory => Instance._cellFactory;
 
     public const int GRID_SIZE = 3;
     public const int MAX_NUMBER_OF_MOVES = 9;

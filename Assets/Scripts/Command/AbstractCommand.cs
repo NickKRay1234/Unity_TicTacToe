@@ -21,7 +21,9 @@ public abstract class AbstractCommand
         _image = image;
         _cell = cell;
     }
-    
+
+    protected AbstractCommand() { }
+
     protected void PlaceMark(PlayerMark mark, CellModel cellModel)
     {
         _cellPresenter.OccupyCell(mark, cellModel);

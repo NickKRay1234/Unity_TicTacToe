@@ -2,14 +2,18 @@
 using MVP.Model;
 using MVP.TicTacToeView;
 using UnityEngine;
+using UnityEngine.UI;
+using VContainer;
 
-public class CommandInvoker : MonoBehaviour, IService
+public class CommandInvoker : MonoBehaviour
 {
-    private IGridCleanable _gridCleanable;
-    private IReferee _referee;
+    [Header("Buttons")] [SerializeField] private Button _undoButton;
+    public bool IsGameWithAI { get; set; }
+    [Inject] private IGridCleanable _gridCleanable;
+    [Inject] private IReferee _referee;
+
     public Stack<ICommand> UndoStack { get; } = new(DesignDataContainer.MAX_NUMBER_OF_MOVES);
-    private int _oldCount;
-    public bool IsGameWithAI;
+    private void Start() => _undoButton.onClick.AddListener(Undo);
 
     private void Update()
     {
@@ -21,7 +25,6 @@ public class CommandInvoker : MonoBehaviour, IService
 
     public void Execute(ICommand command)
     {
-        _referee = ServiceLocator.Current.Get<Referee>();
         command.Execute();
         UndoStack.Push(command);
         CheckGameStatusAndClearIfNecessary();
@@ -43,14 +46,12 @@ public class CommandInvoker : MonoBehaviour, IService
         }
 
 #if UNITY_EDITOR
-        if (UndoStack.Count == 0)
-            Debug.Log($"<color=red>Stack is empty</color>");
+        Debug.Log($"<color=red>Stack is empty</color>");
 #endif
     }
 
     public void ClearStack()
     {
-        _gridCleanable = ServiceLocator.Current.Get<GridView>();
         _gridCleanable.Clear();
         UndoStack.Clear();
     }

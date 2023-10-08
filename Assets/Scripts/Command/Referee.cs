@@ -3,6 +3,7 @@ using MVP.Model;
 using MVP.TicTacToePresenter;
 using MVP.TicTacToeView;
 using UnityEngine;
+using VContainer;
 
 public class Referee : MonoBehaviour, IReferee
 {
@@ -14,7 +15,7 @@ public class Referee : MonoBehaviour, IReferee
 
     public IState StateResult { get; private set; }
     private GridPresenter _basePresenter;
-    private GridView _grid;
+    [Inject] private GridView _grid;
     private StateMachine _stateMachine;
     public Action ScoreChanged;
 
@@ -22,7 +23,6 @@ public class Referee : MonoBehaviour, IReferee
     private void Start()
     {
         _demonstrator = new ResultDemonstrator();
-        _grid = ServiceLocator.Current.Get<GridView>();
         _stateMachine = ServiceLocator.Current.Get<StateMachine>();
         _stateMachine.Initialize(_stateMachine.Start);
         PlayerMarkResult = PlayerMark.None;
@@ -30,7 +30,7 @@ public class Referee : MonoBehaviour, IReferee
 
     private bool IsHorizontalWin(PlayerMark player)
     {
-        _basePresenter = ServiceLocator.Current.Get<GridView>().GridBasePresenter;
+        _basePresenter = _grid.GridBasePresenter;
         for (int i = 0; i < 3; i++)
             if (_basePresenter.Model.GridCells[i, 0].Player == player &&
                 _basePresenter.Model.GridCells[i, 1].Player == player &&
@@ -45,7 +45,7 @@ public class Referee : MonoBehaviour, IReferee
     
     private bool IsVerticalWin(PlayerMark player)
     {
-        _basePresenter = ServiceLocator.Current.Get<GridView>().GridBasePresenter;
+        _basePresenter = _grid.GridBasePresenter;
         for (int j = 0; j < 3; j++)
             if (_basePresenter.Model.GridCells[0, j].Player == player &&
                 _basePresenter.Model.GridCells[1, j].Player == player &&
@@ -60,7 +60,7 @@ public class Referee : MonoBehaviour, IReferee
     
     private bool IsDiagonalWin(PlayerMark player)
     {
-        _basePresenter = ServiceLocator.Current.Get<GridView>().GridBasePresenter;
+        _basePresenter = _grid.GridBasePresenter;
         if (_basePresenter.Model.GridCells[0, 0].Player == player &&
             _basePresenter.Model.GridCells[1, 1].Player == player &&
             _basePresenter.Model.GridCells[2, 2].Player == player){
@@ -95,7 +95,7 @@ public class Referee : MonoBehaviour, IReferee
 
     public bool CheckDraw(PlayerMark player)
     {
-        _basePresenter = ServiceLocator.Current.Get<GridView>().GridBasePresenter;
+        _basePresenter = _grid.GridBasePresenter;
         for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
             for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
                 if (_basePresenter.Model.GridCells[i, j].Player == player)

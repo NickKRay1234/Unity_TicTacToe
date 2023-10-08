@@ -1,15 +1,14 @@
 ﻿using MVP.TicTacToeView;
 using UnityEngine;
+using VContainer;
 
 public class TwoPlayersGameState : MonoBehaviour, IState
 {
+    [SerializeField] private GridView _grid;
     [SerializeField] private GameObject _headHUD;
-    private GridView _grid;
-    private CommandInvoker _invoker;
+    [Inject] private CommandInvoker _invoker;
     public void Enter()
     {
-        _invoker = ServiceLocator.Current.Get<CommandInvoker>();
-        _grid = ServiceLocator.Current.Get<GridView>();
         _grid.InitializeGrid();
         _invoker.IsGameWithAI = false;
         _headHUD.SetActive(true);
@@ -21,7 +20,6 @@ public class TwoPlayersGameState : MonoBehaviour, IState
 
     public void Exit()
     {
-        _invoker = ServiceLocator.Current.Get<CommandInvoker>();
         _invoker.ClearStack();
         gameObject.SetActive(false);
         _headHUD.SetActive(false);

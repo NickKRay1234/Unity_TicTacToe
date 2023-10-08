@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5162761805401223947}
   - component: {fileID: 2811994991577266131}
   - component: {fileID: 1078973789734892278}
+  - component: {fileID: 1800010116097561412}
   m_Layer: 0
   m_Name: SignFactory
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2811994991577266131
 MonoBehaviour:
@@ -57,3 +58,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3460d3dfe3ef45928f09f98cbe242216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1800010116097561412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3422515062000156381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588c36f376ec4a47a73540759bf132d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _product: {fileID: 0}
