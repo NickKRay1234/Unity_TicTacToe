@@ -3,7 +3,7 @@ using SignFactory;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class AbstractCommand
+public abstract class BaseCommand
 {
     protected readonly CellPresenter _cellPresenter;
     protected readonly X_Factory _xFactory;
@@ -11,8 +11,9 @@ public abstract class AbstractCommand
     protected readonly Transform _parent;
     protected readonly CellModel _cell;
     protected readonly Image _image;
+    private ICommand _commandImplementation;
 
-    protected AbstractCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell)
+    protected BaseCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell)
     {
         _xFactory = ServiceLocator.Current.Get<X_Factory>();
         _oFactory = ServiceLocator.Current.Get<O_Factory>();
@@ -21,8 +22,6 @@ public abstract class AbstractCommand
         _image = image;
         _cell = cell;
     }
-
-    protected AbstractCommand() { }
 
     protected void PlaceMark(PlayerMark mark, CellModel cellModel)
     {

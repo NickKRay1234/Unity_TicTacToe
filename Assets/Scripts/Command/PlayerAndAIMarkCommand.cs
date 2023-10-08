@@ -3,16 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-public sealed class PlayerAndAIMarkCommand : AbstractCommand, ICommand
+public sealed class PlayerAndAIMarkCommand : BaseCommand, ICommand
 {
     private HeuristicAI _heuristicAI;
-
-    // Player's last move details
+    
     private Transform _aiLastMoveTransform;
     private Image _aiLastMoveImage;
     private CellModel _aiLastMoveCell;
-
-    // AI's last move details
+    
     private Transform _playerLastMoveTransform;
     private Image _playerLastMoveImage;
     private CellModel _playerLastMoveCell;

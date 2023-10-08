@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public sealed class PlayerMarkCommand : AbstractCommand, ICommand
+public sealed class PlayerMarkCommand : BaseCommand, ICommand
 {
 
     public PlayerMarkCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell) : base(cellPresenter, parent, image, cell) {}

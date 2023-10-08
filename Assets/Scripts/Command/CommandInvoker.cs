@@ -7,12 +7,13 @@ using VContainer;
 
 public class CommandInvoker : MonoBehaviour
 {
-    [Header("Buttons")] [SerializeField] private Button _undoButton;
+    [Header("Buttons")] 
+    [SerializeField] private Button _undoButton;
     public bool IsGameWithAI { get; set; }
     [Inject] private IGridCleanable _gridCleanable;
     [Inject] private IReferee _referee;
 
-    public Stack<ICommand> UndoStack { get; } = new(DesignDataContainer.MAX_NUMBER_OF_MOVES);
+    public static Stack<ICommand> UndoStack { get; } = new(DesignDataContainer.MAX_NUMBER_OF_MOVES);
     private void Start() => _undoButton.onClick.AddListener(Undo);
 
     private void Update()
@@ -45,9 +46,12 @@ public class CommandInvoker : MonoBehaviour
             return;
         }
 
+        if (UndoStack.Count == 0)
+        {
 #if UNITY_EDITOR
-        Debug.Log($"<color=red>Stack is empty</color>");
+            Debug.Log($"<color=red>Stack is empty</color>");
 #endif
+        }
     }
 
     public void ClearStack()

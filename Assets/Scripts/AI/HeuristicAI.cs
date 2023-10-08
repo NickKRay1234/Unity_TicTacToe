@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class HeuristicAI : MonoBehaviour
 {
+    // TODO: Replace SerializeField with VContainer.
     [SerializeField] private GridView _gridView;
     [SerializeField] private Referee _referee;
     
