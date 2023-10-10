@@ -1,4 +1,5 @@
-﻿using MVP.Model;
+﻿using System;
+using MVP.Model;
 using MVP.Presenter;
 using MVP.TicTacToeView;
 
@@ -6,9 +7,14 @@ namespace MVP.TicTacToePresenter
 {
     public class GridPresenter : BasePresenter
     {
-        public GridModel Model { get; } = new();
-        public GridView View { get; set; }
+        public GridModel Model { get; }
+        public GridView View { get; private set; }
 
-        public void SetView(GridView gridView) => View = gridView;
+        //This ensures that both critical components are set upon creation of the GridPresenter.
+        public GridPresenter(GridModel model, GridView view)
+        {
+            Model = model ?? throw new ArgumentException(nameof(model));
+            View = view ?? throw new ArgumentException(nameof(view));
+        }
     }
 }
