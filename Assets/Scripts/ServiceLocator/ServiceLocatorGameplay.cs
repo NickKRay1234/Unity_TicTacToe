@@ -10,15 +10,11 @@ public class ServiceLocatorGameplay : MonoBehaviour
     private void RegisterServices()
     {
         ServiceLocator.Initialize();
-        ServiceLocator.Current.Register(DesignDataContainer.GlobalXFactory);
-        ServiceLocator.Current.Register(DesignDataContainer.GlobalOFactory);
         ServiceLocator.Current.Register(_state);
     }
 
     private void OnDestroy()
     {
         ServiceLocator.Current.Unregister<StateMachine>();
-        ServiceLocator.Current.Unregister<X_Factory>();
-        ServiceLocator.Current.Unregister<O_Factory>();
     }
 }

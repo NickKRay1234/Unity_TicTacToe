@@ -1,7 +1,14 @@
-﻿namespace MVP.Model
+﻿using System;
+
+namespace MVP.Model
 {
-    public class CellPresenter : IOccupiable, IDeoccupiable
-    { 
+    public class CellPresenter : ICellStateChangeable
+    {
+        private readonly DesignDataContainer _designDataContainer;
+
+        public CellPresenter(DesignDataContainer designDataContainer) =>
+            _designDataContainer = designDataContainer ?? throw new ArgumentNullException(nameof(designDataContainer));
+
         public void OccupyCell(CellModel model, PlayerMark player)
         {
             if (!model.IsOccupied)
@@ -10,7 +17,7 @@
                 model.IsOccupied = true;
             }
         }
-        
+
         public void DeoccupyCell(CellModel model)
         {
             if (model.IsOccupied)
@@ -20,8 +27,8 @@
                 SwitchPlayer();
             }
         }
-
-        public void SwitchPlayer() => 
-            DesignDataContainer.CurrentPlayer = DesignDataContainer.CurrentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
+        
+        public void SwitchPlayer() =>
+            _designDataContainer.CurrentPlayer = _designDataContainer.CurrentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
     }
 }

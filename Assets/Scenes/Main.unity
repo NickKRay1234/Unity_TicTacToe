@@ -6522,12 +6522,13 @@ MonoBehaviour:
   autoInjectGameObjects:
   - {fileID: 1423624592}
   - {fileID: 835567836}
-  - {fileID: 3422515062000156381, guid: 8f671ee439116cc40b0e9f148e2097a5, type: 3}
   - {fileID: 1800172730}
   - {fileID: 1040979077}
   - {fileID: 251527250}
+  - {fileID: 3422515062000156381, guid: 8f671ee439116cc40b0e9f148e2097a5, type: 3}
   _gridView: {fileID: 567277725}
   _referee: {fileID: 1510305142}
+  _designDataContainer: {fileID: 11400000, guid: 342d7935fd9251542a7b137dff733295, type: 2}
 --- !u!1 &2023495832
 GameObject:
   m_ObjectHideFlags: 0

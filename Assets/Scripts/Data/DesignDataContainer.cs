@@ -5,33 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "DesignDataContainer", order = 1)]
 public class DesignDataContainer : ScriptableObject
 {
-    private static DesignDataContainer _instance;
-    public static DesignDataContainer Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = Resources.Load<DesignDataContainer>(Data); 
-                if (_instance == null)
-                {
-#if UNITY_EDITOR
-                    Debug.LogError("There should be one DesignDataContainer in the project!");
-#endif
-                }
-            }
-            return _instance;
-        }
-    }
-    
     [SerializeField] private X_Factory _XFactory;
     [SerializeField] private O_Factory _OFactory;
     [SerializeField] private Cell_Factory _cellFactory;
-    public static X_Factory GlobalXFactory => Instance._XFactory;
-    public static O_Factory GlobalOFactory => Instance._OFactory;
-    public static Cell_Factory GlobalCellFactory => Instance._cellFactory;
+    public X_Factory GlobalXFactory => _XFactory;
+    public O_Factory GlobalOFactory => _OFactory;
+    public Cell_Factory GlobalCellFactory => _cellFactory;
 
-    public const int GRID_SIZE = 3;
+    public int GRID_SIZE = 3;
     public const int MAX_NUMBER_OF_MOVES = 9;
     public const int MARK_INDEX_IN_CELL = 0;
     public const string Initial = "Initial";
@@ -39,5 +20,5 @@ public class DesignDataContainer : ScriptableObject
     public const string UIData = "UIData";
     public const string Data = "Data";
     
-    public static PlayerMark CurrentPlayer;
+    public PlayerMark CurrentPlayer;
 }

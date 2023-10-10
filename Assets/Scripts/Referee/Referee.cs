@@ -16,6 +16,7 @@ public class Referee : MonoBehaviour, IReferee
     public IState StateResult { get; private set; }
     private GridPresenter _basePresenter;
     [Inject] private GridView _grid;
+    [Inject] private DesignDataContainer _designDataContainer;
     private StateMachine _stateMachine;
     public Action ScoreChanged;
 
@@ -96,8 +97,8 @@ public class Referee : MonoBehaviour, IReferee
     public bool CheckDraw(PlayerMark player)
     {
         _basePresenter = _grid.Presenter;
-        for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
-            for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
+        for (int i = 0; i < _designDataContainer.GRID_SIZE; i++)
+            for (int j = 0; j < _designDataContainer.GRID_SIZE; j++)
                 if (_basePresenter.Model.GridCells[i, j].OccupyingPlayer == player)
                     return false;
         DeclareResult(player, _stateMachine.Draw);

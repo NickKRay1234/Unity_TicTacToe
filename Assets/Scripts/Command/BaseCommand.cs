@@ -2,10 +2,12 @@
 using SignFactory;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
 public abstract class BaseCommand : ICommand
 {
     protected readonly CellPresenter _cellPresenter;
+    [Inject] protected readonly DesignDataContainer _designDataContainer;
     protected readonly X_Factory _xFactory;
     protected readonly O_Factory _oFactory;
     protected readonly Transform _parent;
@@ -18,8 +20,8 @@ public abstract class BaseCommand : ICommand
 
     protected BaseCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell)
     {
-        _xFactory = ServiceLocator.Current.Get<X_Factory>();
-        _oFactory = ServiceLocator.Current.Get<O_Factory>();
+        _xFactory = _designDataContainer.GlobalXFactory;
+        _oFactory = _designDataContainer.GlobalOFactory;
         _cellPresenter = cellPresenter;
         _parent = parent;
         _image = image;

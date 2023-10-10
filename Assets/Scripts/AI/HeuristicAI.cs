@@ -2,10 +2,11 @@ using MVP.Model;
 using MVP.TicTacToePresenter;
 using MVP.TicTacToeView;
 using UnityEngine;
+using VContainer;
 
 public class HeuristicAI : MonoBehaviour
 {
-    // TODO: Replace SerializeField with VContainer.
+    [Inject] private DesignDataContainer _designDataContainer;
     [SerializeField] private GridView _gridView;
     [SerializeField] private Referee _referee;
     
@@ -13,9 +14,9 @@ public class HeuristicAI : MonoBehaviour
     public CellModel GetBestMove(CellModel[,] gridModels, PlayerMark currentPlayer)
     {
         // 1. Check if the AI can win in the next move.
-        for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
+        for (int i = 0; i < _designDataContainer.GRID_SIZE; i++)
         {
-            for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
+            for (int j = 0; j < _designDataContainer.GRID_SIZE; j++)
             {
                 if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
                 {
@@ -32,9 +33,9 @@ public class HeuristicAI : MonoBehaviour
         
         // 2. Check if the opponent can win in the next move.
         PlayerMark opponent = (currentPlayer == PlayerMark.X) ? PlayerMark.O : PlayerMark.X;
-        for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
+        for (int i = 0; i < _designDataContainer.GRID_SIZE; i++)
         {
-            for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
+            for (int j = 0; j < _designDataContainer.GRID_SIZE; j++)
             {
                 if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
                 {
@@ -66,9 +67,9 @@ public class HeuristicAI : MonoBehaviour
         }
 
         // 5. Occupy any available cell.
-        for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
+        for (int i = 0; i < _designDataContainer.GRID_SIZE; i++)
         {
-            for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
+            for (int j = 0; j < _designDataContainer.GRID_SIZE; j++)
             {
                 if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
                 {
