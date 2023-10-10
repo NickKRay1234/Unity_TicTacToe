@@ -18,6 +18,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<IObjectResolver, Container>(Lifetime.Scoped);
         builder.Register<GridModel>(Lifetime.Singleton).WithParameter(_designDataContainer.GRID_SIZE);
         builder.Register<BaseCommand>(Lifetime.Singleton).WithParameter(_designDataContainer);
+        builder.Register<PlayerSwitchingService>(Lifetime.Singleton).WithParameter(_designDataContainer);
         builder.Register<Cell_Factory>(Lifetime.Singleton);
         builder.Register<Scorekeeper>(Lifetime.Singleton);
         builder.Register<WinState>(Lifetime.Singleton);

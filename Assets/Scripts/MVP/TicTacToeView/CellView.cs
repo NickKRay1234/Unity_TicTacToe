@@ -1,5 +1,4 @@
 ﻿using System;
-using MVP.TicTacToeView;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -34,12 +33,6 @@ namespace MVP.Model
                     _invoker.Execute(new CompositeCommand(new PlayerMoveCommand(Presenter, transform, _image, Cell), new AIMoveCommand(Presenter, transform, _image, Cell, _heuristicAI)));
                 else 
                     _invoker.Execute(new PlayerMarkCommand(Presenter, transform, _image, Cell, _designDataContainer));
-            }
-            else
-            {
-#if UNITY_EDITOR
-                Debug.Log($"<color=red>Cell is occupied</color>");
-#endif
             }
         }
     }

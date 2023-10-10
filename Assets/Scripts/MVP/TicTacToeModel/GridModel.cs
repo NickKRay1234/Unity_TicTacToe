@@ -4,9 +4,7 @@
     {
         public readonly CellModel[,] GridCells;
 
-        public GridModel(int gridSize)
-        {
+        public GridModel(int gridSize) =>
             GridCells = new CellModel[gridSize, gridSize];
-        }
     }
 }
