@@ -1,11 +1,10 @@
 ﻿using System;
 using MVP.Model;
-using MVP.Presenter;
 using MVP.TicTacToeView;
 
 namespace MVP.TicTacToePresenter
 {
-    public class GridPresenter : BasePresenter
+    public class GridPresenter
     {
         public GridModel Model { get; }
         public GridView View { get; private set; }

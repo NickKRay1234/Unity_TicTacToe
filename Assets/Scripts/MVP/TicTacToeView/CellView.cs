@@ -5,7 +5,7 @@ using VContainer;
 
 namespace MVP.Model
 {
-    public class CellView : View
+    public class CellView : MonoBehaviour
     {
         [SerializeField] private Button _button;
         [SerializeField] private Image _image;

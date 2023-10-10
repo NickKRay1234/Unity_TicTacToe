@@ -1,8 +1,6 @@
-﻿using MVP.Presenter;
-
-namespace MVP.Model
+﻿namespace MVP.Model
 {
-    public class CellPresenter : BasePresenter, IOccupiable, IDeoccupiable
+    public class CellPresenter : IOccupiable, IDeoccupiable
     { 
         public void OccupyCell(CellModel model, PlayerMark player)
         {

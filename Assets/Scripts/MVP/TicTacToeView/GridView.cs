@@ -1,18 +1,18 @@
-﻿using MVP.Model;
+﻿using System;
+using MVP.Model;
 using MVP.TicTacToePresenter;
 using SignFactory;
 using UnityEngine;
 
 namespace MVP.TicTacToeView
 {
-    public sealed class GridView : View, IGridCleanable
+    public sealed class GridView : MonoBehaviour, IGridCleanable
     {
-        // Using a property to cast the base presenter to GridPresenter.
-        // This ensures that the GridView always works with a GridPresenter instance.
+        private GridPresenter _presenter;
         public GridPresenter Presenter
         {
-            get => BasePresenter as GridPresenter;
-            private set => BasePresenter = value;
+            get => _presenter;
+            private set => _presenter = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         private void Awake()
@@ -20,8 +20,7 @@ namespace MVP.TicTacToeView
             // Presenter is initialized before the game starts.
             Presenter ??= new GridPresenter(new GridModel(), this);
         }
-
-        private void Start() => Init(Presenter);
+        
 
         public void InitializeGrid()
         {

@@ -1,7 +1,8 @@
 ﻿namespace MVP.Model
 {
-    public class GridModel : Model
+    public class GridModel
     {
-        public readonly CellModel[,] GridCells = new CellModel[DesignDataContainer.GRID_SIZE,DesignDataContainer.GRID_SIZE];
+        public const int GRID_SIZE = 3;
+        public readonly CellModel[,] GridCells = new CellModel[GRID_SIZE,GRID_SIZE];
     }
 }
