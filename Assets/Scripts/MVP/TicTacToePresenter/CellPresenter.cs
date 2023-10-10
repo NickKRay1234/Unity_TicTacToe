@@ -2,13 +2,13 @@
 
 namespace MVP.Model
 {
-    public class CellPresenter : BasePresenter, IOccupy, IDeoccupy
+    public class CellPresenter : BasePresenter, IOccupiable, IDeoccupiable
     { 
         public void OccupyCell(CellModel model, PlayerMark player)
         {
             if (!model.IsOccupied)
             {
-                model.Player = player;
+                model.OccupyingPlayer = player;
                 model.IsOccupied = true;
             }
         }
@@ -17,7 +17,7 @@ namespace MVP.Model
         {
             if (model.IsOccupied)
             {
-                model.Player = PlayerMark.None;
+                model.OccupyingPlayer = PlayerMark.None;
                 model.IsOccupied = false;
                 SwitchPlayer();
             }

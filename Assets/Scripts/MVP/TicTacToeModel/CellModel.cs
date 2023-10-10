@@ -4,9 +4,9 @@ namespace MVP.Model
 {
     public class CellModel 
     {
-        public GameObject CellGameObject { get; set; }
-        public PlayerMark Player { get; set; } = PlayerMark.None;
-        public bool IsOccupied { get; set; } = false;
+        public GameObject CellObject { get; set; }
+        public PlayerMark OccupyingPlayer { get; set; } = PlayerMark.None;
+        public bool IsOccupied { get; set; }
         public int X { get; }
         public int Y { get; }
 

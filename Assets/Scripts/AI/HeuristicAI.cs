@@ -17,15 +17,15 @@ public class HeuristicAI : MonoBehaviour
         {
             for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
             {
-                if (gridModels[i, j].Player == PlayerMark.None)
+                if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
                 {
-                    gridModels[i, j].Player = currentPlayer;
+                    gridModels[i, j].OccupyingPlayer = currentPlayer;
                     if (_referee.CanBeWin(currentPlayer))
                     {
-                        gridModels[i, j].Player = PlayerMark.None;
+                        gridModels[i, j].OccupyingPlayer = PlayerMark.None;
                         return gridModels[i, j];
                     }
-                    gridModels[i, j].Player = PlayerMark.None;
+                    gridModels[i, j].OccupyingPlayer = PlayerMark.None;
                 }
             }
         }
@@ -36,21 +36,21 @@ public class HeuristicAI : MonoBehaviour
         {
             for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
             {
-                if (gridModels[i, j].Player == PlayerMark.None)
+                if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
                 {
-                    gridModels[i, j].Player = opponent;
+                    gridModels[i, j].OccupyingPlayer = opponent;
                     if (_referee.CanBeWin(opponent))
                     {
-                        gridModels[i, j].Player = PlayerMark.None;
+                        gridModels[i, j].OccupyingPlayer = PlayerMark.None;
                         return gridModels[i, j];
                     }
-                    gridModels[i, j].Player = PlayerMark.None;
+                    gridModels[i, j].OccupyingPlayer = PlayerMark.None;
                 }
             }
         }
         
         // 3. Try to occupy the center cell.
-        if (gridModels[1, 1].Player == PlayerMark.None)
+        if (gridModels[1, 1].OccupyingPlayer == PlayerMark.None)
         {
             return gridModels[1, 1];
         }
@@ -59,7 +59,7 @@ public class HeuristicAI : MonoBehaviour
         int[,] corners = { { 0, 0 }, { 0, 2 }, { 2, 0 }, { 2, 2 } };
         for (int i = 0; i < 4; i++)
         {
-            if (gridModels[corners[i, 0], corners[i, 1]].Player == PlayerMark.None)
+            if (gridModels[corners[i, 0], corners[i, 1]].OccupyingPlayer == PlayerMark.None)
             {
                 return gridModels[corners[i, 0], corners[i, 1]];
             }
@@ -70,7 +70,7 @@ public class HeuristicAI : MonoBehaviour
         {
             for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
             {
-                if (gridModels[i, j].Player == PlayerMark.None)
+                if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
                 {
                     return gridModels[i, j];
                 }
@@ -87,7 +87,7 @@ public class HeuristicAI : MonoBehaviour
         int numberOfAttempts = 0;
         
 
-        GridPresenter gridBasePresenter = _gridView.GridBasePresenter;
+        GridPresenter gridBasePresenter = _gridView.Presenter;
         CellModel[,] gridModels = gridBasePresenter.Model.GridCells;
 
         CellModel bestMove = GetBestMove(gridModels, currentPlayerMark);

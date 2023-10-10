@@ -30,11 +30,11 @@ public class Referee : MonoBehaviour, IReferee
 
     private bool IsHorizontalWin(PlayerMark player)
     {
-        _basePresenter = _grid.GridBasePresenter;
+        _basePresenter = _grid.Presenter;
         for (int i = 0; i < 3; i++)
-            if (_basePresenter.Model.GridCells[i, 0].Player == player &&
-                _basePresenter.Model.GridCells[i, 1].Player == player &&
-                _basePresenter.Model.GridCells[i, 2].Player == player){
+            if (_basePresenter.Model.GridCells[i, 0].OccupyingPlayer == player &&
+                _basePresenter.Model.GridCells[i, 1].OccupyingPlayer == player &&
+                _basePresenter.Model.GridCells[i, 2].OccupyingPlayer == player){
 #if UNITY_EDITOR
                 Debug.Log($"<color=green>{player} won. Horizontal win.</color>");
 #endif
@@ -45,11 +45,11 @@ public class Referee : MonoBehaviour, IReferee
     
     private bool IsVerticalWin(PlayerMark player)
     {
-        _basePresenter = _grid.GridBasePresenter;
+        _basePresenter = _grid.Presenter;
         for (int j = 0; j < 3; j++)
-            if (_basePresenter.Model.GridCells[0, j].Player == player &&
-                _basePresenter.Model.GridCells[1, j].Player == player &&
-                _basePresenter.Model.GridCells[2, j].Player == player){
+            if (_basePresenter.Model.GridCells[0, j].OccupyingPlayer == player &&
+                _basePresenter.Model.GridCells[1, j].OccupyingPlayer == player &&
+                _basePresenter.Model.GridCells[2, j].OccupyingPlayer == player){
 #if UNITY_EDITOR
                 Debug.Log($"<color=green>{player} won. Vertical win.</color>");
 #endif
@@ -60,19 +60,19 @@ public class Referee : MonoBehaviour, IReferee
     
     private bool IsDiagonalWin(PlayerMark player)
     {
-        _basePresenter = _grid.GridBasePresenter;
-        if (_basePresenter.Model.GridCells[0, 0].Player == player &&
-            _basePresenter.Model.GridCells[1, 1].Player == player &&
-            _basePresenter.Model.GridCells[2, 2].Player == player){
+        _basePresenter = _grid.Presenter;
+        if (_basePresenter.Model.GridCells[0, 0].OccupyingPlayer == player &&
+            _basePresenter.Model.GridCells[1, 1].OccupyingPlayer == player &&
+            _basePresenter.Model.GridCells[2, 2].OccupyingPlayer == player){
 #if UNITY_EDITOR
             Debug.Log($"<color=green>{player} won. Diagonal win.</color>");
 #endif
             return true;
         }
         
-        if (_basePresenter.Model.GridCells[0, 2].Player == player && 
-            _basePresenter.Model.GridCells[1, 1].Player == player && 
-            _basePresenter.Model.GridCells[2, 0].Player == player){
+        if (_basePresenter.Model.GridCells[0, 2].OccupyingPlayer == player && 
+            _basePresenter.Model.GridCells[1, 1].OccupyingPlayer == player && 
+            _basePresenter.Model.GridCells[2, 0].OccupyingPlayer == player){
 #if UNITY_EDITOR
             Debug.Log($"<color=green>{player} won. Diagonal win.</color>");
 #endif
@@ -95,10 +95,10 @@ public class Referee : MonoBehaviour, IReferee
 
     public bool CheckDraw(PlayerMark player)
     {
-        _basePresenter = _grid.GridBasePresenter;
+        _basePresenter = _grid.Presenter;
         for (int i = 0; i < DesignDataContainer.GRID_SIZE; i++)
             for (int j = 0; j < DesignDataContainer.GRID_SIZE; j++)
-                if (_basePresenter.Model.GridCells[i, j].Player == player)
+                if (_basePresenter.Model.GridCells[i, j].OccupyingPlayer == player)
                     return false;
         DeclareResult(player, _stateMachine.Draw);
         return true;

@@ -1,6 +1,6 @@
 ﻿namespace MVP.Model
 {
-    public interface IDeoccupy
+    public interface IDeoccupiable
     {
         void DeoccupyCell(CellModel model);
     }

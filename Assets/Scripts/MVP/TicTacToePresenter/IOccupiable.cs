@@ -1,6 +1,6 @@
 ﻿namespace MVP.Model
 {
-    public interface IOccupy
+    public interface IOccupiable
     {
         void OccupyCell(CellModel model, PlayerMark player);
     }

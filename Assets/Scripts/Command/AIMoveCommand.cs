@@ -17,8 +17,8 @@ public sealed class AIMoveCommand : BaseCommand
         CellModel bestMove = _heuristicAI.GetAvailableBestMove();
         if (bestMove == null) return;
 
-        Transform parent = bestMove.CellGameObject.transform;
-        Image cellBackground = bestMove.CellGameObject.GetComponent<Image>();
+        Transform parent = bestMove.CellObject.transform;
+        Image cellBackground = bestMove.CellObject.GetComponent<Image>();
         PlaceMark(bestMove, PlayerMark.O, parent); // Place AI's mark (typically 'O') on the board.
         _lastMoveTransform = parent;
         _lastMoveImage = cellBackground;
