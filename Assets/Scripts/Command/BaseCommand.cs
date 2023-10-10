@@ -41,6 +41,7 @@ public abstract class BaseCommand : ICommand
     protected void PlaceMark(CellModel cell, PlayerMark mark, Transform parent = null)
     {
         _cellPresenter.OccupyCell(cell, mark);
+        _cellPresenter.SwitchPlayer();
         if (parent == null)
             parent = _parent;
 

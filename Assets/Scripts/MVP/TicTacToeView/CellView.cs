@@ -11,7 +11,8 @@ namespace MVP.Model
         [SerializeField] private Image _image;
         public readonly CellPresenter Presenter = new();
         [Inject] private CommandInvoker _invoker;
-        public CellModel Cell;
+        [Inject] private HeuristicAI _heuristicAI;
+        public CellModel Cell { get; set; }
 
 
         private void Start() => _button.onClick.AddListener(PlaceCurrentPlayerMark);
@@ -21,7 +22,7 @@ namespace MVP.Model
             if (!Cell.IsOccupied)
             {
                 if (_invoker.IsGameWithAI)
-                    _invoker.Execute(new CompositeCommand(new PlayerMoveCommand(Presenter, transform, _image, Cell), new AIMoveCommand(Presenter, transform, _image, Cell)));
+                    _invoker.Execute(new CompositeCommand(new PlayerMoveCommand(Presenter, transform, _image, Cell), new AIMoveCommand(Presenter, transform, _image, Cell, _heuristicAI)));
                 else 
                     _invoker.Execute(new PlayerMarkCommand(Presenter, transform, _image, Cell));
             }

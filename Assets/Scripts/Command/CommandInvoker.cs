@@ -14,7 +14,7 @@ public sealed class CommandInvoker : MonoBehaviour
 
     public bool IsGameWithAI { get; set; }
 
-    private static readonly Stack<ICommand> UndoStack = new(DesignDataContainer.MAX_NUMBER_OF_MOVES);
+    private readonly Stack<ICommand> UndoStack = new(DesignDataContainer.MAX_NUMBER_OF_MOVES);
     
     private void Start() => _undoButton.onClick.AddListener(Undo);
 

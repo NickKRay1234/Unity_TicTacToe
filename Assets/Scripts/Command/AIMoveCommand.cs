@@ -4,11 +4,12 @@ using UnityEngine.UI;
 
 public sealed class AIMoveCommand : BaseCommand
 {
-    private readonly HeuristicAI _heuristicAI; // AI algorithm to find the best move.
-    public AIMoveCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell)
+    private readonly HeuristicAI _heuristicAI;
+
+    public AIMoveCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell, HeuristicAI heuristicAI)
         : base(cellPresenter, parent, image, cell)
     {
-        _heuristicAI = Object.FindObjectOfType<HeuristicAI>(); // Find the AI object in the scene.
+        _heuristicAI = heuristicAI;
     }
 
     public override void Execute()
