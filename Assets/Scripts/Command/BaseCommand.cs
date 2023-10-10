@@ -31,6 +31,7 @@ public abstract class BaseCommand : ICommand
     public virtual void Execute()
     {
         PlaceMark(_cell, GetPlayerMark());
+        
         _lastMoveTransform = _parent;
         _lastMoveImage = _image;
         _lastMoveCell = _cell;

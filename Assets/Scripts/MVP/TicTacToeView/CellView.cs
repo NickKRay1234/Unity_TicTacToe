@@ -9,10 +9,10 @@ namespace MVP.Model
     {
         [SerializeField] private Button _button;
         [SerializeField] private Image _image;
-        public CellPresenter Presenter { get; private set; }
         [Inject] private CommandInvoker _invoker;
         [Inject] private HeuristicAI _heuristicAI;
-        [Inject] private DesignDataContainer _designDataContainer;
+        
+        public CellPresenter Presenter { get; private set; }
         public CellModel Cell { get; set; }
 
         
@@ -22,18 +22,7 @@ namespace MVP.Model
         private void Start()
         {
             if (Presenter == null) throw new InvalidOperationException("Presenter is not set.");
-            _button.onClick.AddListener(PlaceCurrentPlayerMark);
-        }
-
-        public void PlaceCurrentPlayerMark()
-        {
-            if (!Cell.IsOccupied)
-            {
-                if (_invoker.IsGameWithAI)
-                    _invoker.Execute(new CompositeCommand(new PlayerMoveCommand(Presenter, transform, _image, Cell), new AIMoveCommand(Presenter, transform, _image, Cell, _heuristicAI)));
-                else 
-                    _invoker.Execute(new PlayerMarkCommand(Presenter, transform, _image, Cell, _designDataContainer));
-            }
+            _button.onClick.AddListener(() => Presenter.PlaceCurrentPlayerMark(Cell, transform, _image, _invoker.IsGameWithAI, _invoker, _heuristicAI));
         }
     }
 }

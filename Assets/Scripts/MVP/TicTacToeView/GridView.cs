@@ -22,7 +22,7 @@ namespace MVP.TicTacToeView
         public void InitializeGrid()
         {
             Presenter ??= new GridPresenter(new GridModel(_designDataContainer.GRID_SIZE), this);
-            _designDataContainer.CurrentPlayer = PlayerMark.X;
+            _designDataContainer.CurrentPlayer = _designDataContainer.InitialPlayer;
             for (int i = 0; i < _designDataContainer.GRID_SIZE; i++)
             for (int j = 0; j < _designDataContainer.GRID_SIZE; j++)
                 InitializeGridCell(i, j);
