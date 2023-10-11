@@ -7,24 +7,24 @@ using VContainer;
 
 public class Referee : MonoBehaviour, IReferee
 {
-    [SerializeField] private GameObject _win;
-    [SerializeField] private GameObject _lose;
+    [SerializeField] private StateMachine _stateMachine;
     [SerializeField] private Scorekeeper _scorekeeper;
+    
+    [Inject] private DesignDataContainer _designDataContainer;
+    [Inject] private GridView _grid;
+    
     [HideInInspector] public PlayerMark PlayerMarkResult;
+    
     private ResultDemonstrator _demonstrator;
+    private GridPresenter _basePresenter;
 
     public IState StateResult { get; private set; }
-    private GridPresenter _basePresenter;
-    [Inject] private GridView _grid;
-    [Inject] private DesignDataContainer _designDataContainer;
-    private StateMachine _stateMachine;
     public Action ScoreChanged;
 
 
     private void Start()
     {
         _demonstrator = new ResultDemonstrator();
-        _stateMachine = ServiceLocator.Current.Get<StateMachine>();
         _stateMachine.Initialize(_stateMachine.Start);
         PlayerMarkResult = PlayerMark.None;
     }
@@ -36,9 +36,6 @@ public class Referee : MonoBehaviour, IReferee
             if (_basePresenter.Model.GridCells[i, 0].OccupyingPlayer == player &&
                 _basePresenter.Model.GridCells[i, 1].OccupyingPlayer == player &&
                 _basePresenter.Model.GridCells[i, 2].OccupyingPlayer == player){
-#if UNITY_EDITOR
-                Debug.Log($"<color=green>{player} won. Horizontal win.</color>");
-#endif
                 return true;
             }
         return false;
@@ -51,9 +48,6 @@ public class Referee : MonoBehaviour, IReferee
             if (_basePresenter.Model.GridCells[0, j].OccupyingPlayer == player &&
                 _basePresenter.Model.GridCells[1, j].OccupyingPlayer == player &&
                 _basePresenter.Model.GridCells[2, j].OccupyingPlayer == player){
-#if UNITY_EDITOR
-                Debug.Log($"<color=green>{player} won. Vertical win.</color>");
-#endif
                 return true;
             }
         return false;
@@ -65,21 +59,12 @@ public class Referee : MonoBehaviour, IReferee
         if (_basePresenter.Model.GridCells[0, 0].OccupyingPlayer == player &&
             _basePresenter.Model.GridCells[1, 1].OccupyingPlayer == player &&
             _basePresenter.Model.GridCells[2, 2].OccupyingPlayer == player){
-#if UNITY_EDITOR
-            Debug.Log($"<color=green>{player} won. Diagonal win.</color>");
-#endif
             return true;
         }
         
-        if (_basePresenter.Model.GridCells[0, 2].OccupyingPlayer == player && 
-            _basePresenter.Model.GridCells[1, 1].OccupyingPlayer == player && 
-            _basePresenter.Model.GridCells[2, 0].OccupyingPlayer == player){
-#if UNITY_EDITOR
-            Debug.Log($"<color=green>{player} won. Diagonal win.</color>");
-#endif
-            return true;
-        }
-        return false;
+        return _basePresenter.Model.GridCells[0, 2].OccupyingPlayer == player && 
+               _basePresenter.Model.GridCells[1, 1].OccupyingPlayer == player && 
+               _basePresenter.Model.GridCells[2, 0].OccupyingPlayer == player;
     }
     
     public bool CanBeWin(PlayerMark player) => IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player);

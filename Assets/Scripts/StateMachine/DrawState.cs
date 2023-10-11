@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DrawState : MonoBehaviour, IState, IService
+public class DrawState : MonoBehaviour, IState
 {
     [SerializeField] private GameObject _headHUD;
     public void Enter()

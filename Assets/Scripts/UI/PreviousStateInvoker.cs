@@ -1,10 +1,8 @@
 using UnityEngine;
+using VContainer;
 
 public class PreviousStateInvoker : MonoBehaviour
 {
-    public void StartPreviousState()
-    {
-        StateMachine stateMachine = ServiceLocator.Current.Get<StateMachine>();
-        stateMachine.ChangeState(stateMachine.PreviousState);
-    }
+    [Inject] private StateMachine _stateMachine;
+    public void StartPreviousState() => _stateMachine.RevertToPreviousState();
 }

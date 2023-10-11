@@ -1381,14 +1381,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17edb765838f72469f7a491ec7eac2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _draw: {fileID: 1495399780}
   _twoPlayersGame: {fileID: 835567838}
   _gameWithAI: {fileID: 835567840}
+  _select: {fileID: 1282169518}
   _start: {fileID: 922580208}
-  _win: {fileID: 1040979079}
+  _draw: {fileID: 1495399780}
   _lose: {fileID: 1371462765}
   _back: {fileID: 835567839}
-  _select: {fileID: 1282169518}
+  _win: {fileID: 1040979079}
 --- !u!1 &266727375
 GameObject:
   m_ObjectHideFlags: 0
@@ -5286,8 +5286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07efd8a31932524ca45e654837d0b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridView: {fileID: 567277725}
-  _referee: {fileID: 1510305142}
 --- !u!1 &1428145508 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2505108825349767373, guid: bc350af2b47ea73499bc0159cae50752, type: 3}
@@ -5459,9 +5457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fea7e4985e8e264081c239e2e941821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _win: {fileID: 1040979077}
-  _lose: {fileID: 1371462763}
+  _stateMachine: {fileID: 251527252}
   _scorekeeper: {fileID: 1352871348}
+  _lose: {fileID: 1371462763}
+  _win: {fileID: 1040979077}
   PlayerMarkResult: 0
 --- !u!4 &1510305143
 Transform:
@@ -6467,7 +6466,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1967101927}
-  - component: {fileID: 1967101926}
   - component: {fileID: 1967101928}
   m_Layer: 0
   m_Name: ServiceLocator
@@ -6476,19 +6474,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1967101926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967101925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5647ef4643dec840b12bec2b91a3dd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _state: {fileID: 251527252}
 --- !u!4 &1967101927
 Transform:
   m_ObjectHideFlags: 0
@@ -6522,9 +6507,9 @@ MonoBehaviour:
   autoInjectGameObjects:
   - {fileID: 1423624592}
   - {fileID: 835567836}
-  - {fileID: 1800172730}
   - {fileID: 1040979077}
   - {fileID: 251527250}
+  - {fileID: 1800172730}
   - {fileID: 3422515062000156381, guid: 8f671ee439116cc40b0e9f148e2097a5, type: 3}
   _gridView: {fileID: 567277725}
   _referee: {fileID: 1510305142}
