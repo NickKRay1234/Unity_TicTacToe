@@ -1,4 +1,5 @@
 ﻿using MVP.Model;
+using SignFactory;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +7,8 @@ public sealed class AIMoveCommand : BaseCommand
 {
     private readonly HeuristicAI _heuristicAI;
 
-    public AIMoveCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell, HeuristicAI heuristicAI)
-        : base(cellPresenter, parent, image, cell)
+    public AIMoveCommand(DesignDataContainer designDataContainer, X_Factory xFactory, O_Factory oFactory, CellPresenter cellPresenter, Transform parent, Image image, CellModel cell, HeuristicAI heuristicAI)
+        : base(designDataContainer, xFactory, oFactory, cellPresenter, parent, image, cell)
     {
         _heuristicAI = heuristicAI;
     }

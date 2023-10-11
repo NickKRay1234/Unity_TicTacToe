@@ -19,6 +19,8 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<GridModel>(Lifetime.Singleton).WithParameter(_designDataContainer.GRID_SIZE);
         builder.Register<BaseCommand>(Lifetime.Singleton).WithParameter(_designDataContainer);
         builder.Register<Cell_Factory>(Lifetime.Singleton);
+        builder.Register<X_Factory>(Lifetime.Singleton);
+        builder.Register<O_Factory>(Lifetime.Singleton);
         builder.Register<Scorekeeper>(Lifetime.Singleton);
         builder.Register<WinState>(Lifetime.Singleton);
         builder.Register<HeuristicAI>(Lifetime.Singleton);

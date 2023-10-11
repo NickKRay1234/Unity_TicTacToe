@@ -7,8 +7,8 @@ using VContainer;
 public class HeuristicAI : MonoBehaviour
 {
     [Inject] private DesignDataContainer _designDataContainer;
-    [SerializeField] private GridView _gridView;
-    [SerializeField] private Referee _referee;
+    [Inject] private GridView _gridView;
+    [Inject] private Referee _referee;
     
     // Returns the best move for the given player based on a heuristic approach.
     public CellModel GetBestMove(CellModel[,] gridModels, PlayerMark currentPlayer)

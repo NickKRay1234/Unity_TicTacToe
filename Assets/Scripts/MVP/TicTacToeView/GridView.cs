@@ -10,6 +10,8 @@ namespace MVP.TicTacToeView
     public sealed class GridView : MonoBehaviour, IGridCleanable
     {
         [Inject] private Cell_Factory _cellFactory;
+        [Inject] private X_Factory _xFactory;
+        [Inject] private O_Factory _oFactory;
         [Inject] private DesignDataContainer _designDataContainer;
         
         private GridPresenter _presenter;
@@ -41,7 +43,7 @@ namespace MVP.TicTacToeView
             // Linking the cell view component with its corresponding model.
             CellView cellViewComponent = cellBody.GetComponent<CellView>();
             if (cellViewComponent == null) throw new InvalidOperationException("cellModel is null.");
-            cellViewComponent.Initialize(new CellPresenter(_designDataContainer));
+            cellViewComponent.Initialize(new CellPresenter(_designDataContainer, _xFactory, _oFactory));
             cellViewComponent.Cell = cellModel;
         }
 

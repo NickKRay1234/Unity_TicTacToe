@@ -6,10 +6,11 @@ using VContainer;
 
 public abstract class BaseCommand : ICommand
 {
-    protected readonly CellPresenter _cellPresenter;
     [Inject] protected readonly DesignDataContainer _designDataContainer;
     protected readonly X_Factory _xFactory;
     protected readonly O_Factory _oFactory;
+    
+    protected readonly CellPresenter _cellPresenter;
     protected readonly Transform _parent;
     protected readonly CellModel _cell;
     protected readonly Image _image;
@@ -18,10 +19,11 @@ public abstract class BaseCommand : ICommand
     protected Image _lastMoveImage;
     protected CellModel _lastMoveCell;
 
-    protected BaseCommand(CellPresenter cellPresenter, Transform parent, Image image, CellModel cell)
+    protected BaseCommand(DesignDataContainer designDataContainer, X_Factory xFactory, O_Factory oFactory, CellPresenter cellPresenter, Transform parent, Image image, CellModel cell)
     {
-        _xFactory = _designDataContainer.GlobalXFactory;
-        _oFactory = _designDataContainer.GlobalOFactory;
+        _designDataContainer = designDataContainer;
+        _xFactory = xFactory;
+        _oFactory = oFactory;
         _cellPresenter = cellPresenter;
         _parent = parent;
         _image = image;
@@ -45,6 +47,8 @@ public abstract class BaseCommand : ICommand
     {
         _cellPresenter.OccupyCell(cell, mark);
         _cellPresenter.SwitchPlayer();
+        
+        
         if (parent == null)
             parent = _parent;
 

@@ -5,15 +5,12 @@ using VContainer.Unity;
 
 namespace SignFactory
 {
-    public sealed class Cell_Factory : Factory, IService
+    public sealed class Cell_Factory : Factory
     {
         private IObjectResolver _objectResolver;
         
         [Inject]
-        private void Construct(IObjectResolver objectResolver)
-        {
-            _objectResolver = objectResolver;
-        }
+        private void Construct(IObjectResolver objectResolver) => _objectResolver = objectResolver;
 
         public override IProduct GetProduct(Transform parent)
         {
