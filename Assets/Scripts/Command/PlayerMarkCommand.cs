@@ -9,5 +9,4 @@ public sealed class PlayerMarkCommand : BaseCommand
         : base(designDataContainer, xFactory, oFactory, cellPresenter, parent, image, cell) { }
     
     protected override PlayerMark GetPlayerMark() => _designDataContainer.CurrentPlayer;
-    
 }

@@ -7,6 +7,7 @@ public class StateMachine : MonoBehaviour
     [SerializeField] private GameWithAIState _gameWithAI;
     [SerializeField] private SelectGameState _select;
     [SerializeField] private StartState _startingState;
+    [SerializeField] private ShopState _shopState;
     [SerializeField] private DrawState _draw;
     [SerializeField] private LoseState _lose;
     [SerializeField] private BackState _back;
@@ -26,6 +27,7 @@ public class StateMachine : MonoBehaviour
     public void SwitchToLoseState() => ChangeState(_lose);
     public void SwitchToBackState() => ChangeState(_back);
     public void SwitchToWinState() => ChangeState(_win);
+    public void SwitchToShopState() => ChangeState(_shopState);
     
     
     /// Initialises the state machine with the initial state.
