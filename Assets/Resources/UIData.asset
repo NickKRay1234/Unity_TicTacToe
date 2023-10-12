@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dae7ce9401f43cd90e30ded2cf316c1, type: 3}
   m_Name: UIData
   m_EditorClassIdentifier: 
-  _o: {fileID: 2376945013351659367, guid: fe649677ab9fba44a8e8c46933d3d140, type: 3}
-  _x: {fileID: 3446892457772561366, guid: e6c7cee6858f6ad448b24e3135ac5359, type: 3}
-  _cell: {fileID: 3185881277686191735, guid: 649240648a320af4ca1d9c4c3f1095e5, type: 3}
+  O: {fileID: 2376945013351659367, guid: fe649677ab9fba44a8e8c46933d3d140, type: 3}
+  X: {fileID: 3446892457772561366, guid: e6c7cee6858f6ad448b24e3135ac5359, type: 3}
+  Cell: {fileID: 3185881277686191735, guid: 649240648a320af4ca1d9c4c3f1095e5, type: 3}

@@ -11,16 +11,19 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private Referee _referee;
 
     [SerializeField] private DesignDataContainer _designDataContainer;
+    [SerializeField] private UIDesignDataContainer _uiDesignDataContainer;
 
     protected override void Configure(IContainerBuilder builder)
     {
         builder.RegisterInstance(_designDataContainer);
+        builder.RegisterInstance(_uiDesignDataContainer);
         builder.Register<IObjectResolver, Container>(Lifetime.Scoped);
         builder.Register<GridModel>(Lifetime.Singleton).WithParameter(_designDataContainer.GRID_SIZE);
         builder.Register<BaseCommand>(Lifetime.Singleton).WithParameter(_designDataContainer);
-        builder.Register<Cell_Factory>(Lifetime.Singleton);
+        builder.Register<Factory>(Lifetime.Singleton);
         builder.Register<X_Factory>(Lifetime.Singleton);
         builder.Register<O_Factory>(Lifetime.Singleton);
+        builder.Register<Cell_Factory>(Lifetime.Singleton);
         builder.Register<Scorekeeper>(Lifetime.Singleton);
         builder.Register<WinState>(Lifetime.Singleton);
         builder.Register<HeuristicAI>(Lifetime.Singleton);

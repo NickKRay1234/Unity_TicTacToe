@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Play Again - Button Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1069513626511501822, guid: 7d7fffaee4e499d45b0309636c6b6a08, type: 3}
+      propertyPath: _stateMachine
+      value: 
+      objectReference: {fileID: 251527252}
     - target: {fileID: 4763240172608167991, guid: 7d7fffaee4e499d45b0309636c6b6a08, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -315,7 +319,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 251527252}
         m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
-        m_MethodName: SwitchOnSelectGameState
+        m_MethodName: SwitchToSelectGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -670,14 +674,14 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 129171660}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 251527252}
         m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
-        m_MethodName: SwitchOnSelectGameState
+        m_MethodName: SwitchToSelectGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -884,6 +888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Play Again - Button Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1069513626511501822, guid: 7d7fffaee4e499d45b0309636c6b6a08, type: 3}
+      propertyPath: _stateMachine
+      value: 
+      objectReference: {fileID: 251527252}
     - target: {fileID: 4763240172608167991, guid: 7d7fffaee4e499d45b0309636c6b6a08, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1327,7 +1335,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 251527252}
         m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
-        m_MethodName: SwitchOnTwoPlayersGame
+        m_MethodName: SwitchToTwoPlayersGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1337,43 +1345,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &251527250
+--- !u!1 &251527250 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 514230536729298785, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+  m_PrefabInstance: {fileID: 9072582796910983195}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 251527251}
-  - component: {fileID: 251527252}
-  m_Layer: 0
-  m_Name: StateMachine
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &251527251
+--- !u!4 &251527251 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+  m_PrefabInstance: {fileID: 9072582796910983195}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251527250}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 253.26904, y: 488.57666, z: -3.8173218}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1423624593}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &251527252
+--- !u!114 &251527252 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5091597074911987856, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+  m_PrefabInstance: {fileID: 9072582796910983195}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251527250}
   m_Enabled: 1
@@ -1381,14 +1366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17edb765838f72469f7a491ec7eac2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _twoPlayersGame: {fileID: 835567838}
-  _gameWithAI: {fileID: 835567840}
-  _select: {fileID: 1282169518}
-  _start: {fileID: 922580208}
-  _draw: {fileID: 1495399780}
-  _lose: {fileID: 1371462765}
-  _back: {fileID: 835567839}
-  _win: {fileID: 1040979079}
 --- !u!1 &266727375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2230,6 +2207,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Play Again - Button Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1069513626511501822, guid: 7d7fffaee4e499d45b0309636c6b6a08, type: 3}
+      propertyPath: _stateMachine
+      value: 
+      objectReference: {fileID: 251527252}
     - target: {fileID: 4763240172608167991, guid: 7d7fffaee4e499d45b0309636c6b6a08, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2734,7 +2715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3805,7 +3786,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1036383692}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1423624594}
+        m_TargetAssemblyTypeName: CommandInvoker, Assembly-CSharp
+        m_MethodName: Undo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1037023618
 GameObject:
   m_ObjectHideFlags: 0
@@ -4987,7 +4980,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -5104,7 +5097,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 251527252}
         m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
-        m_MethodName: SwitchOnSelectGameState
+        m_MethodName: SwitchToSelectGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5459,8 +5452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateMachine: {fileID: 251527252}
   _scorekeeper: {fileID: 1352871348}
-  _lose: {fileID: 1371462763}
-  _win: {fileID: 1040979077}
   PlayerMarkResult: 0
 --- !u!4 &1510305143
 Transform:
@@ -6114,7 +6105,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 251527252}
         m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
-        m_MethodName: SwitchOnSelectGameState
+        m_MethodName: SwitchToSelectGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6514,6 +6505,7 @@ MonoBehaviour:
   _gridView: {fileID: 567277725}
   _referee: {fileID: 1510305142}
   _designDataContainer: {fileID: 11400000, guid: 342d7935fd9251542a7b137dff733295, type: 2}
+  _uiDesignDataContainer: {fileID: 11400000, guid: 147f06f6a83bcdc4ab7ae81aafe8472d, type: 2}
 --- !u!1 &2023495832
 GameObject:
   m_ObjectHideFlags: 0
@@ -6639,7 +6631,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 251527252}
         m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
-        m_MethodName: SwitchOnGameWithAI
+        m_MethodName: SwitchToGameWithAIState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6830,3 +6822,96 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc350af2b47ea73499bc0159cae50752, type: 3}
+--- !u!1001 &9072582796910983195
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1423624593}
+    m_Modifications:
+    - target: {fileID: 514230536729298785, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_Name
+      value: StateMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 253.26904
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 488.57666
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.8173218
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895228373509827026, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5091597074911987856, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: _win
+      value: 
+      objectReference: {fileID: 1040979079}
+    - target: {fileID: 5091597074911987856, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: _back
+      value: 
+      objectReference: {fileID: 835567839}
+    - target: {fileID: 5091597074911987856, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: _draw
+      value: 
+      objectReference: {fileID: 1495399780}
+    - target: {fileID: 5091597074911987856, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: _lose
+      value: 
+      objectReference: {fileID: 1371462765}
+    - target: {fileID: 5091597074911987856, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: _select
+      value: 
+      objectReference: {fileID: 1282169518}
+    - target: {fileID: 5091597074911987856, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: _gameWithAI
+      value: 
+      objectReference: {fileID: 835567840}
+    - target: {fileID: 5091597074911987856, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: _startingState
+      value: 
+      objectReference: {fileID: 922580208}
+    - target: {fileID: 5091597074911987856, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}
+      propertyPath: _twoPlayersGame
+      value: 
+      objectReference: {fileID: 835567838}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2295d739545119848a2d59a3fa9e7772, type: 3}

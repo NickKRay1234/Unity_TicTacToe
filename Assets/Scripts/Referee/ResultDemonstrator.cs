@@ -1,8 +1,7 @@
 ﻿public class ResultDemonstrator
 {
-    public void ShowResult(IState state)
+    public void ShowResult(StateMachine stateMachine, IState state)
     {
-        //StateMachine _stateMachine = ServiceLocator.Current.Get<StateMachine>();
-        //_stateMachine.ChangeState(state);
+        stateMachine.ChangeState(state);
     }
 }

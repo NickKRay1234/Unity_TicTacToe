@@ -14,7 +14,8 @@ public sealed class CommandInvoker : MonoBehaviour
 
     public bool IsGameWithAI { get; set; }
 
-    private readonly Stack<ICommand> UndoStack = new(DesignDataContainer.MAX_NUMBER_OF_MOVES);
+    private static readonly Stack<ICommand> UndoStack = 
+        new(DesignDataContainer.MAX_NUMBER_OF_MOVES);
     
     private void Start() => _undoButton.onClick.AddListener(Undo);
 
@@ -26,7 +27,7 @@ public sealed class CommandInvoker : MonoBehaviour
     }
 
     private bool CheckGameStatus() =>
-        _referee.CheckWin(PlayerMark.X) || _referee.CheckWin(PlayerMark.O) || _referee.CheckDraw(PlayerMark.None);
+        _referee.CheckWin(PlayerMark.X, IsGameWithAI) || _referee.CheckWin(PlayerMark.O, IsGameWithAI) || _referee.CheckDraw(PlayerMark.None);
 
     public void ClearIfGameEnded()
     {

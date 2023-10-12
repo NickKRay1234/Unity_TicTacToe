@@ -10,15 +10,7 @@ namespace SignFactory
         [Inject] private GridView _gridView;
         [Inject] private Referee _referee;
         public string ProductName { get; set; }
-
-        public void Initialize()
-        {
-            ProductName = "Cell";
-#if UNITY_EDITOR
-            Debug.Log($"<color=yellow>{ProductName} is created</color>");
-#endif
-        }
-
+        public void Initialize() => ProductName = "Cell";
         public GameObject GetGameObject() => gameObject;
     }
 }

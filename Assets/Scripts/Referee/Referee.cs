@@ -25,7 +25,7 @@ public class Referee : MonoBehaviour, IReferee
     private void Start()
     {
         _demonstrator = new ResultDemonstrator();
-        _stateMachine.Initialize(_stateMachine.Start);
+        _stateMachine.Initialize(_stateMachine.StartingState);
         PlayerMarkResult = PlayerMark.None;
     }
 
@@ -69,11 +69,17 @@ public class Referee : MonoBehaviour, IReferee
     
     public bool CanBeWin(PlayerMark player) => IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player);
     
-    public bool CheckWin(PlayerMark player)
+    public bool CheckWin(PlayerMark player, bool isAI)
     {
         if (IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player))
         {
-            DeclareResult(player, _stateMachine.Win);
+            if(!isAI) 
+                DeclareResult(player, _stateMachine.Win);
+            
+            if(isAI && player == PlayerMark.O)
+                DeclareResult(player, _stateMachine.Lose);
+            else if(isAI && player == PlayerMark.X)
+                DeclareResult(player, _stateMachine.Win);
             return true;
         }
         return false;
@@ -95,7 +101,7 @@ public class Referee : MonoBehaviour, IReferee
         PlayerMarkResult = player;
         ScoreChanged?.Invoke();
         StateResult = state;
-        _demonstrator.ShowResult(StateResult);
+        _demonstrator.ShowResult(_stateMachine, StateResult);
         PlayerMarkResult = PlayerMark.None;
     }
 }

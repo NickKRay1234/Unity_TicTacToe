@@ -13,9 +13,6 @@ public class TwoPlayersGameState : MonoBehaviour, IState
         _invoker.IsGameWithAI = false;
         _headHUD.SetActive(true);
         gameObject.SetActive(true);
-#if UNITY_EDITOR
-        Debug.Log("<color=cyan>I entered in Game state</color>");
-#endif
     }
 
     public void Exit()
@@ -23,8 +20,5 @@ public class TwoPlayersGameState : MonoBehaviour, IState
         _invoker.ClearStack();
         gameObject.SetActive(false);
         _headHUD.SetActive(false);
-#if UNITY_EDITOR
-        Debug.Log("<color=cyan>I came out of my Game state</color>");
-#endif
     }
 }
