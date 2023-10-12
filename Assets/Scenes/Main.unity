@@ -1747,7 +1747,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4269611922623492235}
         m_TargetAssemblyTypeName: StateMachine, Assembly-CSharp
-        m_MethodName: SwitchOnSelectGameState
+        m_MethodName: SwitchToSelectGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
