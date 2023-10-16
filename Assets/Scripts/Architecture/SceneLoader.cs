@@ -42,9 +42,6 @@ namespace Architecture.Infrastructure
             {
                 fakeProgress += 0.01f;
                 _loadingCurtain.SetProgress(fakeProgress);
-#if UNITY_EDITOR
-                Debug.Log($"<color=green>Loading progress: {(int)(fakeProgress * 100)}%</color>");
-#endif
                 yield return new WaitForSeconds(0.025f);
             }
             _loadingCurtain.Hide();
@@ -56,9 +53,6 @@ namespace Architecture.Infrastructure
             while (!nextScene.isDone)
             {
                 float progressValue = Mathf.Clamp01(nextScene.progress / 0.9f);
-#if UNITY_EDITOR
-                Debug.Log($"Loading progress: {progressValue * 100}%");
-#endif
                 _loadingCurtain.SetProgress(progressValue);
                 yield return null;
             }

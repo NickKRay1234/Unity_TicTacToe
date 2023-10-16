@@ -17,7 +17,7 @@ namespace MVP.Model
             _xFactory = xFactory ?? throw new ArgumentNullException(nameof(xFactory));
             _oFactory = oFactory ?? throw new ArgumentNullException(nameof(oFactory));
         }
-        
+
         public bool IsCellOccupied(CellModel model) => model.IsOccupied;
 
         public void OccupyCell(CellModel model, PlayerMark player)
@@ -38,20 +38,26 @@ namespace MVP.Model
                 SwitchPlayer();
             }
         }
-        
-        public void PlaceCurrentPlayerMark(CellModel cellModel, Transform transform, Image image, bool isGameWithAI, CommandInvoker invoker, HeuristicAI heuristicAI)
+
+        public void PlaceCurrentPlayerMark(CellModel cellModel, Transform transform, Image image, bool isGameWithAI,
+            CommandInvoker invoker, HeuristicAI heuristicAI)
         {
             if (!IsCellOccupied(cellModel))
             {
                 if (isGameWithAI)
-                    invoker.Execute(new CompositeCommand(new PlayerMoveCommand(_designDataContainer, _xFactory, _oFactory, this, transform, image, cellModel), 
-                        new AIMoveCommand(_designDataContainer, _xFactory, _oFactory, this, transform, image, cellModel, heuristicAI)));
-                else 
-                    invoker.Execute(new PlayerMarkCommand(_designDataContainer, _xFactory, _oFactory, this, transform, image, cellModel));
+                    invoker.Execute(new CompositeCommand(
+                        new PlayerMoveCommand(_designDataContainer, _xFactory, _oFactory, this, transform, image,
+                            cellModel),
+                        new AIMoveCommand(_designDataContainer, _xFactory, _oFactory, this, transform, image, cellModel,
+                            heuristicAI)));
+                else
+                    invoker.Execute(new PlayerMarkCommand(_designDataContainer, _xFactory, _oFactory, this, transform,
+                        image, cellModel));
             }
         }
-        
+
         public void SwitchPlayer() =>
-            _designDataContainer.CurrentPlayer = _designDataContainer.CurrentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
+            _designDataContainer.CurrentPlayer =
+                _designDataContainer.CurrentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
     }
 }

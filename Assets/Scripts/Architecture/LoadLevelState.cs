@@ -1,4 +1,6 @@
-﻿namespace Architecture.Infrastructure
+﻿using System;
+
+namespace Architecture.Infrastructure
 {
     public class LoadLevelState : IPayloadedState<string>
     {
