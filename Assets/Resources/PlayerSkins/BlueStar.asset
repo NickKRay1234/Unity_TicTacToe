@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4459ac13e1c54aa196592d2d0b077b56, type: 3}
+  m_Name: BlueStar
+  m_EditorClassIdentifier: 
+  <Model>k__BackingField: {fileID: 1833552794120162983, guid: e6c7cee6858f6ad448b24e3135ac5359, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 37fa3c58f7713f142a2f419558e49599, type: 3}
+  <Price>k__BackingField: 2000
+  <IconItem>k__BackingField: 0
