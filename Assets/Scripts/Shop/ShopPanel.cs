@@ -6,7 +6,7 @@ namespace MVP.Model.Shop
 {
     public class ShopPanel : MonoBehaviour
     {
-        private List<ShopItemView> _shopItems = new List<ShopItemView>();
+        private List<ShopItemView> _shopItems = new();
         [SerializeField] private Transform _itemsParent;
         [SerializeField] private ShopItemViewFactory _shopItemViewFactory;
 
