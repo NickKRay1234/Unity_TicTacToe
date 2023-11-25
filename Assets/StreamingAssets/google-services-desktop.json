@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "103104698153",
+    "project_id": "tictactoe-2cd40",
+    "storage_bucket": "tictactoe-2cd40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103104698153:android:aa30c11ae17d6be63dc938",
+        "android_client_info": {
+          "package_name": "com.pushnotification"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJZTWXmqzFkMWI3eAp2COKUZiRF0uUYh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

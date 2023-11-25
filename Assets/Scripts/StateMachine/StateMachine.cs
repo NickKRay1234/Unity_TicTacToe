@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-
     [SerializeField] private TwoPlayersGameState _twoPlayersGame;
     [SerializeField] private GameWithAIState _gameWithAI;
     [SerializeField] private SelectGameState _select;
@@ -12,13 +11,15 @@ public class StateMachine : MonoBehaviour
     [SerializeField] private LoseState _lose;
     [SerializeField] private BackState _back;
     [SerializeField] private WinState _win;
+
     private IState _previousState;
+
     public IState CurrentState { get; private set; }
     public StartState StartingState => _startingState;
     public DrawState Draw => _draw;
     public WinState Win => _win;
     public LoseState Lose => _lose;
-    
+
     public void SwitchToTwoPlayersGameState() => ChangeState(_twoPlayersGame);
     public void SwitchToGameWithAIState() => ChangeState(_gameWithAI);
     public void SwitchToSelectGameState() => ChangeState(_select);
@@ -28,15 +29,15 @@ public class StateMachine : MonoBehaviour
     public void SwitchToBackState() => ChangeState(_back);
     public void SwitchToWinState() => ChangeState(_win);
     public void SwitchToShopState() => ChangeState(_shopState);
-    
-    
+
+
     /// Initialises the state machine with the initial state.
     public void Initialize(IState state)
     {
         CurrentState = state;
         CurrentState?.Enter();
     }
-    
+
     /// Changes the current state to the specified state.
     public void ChangeState(IState newState)
     {
@@ -47,13 +48,13 @@ public class StateMachine : MonoBehaviour
 #endif
             return;
         }
-        
+
         _previousState = CurrentState;
         CurrentState?.Exit();
         CurrentState = newState;
         CurrentState?.Enter();
     }
-    
+
     /// Returns the state machine to the previous state.
     public void RevertToPreviousState()
     {
@@ -64,6 +65,7 @@ public class StateMachine : MonoBehaviour
 #endif
             return;
         }
+
         ChangeState(_previousState);
     }
 }
