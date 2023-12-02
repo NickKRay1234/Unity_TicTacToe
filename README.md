@@ -1,4 +1,4 @@
-![image]([https://user-images.githubusercontent.com/76531899/216824082-f614e3da-2bec-450c-9529-81d38a542a99.png](https://www.coolmathgames.com/sites/default/files/TicTacToe_OG-logo.jpg))
+![91jhs5+HeYL](https://github.com/NickKRay1234/Unity_TicTacToe/assets/80714127/38123431-ac02-429f-8bc5-b20f0ce7a773)
 
 <p align="center">
     <img src="https://img.shields.io/badge/Engine-2022.3.4f1-blueviolet" alt="Unity Version">
