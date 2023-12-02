@@ -44,3 +44,9 @@ The **Heuristic Algorithm** in "Tic-Tac-Toe" implies using heuristic methods to 
 - **Prioritizing Moves**: Choosing moves that are most likely to lead to victory, such as occupying the center of the board or preventing the opponent from forming a continuous line.
 - **Adaptive Learning**: AI can analyze previous games to improve its strategies and predictions.
 
+  
+
+
+https://github.com/NickKRay1234/Unity_TicTacToe/assets/80714127/f70fb481-7175-405e-aad4-0fecc8af0bf0
+
+
