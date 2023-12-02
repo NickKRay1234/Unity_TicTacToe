@@ -47,6 +47,9 @@ The **Heuristic Algorithm** in "Tic-Tac-Toe" implies using heuristic methods to 
   
 
 
-https://github.com/NickKRay1234/Unity_TicTacToe/assets/80714127/f70fb481-7175-405e-aad4-0fecc8af0bf0
+
+https://github.com/NickKRay1234/Unity_TicTacToe/assets/80714127/0373c23d-9506-481a-9022-899abafdc2b8
+
+
 
 
