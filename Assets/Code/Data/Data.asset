@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GRID_SIZE: 3
   InitialPlayer: 0
-  CurrentPlayer: 1
+  CurrentPlayer: 0
+  Player1Score: 5
+  Player2Score: 5

@@ -23,11 +23,6 @@ public class StateMachine : MonoBehaviour
     public void SwitchToTwoPlayersGameState() => ChangeState(_twoPlayersGame);
     public void SwitchToGameWithAIState() => ChangeState(_gameWithAI);
     public void SwitchToSelectGameState() => ChangeState(_select);
-    public void SwitchToStartState() => ChangeState(_startingState);
-    public void SwitchToDrawState() => ChangeState(_draw);
-    public void SwitchToLoseState() => ChangeState(_lose);
-    public void SwitchToBackState() => ChangeState(_back);
-    public void SwitchToWinState() => ChangeState(_win);
     public void SwitchToShopState() => ChangeState(_shopState);
 
 

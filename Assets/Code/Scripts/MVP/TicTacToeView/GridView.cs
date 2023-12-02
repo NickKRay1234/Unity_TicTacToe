@@ -7,6 +7,7 @@ using VContainer;
 
 namespace MVP.TicTacToeView
 {
+    [HelpURL("https://unity.com/how-to/build-modular-codebase-mvc-and-mvp-programming-patterns")]
     public sealed class GridView : MonoBehaviour, IGridCleanable
     {
         [Inject] private Cell_Factory _cellFactory;

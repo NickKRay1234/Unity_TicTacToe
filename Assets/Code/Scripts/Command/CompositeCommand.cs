@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class CompositeCommand : ICommand
+[HelpURL("https://refactoring.guru/design-patterns/composite")]
+public sealed class CompositeCommand : ICommand
 {
     private readonly List<ICommand> _commands = new();
-
-    public CompositeCommand(params ICommand[] commands)
-    {
+    
+    public CompositeCommand(params ICommand[] commands) =>
         _commands.AddRange(commands);
-    }
 
     public void Execute()
     {

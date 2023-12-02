@@ -5,6 +5,7 @@ using VContainer;
 
 namespace MVP.Model
 {
+    [HelpURL("https://unity.com/how-to/build-modular-codebase-mvc-and-mvp-programming-patterns")]
     public class CellView : MonoBehaviour
     {
         [SerializeField] private Button _button;

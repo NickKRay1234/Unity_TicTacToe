@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 
+[HelpURL("https://unity.com/how-to/use-command-pattern-flexible-and-extensible-game-systems")]
 public sealed class CommandInvoker : MonoBehaviour
 {
     [Header("Buttons")] 

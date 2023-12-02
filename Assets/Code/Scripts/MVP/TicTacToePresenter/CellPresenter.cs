@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 namespace MVP.Model
 {
-    public class CellPresenter : ICellStateChangeable
+    [HelpURL("https://unity.com/how-to/build-modular-codebase-mvc-and-mvp-programming-patterns")]
+    public class CellPresenter
     {
         private readonly X_Factory _xFactory;
         private readonly O_Factory _oFactory;

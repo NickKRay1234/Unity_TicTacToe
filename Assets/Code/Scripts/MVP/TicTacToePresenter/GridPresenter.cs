@@ -1,9 +1,11 @@
 ﻿using System;
 using MVP.Model;
 using MVP.TicTacToeView;
+using UnityEngine;
 
 namespace MVP.TicTacToePresenter
 {
+    [HelpURL("https://unity.com/how-to/build-modular-codebase-mvc-and-mvp-programming-patterns")]
     public class GridPresenter
     {
         public GridModel Model { get; }

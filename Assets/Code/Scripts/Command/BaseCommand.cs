@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 
+[HelpURL("https://unity.com/how-to/use-command-pattern-flexible-and-extensible-game-systems")]
 public abstract class BaseCommand : ICommand
 {
     [Inject] protected readonly DesignDataContainer _designDataContainer;
@@ -13,10 +14,8 @@ public abstract class BaseCommand : ICommand
     protected readonly CellPresenter _cellPresenter;
     protected readonly Transform _parent;
     protected readonly CellModel _cell;
-    protected readonly Image _image;
-    
+
     protected Transform _lastMoveTransform;
-    protected Image _lastMoveImage;
     protected CellModel _lastMoveCell;
 
     protected BaseCommand(DesignDataContainer designDataContainer, X_Factory xFactory, O_Factory oFactory, CellPresenter cellPresenter, Transform parent, Image image, CellModel cell)
@@ -26,7 +25,6 @@ public abstract class BaseCommand : ICommand
         _oFactory = oFactory;
         _cellPresenter = cellPresenter;
         _parent = parent;
-        _image = image;
         _cell = cell;
     }
     
@@ -35,7 +33,6 @@ public abstract class BaseCommand : ICommand
         PlaceMark(_cell, GetPlayerMark());
         
         _lastMoveTransform = _parent;
-        _lastMoveImage = _image;
         _lastMoveCell = _cell;
     }
     
