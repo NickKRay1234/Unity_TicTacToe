@@ -2,6 +2,7 @@
 
 namespace Architecture.Infrastructure
 {
+    /// Unity MonoBehaviour to bootstrap the game.
     public class GameBootstrapper : MonoBehaviour, ICoroutineRunner
     {
         public LoadingCurtain Curtain;

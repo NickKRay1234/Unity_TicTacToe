@@ -10,6 +10,7 @@ public sealed class CommandInvoker : MonoBehaviour
 {
     [Header("Buttons")] 
     [SerializeField] private Button _undoButton;
+    
     [Inject] private IGridCleanable _gridCleanable;
     [Inject] private IReferee _referee;
 

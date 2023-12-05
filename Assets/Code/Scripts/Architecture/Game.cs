@@ -1,5 +1,6 @@
 ﻿namespace Architecture.Infrastructure
 {
+    /// Core class to initialize the game state machine.
     public class Game
     {
         public readonly GameStateMachine StateMachine;

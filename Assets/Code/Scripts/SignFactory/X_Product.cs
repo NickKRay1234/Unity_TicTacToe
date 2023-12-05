@@ -8,10 +8,5 @@ namespace SignFactory
         public string ProductName { get; set; }
         public void Initialize() => ProductName = "X";
         public GameObject GetGameObject() => gameObject;
-
-        public void SetSprite(Sprite newSprite)
-        {
-            _XSprite = newSprite;
-        }
     }
 }

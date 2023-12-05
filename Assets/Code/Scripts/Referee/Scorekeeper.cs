@@ -28,19 +28,19 @@ namespace MVP.Model
             switch (_referee.PlayerMarkResult)
             {
                 case PlayerMark.X:
-                    _data.Player1Score = Result(_data.Player1Score, _player1);
+                    _data.Player1Score = GetResult(_data.Player1Score, _player1);
                     break;
                 case PlayerMark.O:
-                    _data.Player2Score = Result(_data.Player2Score, _player2);
+                    _data.Player2Score = GetResult(_data.Player2Score, _player2);
                     break;
                 case PlayerMark.None:
-                    _data.Player1Score = Result(_data.Player1Score, _player1);
-                    _data.Player2Score = Result(_data.Player2Score, _player2);
+                    _data.Player1Score = GetResult(_data.Player1Score, _player1);
+                    _data.Player2Score = GetResult(_data.Player2Score, _player2);
                     break;
             }
         }
 
-        private int Result(int playerScore, TextMeshProUGUI meshProText)
+        private int GetResult(int playerScore, TextMeshProUGUI meshProText)
         {
             playerScore += 1;
             meshProText.text = $"{playerScore}";

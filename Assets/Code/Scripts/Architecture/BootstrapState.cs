@@ -1,5 +1,7 @@
 ﻿namespace Architecture.Infrastructure
 {
+    
+    /// BootstrapState: Initializes the game and loads the initial scene.
     public class BootstrapState : IState
     {
         private readonly GameStateMachine _stateMachine;
@@ -20,8 +22,6 @@
         private void EnterLoadLevel() =>
             _stateMachine.Enter<LoadLevelState, string>(DesignDataContainer.Main);
 
-        void IExitableState.Exit()
-        {
-        }
+        void IExitableState.Exit() { }
     }
 }

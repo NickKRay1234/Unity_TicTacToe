@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Architecture.Infrastructure
 {
+    /// Handles the loading of scenes with visual feedback.
     public class SceneLoader
     {
         private readonly ICoroutineRunner _coroutineRunner;

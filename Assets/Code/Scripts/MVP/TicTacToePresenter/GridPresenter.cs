@@ -11,7 +11,7 @@ namespace MVP.TicTacToePresenter
         public GridModel Model { get; }
         public GridView View { get; private set; }
 
-        //This ensures that both critical components are set upon creation of the GridPresenter.
+        ///This ensures that both critical components are set upon creation of the GridPresenter.
         public GridPresenter(GridModel model, GridView view)
         {
             Model = model ?? throw new ArgumentException(nameof(model));

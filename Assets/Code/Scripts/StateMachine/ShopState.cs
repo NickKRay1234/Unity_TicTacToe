@@ -18,9 +18,5 @@ public class ShopState : MonoBehaviour, IState
         _data.X.GetComponent<Image>().sprite = _data.ActiveXSprite;
     }
     
-    public void ChangeActiveO(Sprite newO)
-    {
-        _data.ActiveOSprite = newO;
-        //_data.O.GetComponent<Image>().sprite = _data.ActiveOSprite;
-    }
+    public void ChangeActiveO(Sprite newO) => _data.ActiveOSprite = newO;
 }

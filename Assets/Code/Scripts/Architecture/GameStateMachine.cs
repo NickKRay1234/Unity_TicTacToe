@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Architecture.Infrastructure
 {
+    /// Manages the transitions between different game states.
     public class GameStateMachine
     {
         private readonly Dictionary<Type, IExitableState> _states;

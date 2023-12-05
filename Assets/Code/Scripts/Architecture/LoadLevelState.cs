@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace Architecture.Infrastructure
+﻿namespace Architecture.Infrastructure
 {
+    /// State to handle the loading of different levels.
     public class LoadLevelState : IPayloadedState<string>
     {
         private readonly GameStateMachine _stateMachine;

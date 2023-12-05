@@ -5,6 +5,7 @@ using UnityEngine;
 public class DesignDataContainer : ScriptableObject
 {
     [Range(3, 6)] public int GRID_SIZE = 3;
+    [Range(3, 6)] public int WIN_LINE = 3;
     
     public const int MAX_NUMBER_OF_MOVES = 9;
     public const int MARK_INDEX_IN_CELL = 0;

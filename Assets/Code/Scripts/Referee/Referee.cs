@@ -32,7 +32,7 @@ public class Referee : MonoBehaviour, IReferee
     private bool IsHorizontalWin(PlayerMark player)
     {
         _basePresenter = _grid.Presenter;
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < _designDataContainer.WIN_LINE; i++)
             if (_basePresenter.Model.GridCells[i, 0].OccupyingPlayer == player &&
                 _basePresenter.Model.GridCells[i, 1].OccupyingPlayer == player &&
                 _basePresenter.Model.GridCells[i, 2].OccupyingPlayer == player){
@@ -44,7 +44,7 @@ public class Referee : MonoBehaviour, IReferee
     private bool IsVerticalWin(PlayerMark player)
     {
         _basePresenter = _grid.Presenter;
-        for (int j = 0; j < 3; j++)
+        for (int j = 0; j < _designDataContainer.WIN_LINE; j++)
             if (_basePresenter.Model.GridCells[0, j].OccupyingPlayer == player &&
                 _basePresenter.Model.GridCells[1, j].OccupyingPlayer == player &&
                 _basePresenter.Model.GridCells[2, j].OccupyingPlayer == player){

@@ -3,6 +3,7 @@ using UnityEngine;
 public class BackState : MonoBehaviour, IState
 {
     [SerializeField] private GameObject _undo;
+    
     public void Enter()
     {
         gameObject.SetActive(true);

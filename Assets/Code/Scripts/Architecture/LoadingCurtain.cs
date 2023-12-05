@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 namespace Architecture.Infrastructure
 {
+    /// Visual component to show loading progress.
     public class LoadingCurtain : MonoBehaviour
     {
         public Slider LoadingBarFill;
