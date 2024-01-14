@@ -2,6 +2,6 @@
 {
     public interface IGridCleanable
     {
-        public void Clear();
+        public void ClearGrid();
     }
 }

@@ -10,10 +10,10 @@ namespace MVP.TicTacToeView
     [HelpURL("https://unity.com/how-to/build-modular-codebase-mvc-and-mvp-programming-patterns")]
     public sealed class GridView : MonoBehaviour, IGridCleanable
     {
+        [Inject] private DesignDataContainer _designDataContainer;
         [Inject] private Cell_Factory _cellFactory;
         [Inject] private X_Factory _xFactory;
         [Inject] private O_Factory _oFactory;
-        [Inject] private DesignDataContainer _designDataContainer;
         
         private GridPresenter _presenter;
         public GridPresenter Presenter
@@ -22,45 +22,69 @@ namespace MVP.TicTacToeView
             private set => _presenter = value ?? throw new ArgumentNullException(nameof(value));
         }
         
+        /// Initializes the grid with cells
         public void InitializeGrid()
         {
             Presenter ??= new GridPresenter(new GridModel(_designDataContainer.GRID_SIZE), this);
             _designDataContainer.CurrentPlayer = _designDataContainer.InitialPlayer;
-            for (int i = 0; i < _designDataContainer.GRID_SIZE; i++)
-            for (int j = 0; j < _designDataContainer.GRID_SIZE; j++)
-                InitializeGridCell(i, j);
+            CreateGridCells();
         }
         
-        private void InitializeGridCell(int i, int j)
+        /// Populates the grid with cells
+        private void CreateGridCells()
         {
-            CellModel cellModel = new CellModel(i, j);
-            Presenter.Model.GridCells[i, j] = cellModel;
-            
-            // Using a global factory to produce cells.
+            for (int rowIndex = 0; rowIndex < _designDataContainer.GRID_SIZE; rowIndex++)
+            for (int colIndex = 0; colIndex < _designDataContainer.GRID_SIZE; colIndex++)
+                InitializeGridCell(rowIndex, colIndex);
+        }
+        
+        /// Initializes an individual cell
+        private void InitializeGridCell(int rowIndex, int colIndex)
+        {
+            CellModel cellModel = new CellModel(rowIndex, colIndex);
+            Presenter.Model.GridCells[rowIndex, colIndex] = cellModel;
+            SetupCellView(cellModel);
+        }
+        
+        /// Links the CellView with its model
+        private void SetupCellView(CellModel cellModel)
+        {
+            GameObject cellObject = CreateCellGameObject(cellModel);
+            CellView cellViewComponent = cellObject.GetComponent<CellView>() 
+                                         ?? throw new InvalidOperationException("CellView component is missing.");
+
+            CellPresenter cellPresenter = new CellPresenter(_designDataContainer);
+            CommandFactory commandFactory = new CommandFactory(_designDataContainer, _xFactory, _oFactory, cellPresenter);
+            cellViewComponent.Initialize(cellPresenter, commandFactory);
+            cellViewComponent.Cell = cellModel;
+        }
+        
+        /// Creates the GameObject for a cell
+        private GameObject CreateCellGameObject(CellModel cellModel)
+        {
             IProduct product = _cellFactory.GetProduct(transform);
             GameObject cellBody = product.GetGameObject();
             cellModel.CellObject = cellBody;
-
-            // Linking the cell view component with its corresponding model.
-            CellView cellViewComponent = cellBody.GetComponent<CellView>();
-            if (cellViewComponent == null) throw new InvalidOperationException("cellModel is null.");
-            cellViewComponent.Initialize(new CellPresenter(_designDataContainer, _xFactory, _oFactory));
-            cellViewComponent.Cell = cellModel;
+            return cellBody;
+        }
+        
+        /// Destroys a single cell object
+        private void DestroyCell(int row, int col)
+        {
+            GameObject cellBody = Presenter.Model.GridCells[row, col].CellObject;
+            if (cellBody)
+            {
+                Destroy(cellBody);
+                Presenter.Model.GridCells[row, col].CellObject = null;
+            }
         }
 
-        public void Clear()
+        /// Destroying each cell game object in the grid.
+        public void ClearGrid()
         {
-            // Destroying each cell game object in the grid.
-            for (int i = 0; i < _designDataContainer.GRID_SIZE; i++)
-            for (int j = 0; j < _designDataContainer.GRID_SIZE; j++)
-            {
-                GameObject cellBody = Presenter.Model.GridCells[i, j].CellObject;
-                if (cellBody)
-                {
-                    Destroy(cellBody);
-                    Presenter.Model.GridCells[i, j].CellObject = null; // Reset the reference to the object after its destruction
-                }
-            }
+            for (int rowIndex = 0; rowIndex < _designDataContainer.GRID_SIZE; rowIndex++)
+            for (int colIndex = 0; colIndex < _designDataContainer.GRID_SIZE; colIndex++)
+                DestroyCell(rowIndex, colIndex);
         }
     }
 }

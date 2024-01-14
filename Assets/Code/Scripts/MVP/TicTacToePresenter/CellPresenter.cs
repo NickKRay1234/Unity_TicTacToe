@@ -1,63 +1,59 @@
 ﻿using System;
-using SignFactory;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MVP.Model
 {
     [HelpURL("https://unity.com/how-to/build-modular-codebase-mvc-and-mvp-programming-patterns")]
     public class CellPresenter
     {
-        private readonly X_Factory _xFactory;
-        private readonly O_Factory _oFactory;
         private readonly DesignDataContainer _designDataContainer;
 
-        public CellPresenter(DesignDataContainer designDataContainer, X_Factory xFactory, O_Factory oFactory)
-        {
+        public CellPresenter(DesignDataContainer designDataContainer) =>
             _designDataContainer = designDataContainer ?? throw new ArgumentNullException(nameof(designDataContainer));
-            _xFactory = xFactory ?? throw new ArgumentNullException(nameof(xFactory));
-            _oFactory = oFactory ?? throw new ArgumentNullException(nameof(oFactory));
-        }
 
         public bool IsCellOccupied(CellModel model) => model.IsOccupied;
 
+        /// Occupies a cell with a player's mark if it's not already occupied
         public void OccupyCell(CellModel model, PlayerMark player)
         {
-            if (!model.IsOccupied)
-            {
-                model.OccupyingPlayer = player;
-                model.IsOccupied = true;
-            }
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (model.IsOccupied) return;
+            model.OccupyingPlayer = player;
+            model.IsOccupied = true;
         }
 
+        /// Deoccupies a cell and switches the current player
         public void DeoccupyCell(CellModel model)
         {
-            if (model.IsOccupied)
-            {
-                model.OccupyingPlayer = PlayerMark.None;
-                model.IsOccupied = false;
-                SwitchPlayer();
-            }
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (!model.IsOccupied) return;
+            model.OccupyingPlayer = PlayerMark.None;
+            model.IsOccupied = false;
+            ToggleCurrentPlayer();
         }
 
-        public void PlaceCurrentPlayerMark(CellModel cellModel, Transform transform, Image image, bool isGameWithAI,
-            CommandInvoker invoker, HeuristicAI heuristicAI)
+        /// Places a mark in a cell if it's free and executes the corresponding command
+        public void PlaceMarkIfCellFree(CellModel cellModel, Transform transform, CommandInvoker invoker, CommandFactory commandFactory,
+            bool isGameWithAI = false, HeuristicAI heuristicAI = null)
         {
-            if (!IsCellOccupied(cellModel))
-            {
-                if (isGameWithAI)
-                    invoker.Execute(new CompositeCommand(
-                        new PlayerMoveCommand(_designDataContainer, _xFactory, _oFactory, this, transform, image,
-                            cellModel),
-                        new AIMoveCommand(_designDataContainer, _xFactory, _oFactory, this, transform, image, cellModel,
-                            heuristicAI)));
-                else
-                    invoker.Execute(new PlayerMarkCommand(_designDataContainer, _xFactory, _oFactory, this, transform,
-                        image, cellModel));
-            }
+            if (cellModel == null) throw new ArgumentNullException(nameof(cellModel));
+            if (IsCellOccupied(cellModel)) return;
+            ICommand command =
+                CreateAppropriateCommand(cellModel, transform, commandFactory, isGameWithAI, heuristicAI);
+            invoker.Execute(command);
         }
 
-        public void SwitchPlayer() =>
+        /// Determines which command to create based on the game state
+        private ICommand CreateAppropriateCommand(CellModel cellModel, Transform transform,
+            CommandFactory commandFactory, bool isGameWithAI, HeuristicAI heuristicAI)
+        {
+            return isGameWithAI
+                ? commandFactory.CreateAICommand(cellModel, transform, heuristicAI)
+                : commandFactory.CreatePlayerCommand(cellModel, transform);
+        }
+
+        /// Toggles between player X and player O
+        public void ToggleCurrentPlayer() =>
             _designDataContainer.CurrentPlayer =
                 _designDataContainer.CurrentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
     }

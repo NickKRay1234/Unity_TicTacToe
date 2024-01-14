@@ -30,6 +30,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<HeuristicAI>(Lifetime.Singleton);
         builder.Register<StateMachine>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         builder.Register<CommandInvoker>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+        builder.Register<CommandFactory>(Lifetime.Singleton).WithParameter(_designDataContainer);
         builder.Register<CellView>(Lifetime.Singleton).AsSelf();
         builder.Register<GameWithAIState>(Lifetime.Singleton).AsSelf();
         builder.RegisterComponent(_gridView).AsImplementedInterfaces().AsSelf();

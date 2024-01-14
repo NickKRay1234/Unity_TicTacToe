@@ -9,21 +9,24 @@ namespace MVP.Model
     public class CellView : MonoBehaviour
     {
         [SerializeField] private Button _button;
-        [SerializeField] private Image _image;
         [Inject] private CommandInvoker _invoker;
         [Inject] private HeuristicAI _heuristicAI;
+        private CommandFactory _commandFactory;
         
         public CellPresenter Presenter { get; private set; }
         public CellModel Cell { get; set; }
 
         
-        public void Initialize(CellPresenter presenter) =>
+        public void Initialize(CellPresenter presenter, CommandFactory commandFactory)
+        {
             Presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
+            _commandFactory = commandFactory;
+        }
 
         private void Start()
         {
             if (Presenter == null) throw new InvalidOperationException("Presenter is not set.");
-            _button.onClick.AddListener(() => Presenter.PlaceCurrentPlayerMark(Cell, transform, _image, _invoker.IsGameWithAI, _invoker, _heuristicAI));
+            _button.onClick.AddListener(() => Presenter.PlaceMarkIfCellFree(Cell, transform, _invoker,_commandFactory, _invoker.IsGameWithAI, _heuristicAI));
         }
     }
 }

@@ -12,12 +12,12 @@ public sealed class CompositeCommand : ICommand
     public void Execute()
     {
         foreach (var command in _commands)
-            command.Execute(); // Execute a series of commands.
+            command.Execute();
     }
 
     public void Undo()
     {
         for (int i = _commands.Count - 1; i >= 0; i--)
-            _commands[i].Undo(); // Undo a series of commands in reverse order.
+            _commands[i].Undo();
     }
 }
