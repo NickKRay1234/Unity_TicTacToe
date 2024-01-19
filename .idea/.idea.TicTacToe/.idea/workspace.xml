@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0cb5b4b4-828c-4b5f-80dd-290e5f8658dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/IAIStrategy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/IAIStrategy.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/MinMaxAI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/MinMaxAI.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/AlphaBetaMinMax.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/AlphaBetaMinMax.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TicTacToe/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TicTacToe/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/HeuristicAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/HeuristicAI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/AIMoveCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/AIMoveCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Data/DesignDataContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Data/DesignDataContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToePresenter/CellPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToePresenter/CellPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/IAIStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/IAIStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/MinMaxAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/MinMaxAI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Referee/Referee.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Referee/Referee.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/VContainer/GameLifeTimeScope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/VContainer/GameLifeTimeScope.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +147,7 @@
       <workItem from="1705184242630" duration="8546000" />
       <workItem from="1705233692727" duration="7437000" />
       <workItem from="1705345696613" duration="4551000" />
-      <workItem from="1705692133978" duration="9686000" />
+      <workItem from="1705692133978" duration="11890000" />
     </task>
     <servers />
   </component>

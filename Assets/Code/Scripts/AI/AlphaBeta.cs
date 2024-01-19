@@ -3,7 +3,7 @@ using MVP.Model;
 using MVP.TicTacToePresenter;
 using UnityEngine;
 
-public class MinMaxAI : MonoBehaviour, IAIStrategy
+public class AlphaBeta : MonoBehaviour, IAIStrategy
 {
     private const int MAX_SCORE = 10;
     private const int MIN_SCORE = -10;
@@ -18,17 +18,12 @@ public class MinMaxAI : MonoBehaviour, IAIStrategy
         {
             for (int j = 0; j < gridModels.GetLength(1); j++)
             {
-                // Проверяем, свободна ли ячейка
                 if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
                 {
-                    // Делаем ход и рассчитываем его значение с помощью MinMax
                     gridModels[i, j].OccupyingPlayer = currentPlayer;
-                    int moveValue = MinMax(gridModels, 0, false, currentPlayer);
-
-                    // Отменяем ход
+                    int moveValue = MinMax(gridModels, 0, false, currentPlayer, MIN_SCORE, MAX_SCORE);
                     gridModels[i, j].OccupyingPlayer = PlayerMark.None;
 
-                    // Если значение хода выше текущего лучшего, обновляем лучший ход
                     if (moveValue > bestValue)
                     {
                         bestMove = gridModels[i, j];
@@ -40,23 +35,25 @@ public class MinMaxAI : MonoBehaviour, IAIStrategy
         return bestMove;
     }
 
-    // Рекурсивная функция MinMax
-    private int MinMax(CellModel[,] gridModels, int depth, bool isMaximizing, PlayerMark player)
+    public CellModel GetAvailableBestMove(GridPresenter gridPresenter, PlayerMark currentPlayerMark = PlayerMark.O)
+    {
+        CellModel[,] gridModels = gridPresenter.Model.GridCells;
+        return GetBestMove(gridModels, currentPlayerMark);
+    }
+
+    public event Predicate<PlayerMark> CheckWinEvent;
+
+    // Рекурсивная функция MinMax с альфа-бета отсечением
+    private int MinMax(CellModel[,] gridModels, int depth, bool isMaximizing, PlayerMark player, int alpha, int beta)
     {
         int score = Evaluate(gridModels, player);
 
-        // Если игра закончена (выигрыш или проигрыш), возвращаем оценку
-        if (score == MAX_SCORE || score == MIN_SCORE)
+        if (score == MAX_SCORE || score == MIN_SCORE || !IsMovesLeft(gridModels))
             return score;
-
-        // Если больше нет ходов и ничья
-        if (!IsMovesLeft(gridModels))
-            return 0;
 
         if (isMaximizing)
         {
             int best = MIN_SCORE;
-
             for (int i = 0; i < gridModels.GetLength(0); i++)
             {
                 for (int j = 0; j < gridModels.GetLength(1); j++)
@@ -64,8 +61,11 @@ public class MinMaxAI : MonoBehaviour, IAIStrategy
                     if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
                     {
                         gridModels[i, j].OccupyingPlayer = player;
-                        best = Math.Max(best, MinMax(gridModels, depth + 1, !isMaximizing, GetOpponent(player)));
+                        best = Math.Max(best, MinMax(gridModels, depth + 1, false, GetOpponent(player), alpha, beta));
                         gridModels[i, j].OccupyingPlayer = PlayerMark.None;
+                        alpha = Math.Max(alpha, best);
+                        if (beta <= alpha)
+                            break;
                     }
                 }
             }
@@ -74,7 +74,6 @@ public class MinMaxAI : MonoBehaviour, IAIStrategy
         else
         {
             int best = MAX_SCORE;
-
             for (int i = 0; i < gridModels.GetLength(0); i++)
             {
                 for (int j = 0; j < gridModels.GetLength(1); j++)
@@ -82,14 +81,36 @@ public class MinMaxAI : MonoBehaviour, IAIStrategy
                     if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
                     {
                         gridModels[i, j].OccupyingPlayer = player;
-                        best = Math.Min(best, MinMax(gridModels, depth + 1, !isMaximizing, GetOpponent(player)));
+                        best = Math.Min(best, MinMax(gridModels, depth + 1, true, GetOpponent(player), alpha, beta));
                         gridModels[i, j].OccupyingPlayer = PlayerMark.None;
+                        beta = Math.Min(beta, best);
+                        if (beta <= alpha)
+                            break;
                     }
                 }
             }
             return best;
         }
     }
+
+    // Оценка текущего состояния доски
+    private int Evaluate(CellModel[,] gridModels, PlayerMark player)
+    {
+        // Проверяем, есть ли выигрышная комбинация для игрока
+        if (CheckWin(gridModels, player))
+            return 10; // Возвращает положительное значение, если игрок выиграл
+
+        // Проверяем, есть ли выигрышная комбинация для противника
+        PlayerMark opponent = player == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
+        if (CheckWin(gridModels, opponent))
+            return -10; // Возвращает отрицательное значение, если противник выиграл
+
+        return 0; // Возвращает 0, если никто не выиграл
+    }
+
+    // Получение противоположного игрока
+    private PlayerMark GetOpponent(PlayerMark currentPlayer) =>
+        currentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
     
     private bool CheckWin(CellModel[,] gridModels, PlayerMark player)
     {
@@ -121,43 +142,16 @@ public class MinMaxAI : MonoBehaviour, IAIStrategy
         // Если выигрышный ход не найден, возвращаем false
         return false;
     }
-
+    
     // Проверка, остались ли ходы
     private bool IsMovesLeft(CellModel[,] gridModels)
     {
         for (int i = 0; i < gridModels.GetLength(0); i++)
-            for (int j = 0; j < gridModels.GetLength(1); j++)
-                if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
-                    return true;
+        for (int j = 0; j < gridModels.GetLength(1); j++)
+            if (gridModels[i, j].OccupyingPlayer == PlayerMark.None)
+                return true;
 
         return false;
     }
 
-    // Оценка текущего состояния доски
-    private int Evaluate(CellModel[,] gridModels, PlayerMark player)
-    {
-        // Проверяем, есть ли выигрышная комбинация для игрока
-        if (CheckWin(gridModels, player))
-            return 10; // Возвращает положительное значение, если игрок выиграл
-
-        // Проверяем, есть ли выигрышная комбинация для противника
-        PlayerMark opponent = player == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
-        if (CheckWin(gridModels, opponent))
-            return -10; // Возвращает отрицательное значение, если противник выиграл
-
-        return 0; // Возвращает 0, если никто не выиграл
-    }
-
-    // Получение противоположного игрока
-    private PlayerMark GetOpponent(PlayerMark currentPlayer) =>
-        currentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
-
-    // Метод GetAvailableBestMove необходимо реализовать в соответствии с вашей логикой игры
-    public CellModel GetAvailableBestMove(GridPresenter gridPresenter, PlayerMark currentPlayerMark = PlayerMark.O)
-    {
-        // ...
-        return GetBestMove(gridPresenter.Model.GridCells, currentPlayerMark);
-    }
-
-    public event Predicate<PlayerMark> CheckWinEvent;
 }
