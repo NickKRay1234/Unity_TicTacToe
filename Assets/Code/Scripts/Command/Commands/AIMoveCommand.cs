@@ -1,28 +1,27 @@
-﻿using System;
-using MVP.Model;
-using SignFactory;
+﻿using MVP.Model;
+using MVP.TicTacToePresenter;
 using UnityEngine;
 
 [HelpURL("https://unity.com/how-to/use-command-pattern-flexible-and-extensible-game-systems")]
 public sealed class AIMoveCommand : BaseCommand
 {
-    private readonly HeuristicAI _heuristicAI;
+    private readonly IAIStrategy _aiStrategy;
+    private readonly GridPresenter _gridPresenter;
 
-    public AIMoveCommand(CommandParameters parameters, HeuristicAI heuristicAI) : base(parameters) =>
-        _heuristicAI = heuristicAI;
+    public AIMoveCommand(CommandParameters parameters, GridPresenter gridPresenter, IAIStrategy aiStrategy) : base(parameters)
+    {
+        _gridPresenter = gridPresenter;
+        _aiStrategy = aiStrategy;
+    }
 
     public override void Execute()
     {
-        CellModel bestMove = GetBestMove();
+        CellModel bestMove = _aiStrategy.GetAvailableBestMove(_gridPresenter);
         if (bestMove == null) return;
 
         PlaceMoveOnBoard(bestMove);
         UpdateLastMove(bestMove);
     }
-
-    /// Gets the best available move from the AI
-    private CellModel GetBestMove()
-        => _heuristicAI.GetAvailableBestMove();
 
     /// Updates the last move information
     private void UpdateLastMove(CellModel move)

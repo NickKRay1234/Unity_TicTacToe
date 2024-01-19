@@ -12,6 +12,7 @@ public class Referee : MonoBehaviour, IReferee
     
     [Inject] private DesignDataContainer _designDataContainer;
     [Inject] private GridView _grid;
+    [Inject] private HeuristicAI _heuristicAI;
     
     [HideInInspector] public PlayerMark PlayerMarkResult;
     
@@ -20,6 +21,15 @@ public class Referee : MonoBehaviour, IReferee
 
     public IState StateResult { get; private set; }
     public Action ScoreChanged;
+    
+    private void Awake() =>
+        _heuristicAI.CheckWinEvent += OnCheckWin;
+
+    private void OnDestroy() =>
+        _heuristicAI.CheckWinEvent -= OnCheckWin;
+
+    private bool OnCheckWin(PlayerMark player) =>
+        IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player);
 
 
     private void Start()
@@ -66,8 +76,6 @@ public class Referee : MonoBehaviour, IReferee
                _basePresenter.Model.GridCells[1, 1].OccupyingPlayer == player && 
                _basePresenter.Model.GridCells[2, 0].OccupyingPlayer == player;
     }
-    
-    public bool CanBeWin(PlayerMark player) => IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player);
     
     public bool CheckWin(PlayerMark player, bool isAI)
     {

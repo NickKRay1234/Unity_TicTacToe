@@ -1,18 +1,17 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MVP.Model;
 using MVP.TicTacToePresenter;
-using MVP.TicTacToeView;
 using UnityEngine;
 using VContainer;
 
 
 [HelpURL("https://medium.com/@ma274/tic-tac-toe-game-using-heuristic-alpha-beta-tree-search-algorithm-26b13273bc5b")]
-public class HeuristicAI : MonoBehaviour
+public class HeuristicAI : MonoBehaviour, IAIStrategy
 {
     [Inject] private DesignDataContainer _designDataContainer;
-    [Inject] private GridView _gridView;
-    [Inject] private Referee _referee;
+    public event Predicate<PlayerMark> CheckWinEvent;
 
     /// Basic method for obtaining the best move.
     public CellModel GetBestMove(CellModel[,] gridModels, PlayerMark currentPlayer) =>
@@ -28,12 +27,10 @@ public class HeuristicAI : MonoBehaviour
         foreach (var cell in GetAllEmptyCells(gridModels))
         {
             cell.OccupyingPlayer = player;
-            if (_referee.CanBeWin(player))
-            {
-                cell.OccupyingPlayer = PlayerMark.None;
-                return cell;
-            }
+            bool isWinningMove = CheckWinEvent?.Invoke(player) ?? false;
             cell.OccupyingPlayer = PlayerMark.None;
+        
+            if (isWinningMove) return cell;
         }
         return null;
     }
@@ -79,11 +76,10 @@ public class HeuristicAI : MonoBehaviour
     }
 
     /// Getting the best available move for AI.
-    public CellModel GetAvailableBestMove(PlayerMark currentPlayerMark = PlayerMark.O)
+    public CellModel GetAvailableBestMove(GridPresenter gridPresenter, PlayerMark currentPlayerMark = PlayerMark.O)
     {
         int numberOfAttempts = 0;
-        GridPresenter gridBasePresenter = _gridView.Presenter;
-        CellModel[,] gridModels = gridBasePresenter.Model.GridCells;
+        CellModel[,] gridModels = gridPresenter.Model.GridCells;
         CellModel bestMove = GetBestMove(gridModels, currentPlayerMark);
 
         // Check if the selected move is free, otherwise try again.

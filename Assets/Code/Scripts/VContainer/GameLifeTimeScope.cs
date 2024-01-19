@@ -18,6 +18,7 @@ public class GameLifetimeScope : LifetimeScope
     {
         builder.RegisterInstance(_designDataContainer);
         builder.RegisterInstance(_uiDesignDataContainer);
+        builder.Register<HeuristicAI>(Lifetime.Singleton);
         builder.Register<IObjectResolver, Container>(Lifetime.Scoped);
         builder.Register<GridModel>(Lifetime.Singleton).WithParameter(_designDataContainer.GRID_SIZE);
         builder.Register<BaseCommand>(Lifetime.Singleton).WithParameter(_designDataContainer);
@@ -27,7 +28,6 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<Cell_Factory>(Lifetime.Singleton);
         builder.Register<Scorekeeper>(Lifetime.Singleton);
         builder.Register<WinState>(Lifetime.Singleton);
-        builder.Register<HeuristicAI>(Lifetime.Singleton);
         builder.Register<StateMachine>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         builder.Register<CommandInvoker>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         builder.Register<CellView>(Lifetime.Singleton).AsSelf();

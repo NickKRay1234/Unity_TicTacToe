@@ -28,4 +28,6 @@ public class DesignDataContainer : ScriptableObject
     [Space] [Header("Players Score: ")]
     public int Player1Score = 0;
     public int Player2Score = 0;
+
+    public CellModel[,] GridModels = new CellModel[2,2];
 }

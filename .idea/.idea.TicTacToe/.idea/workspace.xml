@@ -5,16 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0cb5b4b4-828c-4b5f-80dd-290e5f8658dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/CommandFactory/CommandParameters.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/CommandFactory/CommandParameters.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/IAIStrategy.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/IAIStrategy.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/MinMaxAI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/MinMaxAI.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TicTacToe/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TicTacToe/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/HeuristicAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/HeuristicAI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/AIMoveCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/AIMoveCommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/PlayerMarkCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/PlayerMarkCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/PlayerMoveCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/PlayerMoveCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Data/DesignDataContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Data/DesignDataContainer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToePresenter/CellPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToePresenter/CellPresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Referee/Referee.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Referee/Referee.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/VContainer/GameLifeTimeScope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/VContainer/GameLifeTimeScope.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +29,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/30/7996a6ac/Predicate`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
@@ -56,6 +68,7 @@
     <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/jp.hadashikick.vcontainer@1.13.2/Runtime/Internal/ReflectionInjector.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/jp.hadashikick.vcontainer@1.13.2/Runtime/Internal/TypeAnalyzer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -74,7 +87,7 @@
     "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Strategy",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -142,7 +155,7 @@
       <workItem from="1705184242630" duration="8546000" />
       <workItem from="1705233692727" duration="7437000" />
       <workItem from="1705345696613" duration="4551000" />
-      <workItem from="1705692133978" duration="6178000" />
+      <workItem from="1705692133978" duration="9686000" />
     </task>
     <servers />
   </component>
