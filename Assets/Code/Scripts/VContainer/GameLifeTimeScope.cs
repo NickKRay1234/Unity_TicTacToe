@@ -22,15 +22,14 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<GridModel>(Lifetime.Singleton).WithParameter(_designDataContainer.GRID_SIZE);
         builder.Register<BaseCommand>(Lifetime.Singleton).WithParameter(_designDataContainer);
         builder.Register<Factory>(Lifetime.Singleton);
-        builder.Register<X_Factory>(Lifetime.Singleton);
-        builder.Register<O_Factory>(Lifetime.Singleton);
+        builder.Register<X_Factory>(Lifetime.Singleton).AsSelf();
+        builder.Register<O_Factory>(Lifetime.Singleton).AsSelf();
         builder.Register<Cell_Factory>(Lifetime.Singleton);
         builder.Register<Scorekeeper>(Lifetime.Singleton);
         builder.Register<WinState>(Lifetime.Singleton);
         builder.Register<HeuristicAI>(Lifetime.Singleton);
         builder.Register<StateMachine>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         builder.Register<CommandInvoker>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
-        builder.Register<CommandFactory>(Lifetime.Singleton).WithParameter(_designDataContainer);
         builder.Register<CellView>(Lifetime.Singleton).AsSelf();
         builder.Register<GameWithAIState>(Lifetime.Singleton).AsSelf();
         builder.RegisterComponent(_gridView).AsImplementedInterfaces().AsSelf();

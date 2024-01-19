@@ -8,16 +8,8 @@ public sealed class AIMoveCommand : BaseCommand
 {
     private readonly HeuristicAI _heuristicAI;
 
-    public AIMoveCommand(
-        DesignDataContainer designDataContainer,
-        X_Factory xFactory,
-        O_Factory oFactory,
-        CellPresenter cellPresenter,
-        Transform parent,
-        CellModel cell,
-        HeuristicAI heuristicAI
-    ) : base(designDataContainer, xFactory, oFactory, cellPresenter, parent, cell) =>
-        _heuristicAI = heuristicAI ?? throw new ArgumentNullException(nameof(heuristicAI));
+    public AIMoveCommand(CommandParameters parameters, HeuristicAI heuristicAI) : base(parameters) =>
+        _heuristicAI = heuristicAI;
 
     public override void Execute()
     {

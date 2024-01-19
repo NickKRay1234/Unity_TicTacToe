@@ -45,12 +45,10 @@ namespace MVP.Model
 
         /// Determines which command to create based on the game state
         private ICommand CreateAppropriateCommand(CellModel cellModel, Transform transform,
-            CommandFactory commandFactory, bool isGameWithAI, HeuristicAI heuristicAI)
-        {
-            return isGameWithAI
+            CommandFactory commandFactory, bool isGameWithAI, HeuristicAI heuristicAI) =>
+            isGameWithAI
                 ? commandFactory.CreateAICommand(cellModel, transform, heuristicAI)
                 : commandFactory.CreatePlayerCommand(cellModel, transform);
-        }
 
         /// Toggles between player X and player O
         public void ToggleCurrentPlayer() =>

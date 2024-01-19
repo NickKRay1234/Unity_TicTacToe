@@ -16,16 +16,15 @@ public abstract class BaseCommand : ICommand
     protected readonly Transform _parent;
     protected readonly CellModel _cell;
     protected CellModel _lastMoveCell;
-
-    protected BaseCommand(DesignDataContainer designDataContainer, X_Factory xFactory, O_Factory oFactory,
-        CellPresenter cellPresenter, Transform parent, CellModel cell)
+    
+    protected BaseCommand(CommandParameters parameters)
     {
-        _designDataContainer = designDataContainer ?? throw new ArgumentNullException(nameof(designDataContainer));
-        _xFactory = xFactory ?? throw new ArgumentNullException(nameof(xFactory));
-        _oFactory = oFactory ?? throw new ArgumentNullException(nameof(oFactory));
-        _cellPresenter = cellPresenter ?? throw new ArgumentNullException(nameof(cellPresenter));
-        _parent = parent ?? throw new ArgumentNullException(nameof(parent));
-        _cell = cell ?? throw new ArgumentNullException(nameof(cell));
+        _designDataContainer = parameters.DesignDataContainer;
+        _xFactory = parameters.XFactory;
+        _oFactory = parameters.OFactory;
+        _cellPresenter = parameters.CellPresenter;
+        _parent = parameters.Parent;
+        _cell = parameters.Cell;
     }
 
     public virtual void Execute() => PlaceMarkAndHandleLastMove(_cell, GetPlayerMark(), _parent);

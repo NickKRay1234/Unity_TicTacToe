@@ -54,7 +54,7 @@ namespace MVP.TicTacToeView
                                          ?? throw new InvalidOperationException("CellView component is missing.");
 
             CellPresenter cellPresenter = new CellPresenter(_designDataContainer);
-            CommandFactory commandFactory = new CommandFactory(_designDataContainer, _xFactory, _oFactory, cellPresenter);
+            CommandFactory commandFactory = new CommandFactory(cellPresenter, _xFactory, _oFactory, _designDataContainer);
             cellViewComponent.Initialize(cellPresenter, commandFactory);
             cellViewComponent.Cell = cellModel;
         }
