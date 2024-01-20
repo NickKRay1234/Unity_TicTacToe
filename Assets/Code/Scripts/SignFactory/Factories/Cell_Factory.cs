@@ -6,7 +6,7 @@ namespace SignFactory
 {
     public sealed class Cell_Factory : Factory
     {
-        public override IProduct GetProduct(Transform parent)
+        public IProduct GetProduct(Transform parent)
         {
             GameObject instance = _objectResolver.Instantiate(_uiDesignDataContainer.Cell.gameObject, parent.position, Quaternion.identity, parent);
             _objectResolver.Inject(instance.GetComponent<CellView>());

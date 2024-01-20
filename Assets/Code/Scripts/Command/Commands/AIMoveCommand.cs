@@ -5,18 +5,18 @@ using UnityEngine;
 [HelpURL("https://unity.com/how-to/use-command-pattern-flexible-and-extensible-game-systems")]
 public sealed class AIMoveCommand : BaseCommand
 {
-    private readonly IAIStrategy _aiStrategy;
+    private readonly IStrategyAI _strategyAI;
     private readonly GridPresenter _gridPresenter;
 
-    public AIMoveCommand(CommandParameters parameters, GridPresenter gridPresenter, IAIStrategy aiStrategy) : base(parameters)
+    public AIMoveCommand(CommandParameters parameters, GridPresenter gridPresenter, IStrategyAI strategyAI) : base(parameters)
     {
         _gridPresenter = gridPresenter;
-        _aiStrategy = aiStrategy;
+        _strategyAI = strategyAI;
     }
 
     public override void Execute()
     {
-        CellModel bestMove = _aiStrategy.GetAvailableBestMove(_gridPresenter);
+        CellModel bestMove = _strategyAI.GetAvailableBestMove(_gridPresenter);
         if (bestMove == null) return;
 
         PlaceMoveOnBoard(bestMove);

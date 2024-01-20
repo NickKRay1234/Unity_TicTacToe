@@ -4,9 +4,9 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace SignFactory
 {
-    public class X_Factory : Factory, IMarkFactory
+    public sealed class X_Factory : Factory, IMarkFactory
     {
-        public override IProduct GetProduct(Transform parent)
+        public IProduct GetProduct(Transform parent)
         {
             var handle = Addressables.InstantiateAsync(_uiDesignDataContainer.X_Prefab, parent.position, Quaternion.identity, parent);
             handle.Completed += OnObjectInstantiated;

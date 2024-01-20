@@ -18,7 +18,7 @@ public class GameLifetimeScope : LifetimeScope
     {
         builder.RegisterInstance(_designDataContainer);
         builder.RegisterInstance(_uiDesignDataContainer);
-        builder.Register<HeuristicAI>(Lifetime.Singleton);
+        builder.Register<HeuristicStrategyAI>(Lifetime.Singleton);
         builder.Register<IObjectResolver, Container>(Lifetime.Scoped);
         builder.Register<GridModel>(Lifetime.Singleton).WithParameter(_designDataContainer.GRID_SIZE);
         builder.Register<BaseCommand>(Lifetime.Singleton).WithParameter(_designDataContainer);

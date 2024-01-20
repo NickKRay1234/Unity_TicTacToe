@@ -14,8 +14,5 @@ namespace SignFactory
             _objectResolver = objectResolver;
             _uiDesignDataContainer = uiDesignDataContainer;
         }
-        
-        
-        public abstract IProduct GetProduct(Transform parent);
     }
 }

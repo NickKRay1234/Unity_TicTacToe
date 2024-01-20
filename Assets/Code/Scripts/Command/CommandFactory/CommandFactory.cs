@@ -12,17 +12,17 @@ namespace MVP.Model
         private readonly X_Factory _xFactory;
         private readonly O_Factory _oFactory;
         private readonly GridPresenter _gridPresenter;
-        private readonly IAIStrategy _aiStrategy;
+        private readonly IStrategyAI _strategyAI;
 
         public CommandFactory(CellPresenter cellPresenter, X_Factory xFactory, O_Factory oFactory,
-            DesignDataContainer designDataContainer, GridPresenter gridPresenter, IAIStrategy aiStrategy)
+            DesignDataContainer designDataContainer, GridPresenter gridPresenter, IStrategyAI strategyAI)
         {
             _cellPresenter = cellPresenter;
             _xFactory = xFactory;
             _oFactory = oFactory;
             _designDataContainer = designDataContainer;
             _gridPresenter = gridPresenter;
-            _aiStrategy = aiStrategy;
+            _strategyAI = strategyAI;
         }
 
         public ICommand CreatePlayerCommand(CellModel cellModel, Transform transform)
@@ -31,11 +31,11 @@ namespace MVP.Model
             return new PlayerMarkCommand(data);
         }
 
-        public ICommand CreateAICommand(CellModel cellModel, Transform transform, IAIStrategy aiStrategy)
+        public ICommand CreateAICommand(CellModel cellModel, Transform transform, IStrategyAI strategyAI)
         {
             var data = GetParameters(transform, cellModel);
             var playerMoveCommand = new PlayerMoveCommand(data);
-            var aiMoveCommand = new AIMoveCommand(data, _gridPresenter, _aiStrategy);
+            var aiMoveCommand = new AIMoveCommand(data, _gridPresenter, strategyAI);
             return new CompositeCommand(playerMoveCommand, aiMoveCommand);
         }
         

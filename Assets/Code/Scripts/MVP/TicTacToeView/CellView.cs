@@ -10,7 +10,7 @@ namespace MVP.Model
     {
         [SerializeField] private Button _button;
         [Inject] private CommandInvoker _invoker;
-        [Inject] private HeuristicAI _heuristicAI;
+        [Inject] private HeuristicStrategyAI _heuristicStrategyAI;
         private CommandFactory _commandFactory;
         
         public CellPresenter Presenter { get; private set; }
@@ -26,7 +26,7 @@ namespace MVP.Model
         private void Start()
         {
             if (Presenter == null) throw new InvalidOperationException("Presenter is not set.");
-            _button.onClick.AddListener(() => Presenter.PlaceMarkIfCellFree(Cell, transform, _invoker,_commandFactory, _invoker.IsGameWithAI, _heuristicAI));
+            _button.onClick.AddListener(() => Presenter.PlaceMarkIfCellFree(Cell, transform, _invoker,_commandFactory, _invoker.IsGameWithAI, _heuristicStrategyAI));
         }
     }
 }

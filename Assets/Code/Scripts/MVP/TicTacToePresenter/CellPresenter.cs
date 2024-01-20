@@ -34,19 +34,19 @@ namespace MVP.Model
 
         /// Places a mark in a cell if it's free and executes the corresponding command
         public void PlaceMarkIfCellFree(CellModel cellModel, Transform transform, CommandInvoker invoker, CommandFactory commandFactory,
-            bool isGameWithAI = false, IAIStrategy aiStrategy = null)
+            bool isGameWithAI = false, IStrategyAI strategyAI = null)
         {
             if (cellModel == null) throw new ArgumentNullException(nameof(cellModel));
             if (IsCellOccupied(cellModel)) return;
-            ICommand command = CreateAppropriateCommand(cellModel, transform, commandFactory, isGameWithAI, aiStrategy);
+            ICommand command = CreateAppropriateCommand(cellModel, transform, commandFactory, isGameWithAI, strategyAI);
             invoker.Execute(command);
         }
 
         /// Determines which command to create based on the game state
         private ICommand CreateAppropriateCommand(CellModel cellModel, Transform transform,
-            CommandFactory commandFactory, bool isGameWithAI, IAIStrategy aiStrategy) =>
+            CommandFactory commandFactory, bool isGameWithAI, IStrategyAI strategyAI) =>
             isGameWithAI
-                ? commandFactory.CreateAICommand(cellModel, transform, aiStrategy)
+                ? commandFactory.CreateAICommand(cellModel, transform, strategyAI)
                 : commandFactory.CreatePlayerCommand(cellModel, transform);
 
         /// Toggles between player X and player O

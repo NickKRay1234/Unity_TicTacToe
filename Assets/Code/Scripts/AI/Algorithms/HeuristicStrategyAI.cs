@@ -8,7 +8,7 @@ using VContainer;
 
 
 [HelpURL("https://medium.com/@ma274/tic-tac-toe-game-using-heuristic-alpha-beta-tree-search-algorithm-26b13273bc5b")]
-public class HeuristicAI : MonoBehaviour, IAIStrategy
+public class HeuristicStrategyAI : MonoBehaviour, IStrategyAI
 {
     [Inject] private DesignDataContainer _designDataContainer;
     public event Predicate<PlayerMark> CheckWinEvent;

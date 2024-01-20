@@ -56,7 +56,7 @@ namespace MVP.TicTacToeView
             CellPresenter cellPresenter = new CellPresenter(_designDataContainer);
             
             CommandFactory commandFactory = new CommandFactory(cellPresenter, _xFactory, _oFactory,
-                _designDataContainer, _gridPresenter, new AlphaBeta());
+                _designDataContainer, _gridPresenter, new MinMaxStrategyAI());
             cellViewComponent.Initialize(cellPresenter, commandFactory);
 
             cellViewComponent.Cell = cellModel;

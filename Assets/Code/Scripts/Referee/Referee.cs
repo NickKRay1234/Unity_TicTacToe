@@ -12,7 +12,7 @@ public class Referee : MonoBehaviour, IReferee
     
     [Inject] private DesignDataContainer _designDataContainer;
     [Inject] private GridView _grid;
-    [Inject] private HeuristicAI _heuristicAI;
+    [Inject] private HeuristicStrategyAI _heuristicStrategyAI;
     
     [HideInInspector] public PlayerMark PlayerMarkResult;
     
@@ -23,10 +23,10 @@ public class Referee : MonoBehaviour, IReferee
     public Action ScoreChanged;
     
     private void Awake() =>
-        _heuristicAI.CheckWinEvent += OnCheckWin;
+        _heuristicStrategyAI.CheckWinEvent += OnCheckWin;
 
     private void OnDestroy() =>
-        _heuristicAI.CheckWinEvent -= OnCheckWin;
+        _heuristicStrategyAI.CheckWinEvent -= OnCheckWin;
 
     private bool OnCheckWin(PlayerMark player) =>
         IsHorizontalWin(player) || IsVerticalWin(player) || IsDiagonalWin(player);
