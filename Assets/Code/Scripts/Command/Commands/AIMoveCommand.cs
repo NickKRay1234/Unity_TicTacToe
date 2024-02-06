@@ -8,10 +8,10 @@ public sealed class AIMoveCommand : BaseCommand
     private readonly IStrategyAI _strategyAI;
     private readonly GridPresenter _gridPresenter;
 
-    public AIMoveCommand(CommandParameters parameters, GridPresenter gridPresenter, IStrategyAI strategyAI) : base(parameters)
+    public AIMoveCommand(CommandParameters parameters, GridPresenter gridPresenter) : base(parameters)
     {
         _gridPresenter = gridPresenter;
-        _strategyAI = strategyAI;
+        _strategyAI = new HeuristicStrategyAI();
     }
 
     public override void Execute()

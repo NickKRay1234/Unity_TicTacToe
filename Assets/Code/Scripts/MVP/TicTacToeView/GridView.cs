@@ -43,32 +43,19 @@ namespace MVP.TicTacToeView
         {
             CellModel cellModel = new CellModel(rowIndex, colIndex);
             Presenter.Model.GridCells[rowIndex, colIndex] = cellModel;
-            SetupCellView(cellModel);
-        }
-
-        /// Links the CellView with its model
-        private void SetupCellView(CellModel cellModel)
-        {
-            GameObject cellObject = CreateCellGameObject(cellModel);
-            CellView cellViewComponent = cellObject.GetComponent<CellView>()
-                                         ?? throw new InvalidOperationException("CellView component is missing.");
-
-            CellPresenter cellPresenter = new CellPresenter(_designDataContainer);
-            
-            CommandFactory commandFactory = new CommandFactory(cellPresenter, _xFactory, _oFactory,
-                _designDataContainer, _gridPresenter, new MinMaxStrategyAI());
-            cellViewComponent.Initialize(cellPresenter, commandFactory);
-
-            cellViewComponent.Cell = cellModel;
+            CreateCellGameObject(cellModel);
         }
 
         /// Creates the GameObject for a cell
-        private GameObject CreateCellGameObject(CellModel cellModel)
+        private void CreateCellGameObject(CellModel cellModel)
         {
             IProduct product = _cellFactory.GetProduct(transform);
             GameObject cellBody = product.GetGameObject();
+            CellView cellView = cellBody.GetComponent<CellView>();
             cellModel.CellObject = cellBody;
-            return cellBody;
+            CommandFactory commandFactory = new CommandFactory(_gridPresenter, _designDataContainer);
+            //new CellPresenter(cellModel, cellView, commandFactory, _designDataContainer);
+            cellView.Presenter = new CellPresenter(cellModel, cellView, commandFactory, _designDataContainer);
         }
 
         /// Destroys a single cell object

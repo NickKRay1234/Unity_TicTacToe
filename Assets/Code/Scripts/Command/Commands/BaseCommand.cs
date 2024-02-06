@@ -1,14 +1,13 @@
-﻿using MVP.Model;
+﻿using System;
+using MVP.Model;
 using SignFactory;
 using UnityEngine;
-using VContainer;
 using Object = UnityEngine.Object;
 
 [HelpURL("https://unity.com/how-to/use-command-pattern-flexible-and-extensible-game-systems")]
 public abstract class BaseCommand : ICommand
 {
-    [Inject] protected readonly DesignDataContainer _designDataContainer;
-    protected readonly CellPresenter _cellPresenter;
+    protected readonly DesignDataContainer _designDataContainer;
     protected Transform _lastMoveTransform;
     protected readonly X_Factory _xFactory;
     protected readonly O_Factory _oFactory;
@@ -21,7 +20,6 @@ public abstract class BaseCommand : ICommand
         _designDataContainer = parameters.DesignDataContainer;
         _xFactory = parameters.XFactory;
         _oFactory = parameters.OFactory;
-        _cellPresenter = parameters.CellPresenter;
         _parent = parameters.Parent;
         _cell = parameters.Cell;
     }
@@ -35,12 +33,37 @@ public abstract class BaseCommand : ICommand
         CreateAndPlaceMark(parent, mark);
         UpdateLastMove(cell, parent);
     }
-
+    
+    /// Deoccupies a cell and switches the current player
+    public void DeoccupyCell(CellModel model)
+    {
+        if (model == null) throw new ArgumentNullException(nameof(model));
+        if (!model.IsOccupied) return;
+        model.OccupyingPlayer = PlayerMark.None;
+        model.IsOccupied = false;
+        ToggleCurrentPlayer();
+    }
+    
+    /// Toggles between player X and player O
+    public void ToggleCurrentPlayer() =>
+        _designDataContainer.CurrentPlayer =
+            _designDataContainer.CurrentPlayer == PlayerMark.X ? PlayerMark.O : PlayerMark.X;
+    
     private void OccupyCellAndSwitchPlayer(CellModel cell, PlayerMark mark)
     {
-        _cellPresenter.OccupyCell(cell, mark);
-        _cellPresenter.ToggleCurrentPlayer();
+        OccupyCell(cell, mark);
+        ToggleCurrentPlayer();
     }
+    
+    /// Occupies a cell with a player's mark if it's not already occupied
+    public void OccupyCell(CellModel model, PlayerMark player)
+    {
+        if (model == null) throw new ArgumentNullException(nameof(model));
+        if (model.IsOccupied) return;
+        model.OccupyingPlayer = player;
+        model.IsOccupied = true;
+    }
+
 
     private void CreateAndPlaceMark(Transform parent, PlayerMark mark)
     {
@@ -64,7 +87,7 @@ public abstract class BaseCommand : ICommand
         if (_lastMoveTransform.childCount > 0)
         {
             Object.Destroy(_lastMoveTransform.GetChild(0).gameObject);
-            _cellPresenter.DeoccupyCell(_lastMoveCell);
+            DeoccupyCell(_lastMoveCell);
         }
     }
 }

@@ -1,28 +1,23 @@
 using MVP.TicTacToePresenter;
 using SignFactory;
 using UnityEngine;
+using VContainer;
 
 namespace MVP.Model
 {
     /// Factory for creating commands. Provides methods for creating commands for the player and AI.
     public class CommandFactory
     {
-        private readonly CellPresenter _cellPresenter;
-        private readonly DesignDataContainer _designDataContainer;
-        private readonly X_Factory _xFactory;
-        private readonly O_Factory _oFactory;
         private readonly GridPresenter _gridPresenter;
-        private readonly IStrategyAI _strategyAI;
+        
+        [Inject] private X_Factory _xFactory;
+        [Inject] private O_Factory _oFactory;
+        private DesignDataContainer _designDataContainer;
 
-        public CommandFactory(CellPresenter cellPresenter, X_Factory xFactory, O_Factory oFactory,
-            DesignDataContainer designDataContainer, GridPresenter gridPresenter, IStrategyAI strategyAI)
+        public CommandFactory(GridPresenter gridPresenter, DesignDataContainer designDataContainer)
         {
-            _cellPresenter = cellPresenter;
-            _xFactory = xFactory;
-            _oFactory = oFactory;
-            _designDataContainer = designDataContainer;
             _gridPresenter = gridPresenter;
-            _strategyAI = strategyAI;
+            _designDataContainer = designDataContainer;
         }
 
         public ICommand CreatePlayerCommand(CellModel cellModel, Transform transform)
@@ -31,15 +26,15 @@ namespace MVP.Model
             return new PlayerMarkCommand(data);
         }
 
-        public ICommand CreateAICommand(CellModel cellModel, Transform transform, IStrategyAI strategyAI)
+        public ICommand CreateAICommand(CellModel cellModel, Transform transform)
         {
             var data = GetParameters(transform, cellModel);
             var playerMoveCommand = new PlayerMoveCommand(data);
-            var aiMoveCommand = new AIMoveCommand(data, _gridPresenter, strategyAI);
+            var aiMoveCommand = new AIMoveCommand(data, _gridPresenter);
             return new CompositeCommand(playerMoveCommand, aiMoveCommand);
         }
         
         private CommandParameters GetParameters(Transform transform, CellModel cellModel) =>
-            new(_designDataContainer, _xFactory, _oFactory, _cellPresenter, transform, cellModel);
+            new(_designDataContainer, _xFactory, _oFactory, transform, cellModel);
     }
 }

@@ -10,7 +10,7 @@ public class TwoPlayersGameState : MonoBehaviour, IState
     public void Enter()
     {
         _grid.InitializeGrid();
-        _invoker.IsGameWithAI = false;
+        DesignDataContainer.IsGameWithAI = false;
         _headHUD.SetActive(true);
         gameObject.SetActive(true);
     }

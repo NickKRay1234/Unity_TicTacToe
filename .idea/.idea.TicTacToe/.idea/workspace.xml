@@ -5,32 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0cb5b4b4-828c-4b5f-80dd-290e5f8658dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Algorithms.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Algorithms/AlphaBeta.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Algorithms/BaseStrategyAI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Algorithms/BaseStrategyAI.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Algorithms/MinMaxStrategyAI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Interfaces.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Player.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TicTacToe/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TicTacToe/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/AlphaBeta.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/AlphaBeta.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Algorithms/AlphaBeta.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/HeuristicAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Algorithms/HeuristicStrategyAI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/HeuristicAI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Algorithms/HeuristicStrategyAI.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/IAIStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Interfaces/IStrategyAI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/IAIStrategy.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Interfaces/IStrategyAI.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/MinMaxAI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/AI/MinMaxAI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/AI/Algorithms/MinMaxStrategyAI.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/CommandFactory/CommandFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/CommandFactory/CommandParameters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/CommandFactory/CommandParameters.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/AIMoveCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/AIMoveCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Invoker/CommandInvoker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Command/Invoker/CommandInvoker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Data/DesignDataContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Data/DesignDataContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/Interfaces.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/Interfaces.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/Interfaces/IGridCleanable.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/Interfaces/IGridCleanable.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToePresenter/CellPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToePresenter/CellPresenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToeView/CellView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToeView/CellView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/Referee/Referee.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/Referee/Referee.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SignFactory/Factories/Cell_Factory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SignFactory/Factories/Cell_Factory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SignFactory/Factories/Factory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SignFactory/Factories/Factory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SignFactory/Factories/O_Factory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SignFactory/Factories/O_Factory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/SignFactory/Factories/X_Factory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/SignFactory/Factories/X_Factory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/VContainer/GameLifeTimeScope.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/VContainer/GameLifeTimeScope.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/StateMachine/GameWithAIState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/StateMachine/GameWithAIState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/StateMachine/TwoPlayersGameState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/StateMachine/TwoPlayersGameState.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +33,35 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/17484a9af6b944dea5cd9be4dbb0da2c171c00/be/7e433deb/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/30/7996a6ac/Predicate`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/Command/Commands/BaseCommand.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/WorkAndStudyFolder/UnityProjects/TicTacToe/Assets/Code/Scripts/MVP/TicTacToeView/GridView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/jp.hadashikick.vcontainer@1.13.2/Runtime/Internal/ReflectionInjector.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/jp.hadashikick.vcontainer@1.13.2/Runtime/Internal/TypeAnalyzer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -133,6 +152,10 @@
       <workItem from="1705345696613" duration="4551000" />
       <workItem from="1705692133978" duration="12956000" />
       <workItem from="1705778476182" duration="3101000" />
+      <workItem from="1706287397000" duration="1338000" />
+      <workItem from="1706300417084" duration="5308000" />
+      <workItem from="1706997440524" duration="3088000" />
+      <workItem from="1707074190745" duration="1383000" />
     </task>
     <servers />
   </component>

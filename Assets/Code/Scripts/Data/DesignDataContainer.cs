@@ -1,3 +1,4 @@
+using System;
 using MVP.Model;
 using UnityEngine;
 
@@ -21,6 +22,9 @@ public class DesignDataContainer : ScriptableObject
     public const int MaxAttempts = 10;
     public const int CenterX = 1;
     public const int CenterY = 1;
+    
+    public static bool IsGameWithAI { get; set; }
+    public IStrategyAI StrategyAI;
     
     public PlayerMark InitialPlayer = PlayerMark.X;
     public PlayerMark CurrentPlayer;

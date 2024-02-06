@@ -11,7 +11,7 @@ public class GameWithAIState : MonoBehaviour, IState
     public void Enter()
     {
         _grid.InitializeGrid();
-        _invoker.IsGameWithAI = true;
+        DesignDataContainer.IsGameWithAI = true;
         _headHUD.SetActive(true);
         gameObject.SetActive(true);
     }
